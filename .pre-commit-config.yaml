@@ -13,3 +13,5 @@ repos:
     hooks:
       - id: prettier
         types_or: [markdown, mdx, json, yaml, css, javascript]
+ci:
+    autofix_prs: false
