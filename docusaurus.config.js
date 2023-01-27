@@ -82,10 +82,10 @@ const config = {
     ({
       navbar: {
         title: "czi-cf-docs (WIP)",
-        // logo: {
-        //   alt: "The conda-forge anvil",
-        //   src: "img/logo.png",
-        // },
+        logo: {
+          alt: "Under construction",
+          src: "img/construction.png",
+        },
         items: [
           {
             type: "doc",
