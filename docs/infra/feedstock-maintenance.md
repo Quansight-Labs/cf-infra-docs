@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Feedstock maintenance
 
 Outside the package life cycle, there are some maintenance tasks that conda-forge has to perform every now and then.
@@ -25,6 +26,7 @@ Non graph-depending changes:
 This action is done by `conda-smithy rerender`, which takes `recipe/meta.yaml`, `recipe/conda_build_config.yaml` and `conda-forge.yml` to produce the rest of the content you see in your feedstock.
 
 That content is fed by two main sources:
+
 - The templates defined in `conda-smithy` itself
 - The conda-forge pinnings file defined in `conda-forge/conda-forge-pinnings-feedstock`
 
@@ -39,19 +41,22 @@ These changes cannot be applied to all the feedstocks in conda-forge in any rand
 
 The conda-forge graph lists each feedstock _output_ as a node, and nodes connected by the outputs dependencies on each other (e.g. to migrate packages A, B and C, with A depending on B to run and/or be built, the bot would first migrate packages B and C, and A would only get the migration once B has been fully migrated). This is done through automated PRs that contain the migration file and the result of rerendering the feedstock. It's up to the feedstock maintainers to review and merge those PRs, since sometimes the PR introduces changes that do not pass the CI immediately (e.g. updating the pinned version of `openssl` to its newest release, which introduced API incompatible changes that break our package tests). Once merged, that feedstock has successfully completed its part of the migration and the bot can issue the PRs for the dependent feedstocks.
 
-Once the graph is (mostly) migrated, the migration process is "closed", which means that the global file now contains the results of the migration file. 
+Once the graph is (mostly) migrated, the migration process is "closed", which means that the global file now contains the results of the migration file.
 
 Where are all these pieces of infrastructure defined?
 
 The bot network is built with:
+
 - `regro/cf-scripts`: the logic encoding how to apply the changes driven by the migration scheme
 - `regro/autotick-bot`: the CI workflows running the migration logic
 
 The graph metadata is fed by:
+
 - `regro/libcfgraph`, as computed by `regro/libcflib`
 - `regro/cf-graph-countyfair`
 
 The progress reports are displayed in:
+
 - [conda-forge.org/status](https://conda-forge.org/status), which is rendered by `conda-forge/status`.
 - The data thereby displayed comes from `regro/cf-graph-countyfair`.
 
@@ -63,6 +68,7 @@ The most popular graph-dependent migrations are:
 ### Pinnings migrations
 
 <!-- TODO: Put this in the maintainer's guide and link to it in the list above -->
+
 The conda-forge pinnings file is the single source of truth for ABI stability for all conda-forge. Every feedstock contains the subset of that pinnings file that the recipe requires (thanks to `conda-smithy rerender`, which drops platform-specific configurations in the `.ci_support/` directory). With thousands of feedstocks, it wouldn't make sense to rerender all of them just because one definition in that pinnings file has changed. A definition that might not have any impact in that feedstock.
 
 This is why conda-forge uses a special bot to issue those rerender requests through the subset of the feedstock graph that need that "upgrade". The change is not applied to the global file from the beginning; instead, a _migration file_ is created, which contains the operations that would transform the global file into a fully migrated one. When `conda-smithy rerender` finds a migration file under `.ci_support/migrations`, it applies those operations to the global pinnings file, thus migrating that feedstock! Note that several migration files can coexist in the same feedstock at a given time.
@@ -74,6 +80,7 @@ This is why conda-forge uses a special bot to issue those rerender requests thro
 Adding support for new architectures is done via the [`arch` migrator](https://github.com/regro/cf-scripts/blob/master/conda_forge_tick/migrators/arch.py), which uses a slightly different mechanism to be triggered, but it's still the `regro/cf-scripts` machinery.
 
 For example, this migrator can add support for:
+
 - `ppc64le`
 - `aarch64`
 - `osx-arm64`
@@ -96,13 +103,15 @@ When new upstream versions are available, the regro bot will detect it its next 
 
 ### Updating upstream sources
 
-The general logic is defined in [this module](https://github.com/regro/cf-scripts/blob/master/conda_forge_tick/update_upstream_versions.py), which will be triggered if the classes defined in [this other module](https://github.com/regro/cf-scripts/blob/master/conda_forge_tick/update_sources.py) detect a new version. 
+The general logic is defined in [this module](https://github.com/regro/cf-scripts/blob/master/conda_forge_tick/update_upstream_versions.py), which will be triggered if the classes defined in [this other module](https://github.com/regro/cf-scripts/blob/master/conda_forge_tick/update_sources.py) detect a new version.
 
 If your feedstock is not receiving updates, it might be because the regro bot cannot "see" it. Consider adding a class to detect them!
 
 :::note
 The regro bot will stop submitting "new version available" PRs if the previous **three** PRs have not been merged.
+
 <!--  TODO: Find source code for this check -->
+
 :::
 
 ## Automated maintenance

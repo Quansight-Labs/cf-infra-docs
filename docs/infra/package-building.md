@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+
 # Package building
 
 <!-- TODO: Discuss infrasture elements first and link to them from the user/life-cycle document -->
@@ -104,14 +105,14 @@ Authenticated services involved:
 
 ## 4. Package validation and publication
 
-Once built on `main` (or other branches), the conda packages are uploaded to an intermediary channel named `cf-staging`. 
+Once built on `main` (or other branches), the conda packages are uploaded to an intermediary channel named `cf-staging`.
 From there, the packages are downloaded by the validation server and, if successful, copied over to `conda-forge` itself.
 
 - The validation logic is defined at `conda-forge/artifact-validation`
 - If problematic, the results of the validation are posted as issues in the same repo.
-- This logic runs at `conda-forge/conda-forge-webservices`. 
+- This logic runs at `conda-forge/conda-forge-webservices`.
   This webapp also copies the artifacts from `cf-staging` to `conda-forge`.
-- Part of the validation includes checking for cross-package clobbering. 
+- Part of the validation includes checking for cross-package clobbering.
   The list of authorized feedstocks per package name is maintained at `conda-forge/feedstock-outputs`.
 - Some further analysis might be performed _after_ publication.
 
@@ -143,25 +144,27 @@ Since the metadata is external to the files, some details can be modified withou
 which simplifies some maintenance tasks notably.
 
 <!-- FIXME: Confirm accuracy of this paragraph -->
+
 Repodata patches are created in `conda-forge/conda-forge-repodata-patches-feedstock`,
-which generates (and uploads) a regular `conda` package as the result: 
+which generates (and uploads) a regular `conda` package as the result:
 [`conda-forge-repodata-patches`](https://anaconda.org/conda-forge/conda-forge-repodata-patches/files).
 Each of these timestamped packages contains the patch instructions for each channel subdir on conda-forge.
 The Anaconda infrastructure takes the JSON files from these packages and applies them on top of the vanilla `repodata.json`.
 
-Since this operates as a regular feedstock for the purposes of packages publication, 
+Since this operates as a regular feedstock for the purposes of packages publication,
 there are no further infrastructural details to cover.
 
 ### 5B. Mark a package as broken
 
 Sometimes a package is faulty in ways that a repodata patch cannot amend (e.g. bad binary).
 In these cases, conda-forge does not remove packages from Anaconda.org.
-Instead, it marks them with `broken` label, which has a special meaning: 
+Instead, it marks them with `broken` label, which has a special meaning:
 packages labeled as such will be removed from the repodata via automated patches.
 
 The main repository handling this is `conda-forge/admin-requests`, which features different
 Github Actions workflows running every 15 minutes.
 
 For this task, the Github Action workflow needs access to:
+
 - Anaconda.org, to add (or remove) labels
 - Github, to modify and commit the input files after success

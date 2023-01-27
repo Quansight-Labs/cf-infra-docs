@@ -7,9 +7,10 @@ title: Reference
 
 :::tip
 A list of critical repositories for conda-forge's infrastructure and operation is compiled automatically at `conda-forge/repository-index`.
-<!-- TODO: Implement repository and link -->
-:::
 
+<!-- TODO: Implement repository and link -->
+
+:::
 
 <!-- TODO: Bring content from `package-building` and `feedstock-maintenance` as needed -->
 
@@ -39,7 +40,6 @@ WIP.
 
 WIP.
 
-
 ## External services
 
 ### CI providers
@@ -53,4 +53,3 @@ WIP.
 ### Servers
 
 WIP.
-

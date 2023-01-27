@@ -7,4 +7,3 @@ sidebar_position: 3
 ## The permissions model
 
 ## Checks
-
