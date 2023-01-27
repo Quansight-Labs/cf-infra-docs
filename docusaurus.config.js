@@ -16,7 +16,9 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
-  favicon: "img/logo.png",
+  // Temporarily using Twitter's emoji for construction
+  // Copyright 2020 Twitter, Inc and other contributors, CC-BY 4.0
+  favicon: "img/construction.png",
   trailingSlash: true,
 
   // GitHub pages deployment config.
