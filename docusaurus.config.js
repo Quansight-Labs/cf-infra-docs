@@ -10,8 +10,8 @@ const editUrl = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "czi-cf-docs",
-  tagline: "Supporting docs for the CZI EOSS5 grant for conda-forge",
+  title: "🚧 czi-cf-docs 🚧",
+  tagline: "Supporting documentation for the CZI EOSS5 grant for conda-forge",
   url: "https://czi-cf-docs.netlify.app/",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -21,8 +21,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "conda-forge", // Usually your GitHub org/user name.
-  projectName: "conda-forge.github.io", // Usually your repo name.
+  organizationName: "Quansight-Labs", // Usually your GitHub org/user name.
+  projectName: "czi-cf-docs", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -79,11 +79,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "conda-forge",
-        logo: {
-          alt: "The conda-forge anvil",
-          src: "img/logo.png",
-        },
+        title: "czi-cf-docs (WIP)",
+        // logo: {
+        //   alt: "The conda-forge anvil",
+        //   src: "img/logo.png",
+        // },
         items: [
           {
             type: "doc",
