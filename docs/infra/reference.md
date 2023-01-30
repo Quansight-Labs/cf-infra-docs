@@ -14,42 +14,343 @@ A list of critical repositories for conda-forge's infrastructure and operation i
 
 <!-- TODO: Bring content from `package-building` and `feedstock-maintenance` as needed -->
 
-## In-house components
+## Github organizations
 
-### Feedstocks
+conda-forge is structured around a main Github organization, with thousands of repositories and contributors to allow for a granular access control and federated maintenance model.
 
-WIP.
+The organization has thousands of teams, but they can be easily categorized:
+
+- `core`
+- ...
+
+There are several stateful properties that are key to its operational status.
+Some are tracked with semi-automated strategies, while others are only changed manually:
+
+- Org-wide secrets
+- ...
+
+
+There's a sister organization, `regro`, from where some services run too.
+
+```yaml
+- github.Organization:
+    name: conda-forge
+    description: "..."
+    owners:
+      - ...
+    teams:
+      - core:
+        - ...
+      - staged-recipes:
+        - ...
+      - help-*:
+        - ...
+      - "*": # feedstock teams
+    moderators:
+      - ...
+    settings:
+      - ...
+    secrets:
+      - ...
+- github.Organization:
+    name: regro
+    description: "..."
+    owners:
+      - ...
+    teams:
+      - ...
+    moderators:
+      - ...
+    settings:
+      - ...
+    secrets:
+      - ...
+```
+
+## Github repositories
+
+### *-feedstock
+
+conda-forge has thousands of feedstocks. 
+Each feedstock hosts a recipe plus the required pipelines, supporting scripts and configuration metadata.
+
+For each feedstock, we have this setup:
+
+```yaml
+github.Repository:
+  name: "conda-forge/{{ name }}-feedstock"
+  description: "..."
+  access:
+    - conda-forge/core
+    - conda-forge/{{ name }}
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
+
+#### cdt-builds
+
+WIP
+
+#### msys2-recipes
+
+WIP
 
 ### staged-recipes
 
-WIP.
+The gateway to conda-forge. This is how users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
 
-### cf-regro-autotick-bot
-
-WIP.
+```yaml
+github.Repository:
+  name: "conda-forge/staged-recipes"
+  description: "..."
+  access:
+    - conda-forge/core
+    - conda-forge/staged-recipes
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
 
 ### admin-migrations
 
-WIP.
+```yaml
+github.Repository:
+  name: "conda-forge/admin-migrations"
+  description: "..."
+  access: # check
+    - ...
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
 
 ### admin-requests
 
-WIP.
+```yaml
+github.Repository:
+  name: "conda-forge/admin-requests"
+  description: "..."
+  access: # check
+    - ...
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
+
+### conda-forge-repodata-patches-feedstock
+
+WIP
+
+### autotick-bot
+
+WIP
+
+### artifact-validation
+
+WIP
+
+## Supporting repositories
+
+### conda-smithy
+
+WIP
+
+### cf-scripts
+
+WIP
 
 ### conda-forge-webservices
 
-WIP.
+```yaml
+github.Repository:
+  name: "conda-forge/conda-forge-webservices"
+  description: "..."
+  access: # check
+    - ...
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
 
-## External services
+### conda-forge-ci-setup-feedstock
 
-### CI providers
+WIP
 
-WIP.
+### webservices-dispatch-action
 
-### Software repositories
+WIP
 
-WIP.
+### cf-oci-mirror-action
 
-### Servers
+WIP
 
-WIP.
+### libcflib
+
+WIP
+
+## Data repositories
+
+### feedstocks
+
+WIP
+
+### feedstock-outputs
+
+WIP
+
+### cf-graph-countyfair
+
+WIP
+
+### libcfgraph
+
+WIP
+
+### conda-suggest-conda-forge
+
+WIP
+
+## Github accounts
+
+### @regro-cf-autotick-bot
+
+One of the bots taking care of the graph-based automation.
+
+```yaml
+github.Account:
+  name: "regro-cf-autotick-bot"
+  description: "..."
+  access: # check
+    - conda-forge/core
+    - conda-forge/bot
+    - regro/*
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
+
+### @conda-forge-admin
+
+WIP
+
+### @conda-forge-linter
+
+WIP
+
+## CI providers
+
+### Github Actions
+
+WIP
+
+### Azure Pipelines
+
+WIP
+
+### Travis CI
+
+WIP
+
+### AppVeyor
+
+WIP
+
+### Drone.io
+
+WIP
+
+### Circle CI
+
+WIP
+
+### Cirun
+
+WIP
+
+## Servers
+
+### Heroku
+
+WIP
+
+## Delivery & distribution
+
+### Anaconda.org
+
+WIP
+
+### Github Packages
+
+WIP
+
+### Docker.io
+
+WIP
+
+### Quay.io
+
+WIP
+
+
+## Documentation
+
+### HackMD
+
+WIP
+
+## Other products
+
+### Miniforge installers
+
+WIP
+
+### Miniforge images
+
+WIP
+
+## Communications & reports
+
+### conda-forge.github.io
+
+WIP
+
+### blog
+
+WIP
+
+### by-the-numbers
+
+WIP
+
+### conda-forge-status-monitor
+
+WIP
+
+### status
+
+WIP
+
+### Organizational resources
+
+#### cfep
+
+#### marketing
