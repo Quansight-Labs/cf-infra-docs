@@ -67,9 +67,11 @@ There's a sister organization, `regro`, from where some services run too.
       - ...
 ```
 
-## Github repositories
+## Operational elements
 
-### *-feedstock
+These items are tied to pipelines that have a concrete output. Most are CI pipelines tied to a repository (e.g. like the ones in the feedstocks), but it's not always like that (e.g. the conda-forge-linter).
+
+### Feedstocks
 
 conda-forge has thousands of feedstocks. 
 Each feedstock hosts a recipe plus the required pipelines, supporting scripts and configuration metadata.
@@ -91,17 +93,17 @@ github.Repository:
     archived: false
 ```
 
-#### cdt-builds
+:::info See also
+There are two extra repositories that provide packages for conda-forge, but don't follow the usual feedstock architecture.
 
-WIP
+- [conda-forge/cdt-builds](https://github.com/conda-forge/cdt-builds)
+- [conda-forge/msys2-recipes](https://github.com/conda-forge/msys2-recipes)
+:::
 
-#### msys2-recipes
-
-WIP
 
 ### staged-recipes
 
-The gateway to conda-forge. This is how users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
+This repository is thw gateway to conda-forge. This is where users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
 
 ```yaml
 github.Repository:
@@ -120,6 +122,8 @@ github.Repository:
 
 ### admin-migrations
 
+This repository hosts workflows that are running 24/7. Its job is to procure an automation loop where some maintenance tasks are added. Its main user is the core team.
+
 ```yaml
 github.Repository:
   name: "conda-forge/admin-migrations"
@@ -136,6 +140,8 @@ github.Repository:
 
 ### admin-requests
 
+This repository hosts workflows that mainly run when triggered by an user-initiated action. This is usually done via a PR that, once approved, it's merged and triggers the requested action (mark a package as broken, archive a feedstock, etc).
+
 ```yaml
 github.Repository:
   name: "conda-forge/admin-requests"
@@ -150,29 +156,57 @@ github.Repository:
     archived: false
 ```
 
-### conda-forge-repodata-patches-feedstock
-
-WIP
-
 ### autotick-bot
 
-WIP
+This is the repository running the `regro-cf-autotick-bot` workflows. There are several pipelines in place (see [workflows](https://github.com/regro/autotick-bot/tree/master/.github/workflows)).
+
+```yaml
+github.Repository:
+  name: "regro/autotick-bot"
+  description: "..."
+  access: # check
+    - ...
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
 
 ### artifact-validation
 
-WIP
+The workflows (and code) to scan conda-forge artifacts 
+```yaml
+github.Repository:
+  name: "conda-forge/artifact-validation"
+  description: "..."
+  access: # check
+    - ...
+  secrets:
+    - ...
+  apps:
+    - ...
+  settings:
+    archived: false
+```
 
-## Supporting repositories
+### conda-forge-repodata-patches-feedstock
 
-### conda-smithy
+This is a regular feedstock with some special responsibilities.
 
-WIP
-
-### cf-scripts
-
-WIP
+<!-- TODO -->
 
 ### conda-forge-webservices
+
+This web application powers several services, like:
+
+- the `@conda-forge-admin, please ...` commands
+- the `@conda-forge-linter` bot.
+- the `cf-staging` to `conda-forge` validation (plus copy)
+- status monitoring
+
+It is deployed to a Heroku Dyno, and requires several webhooks. Its code is maintained in the source-only `conda-forge/conda-forge-webservices` repository.
 
 ```yaml
 github.Repository:
@@ -187,6 +221,17 @@ github.Repository:
   settings:
     archived: false
 ```
+
+## Supporting repositories
+
+### conda-smithy
+
+WIP
+
+### cf-scripts
+
+WIP
+
 
 ### conda-forge-ci-setup-feedstock
 
@@ -286,11 +331,7 @@ WIP
 
 WIP
 
-## Servers
 
-### Heroku
-
-WIP
 
 ## Delivery & distribution
 
