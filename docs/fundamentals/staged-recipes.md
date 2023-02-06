@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Submission to staged-recipes
 
 `staged-recipes` is the gateway to conda-forge.

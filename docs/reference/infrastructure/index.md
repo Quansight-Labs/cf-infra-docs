@@ -28,7 +28,6 @@ Some are tracked with semi-automated strategies, while others are only changed m
 - Org-wide secrets
 - ...
 
-
 There's a sister organization, `regro`, from where some services run too.
 
 ```yaml
@@ -39,11 +38,11 @@ There's a sister organization, `regro`, from where some services run too.
       - ...
     teams:
       - core:
-        - ...
+          - ...
       - staged-recipes:
-        - ...
+          - ...
       - help-*:
-        - ...
+          - ...
       - "*": # feedstock teams
     moderators:
       - ...
@@ -66,14 +65,11 @@ There's a sister organization, `regro`, from where some services run too.
       - ...
 ```
 
-
-
 ### conda-forge-repodata-patches-feedstock
 
 This is a regular feedstock with some special responsibilities.
 
 <!-- TODO -->
-
 
 ## Supporting repositories
 
@@ -84,7 +80,6 @@ WIP
 ### cf-scripts
 
 WIP
-
 
 ### conda-forge-ci-setup-feedstock
 
@@ -184,8 +179,6 @@ WIP
 
 WIP
 
-
-
 ## Delivery & distribution
 
 ### Anaconda.org
@@ -203,7 +196,6 @@ WIP
 ### Quay.io
 
 WIP
-
 
 ## Documentation
 

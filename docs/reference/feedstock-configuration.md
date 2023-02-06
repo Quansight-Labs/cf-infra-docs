@@ -12,7 +12,6 @@ Outside `recipe/`, the only file you are supposed to edit is `conda-forge.yml`.
 Everything else is automatically managed!
 :::
 
-
 ## conda-forge.yml {#conda-forge-yml}
 
 ## conda_build_config.yaml

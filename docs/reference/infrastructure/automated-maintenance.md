@@ -6,8 +6,8 @@
 - 🤖 Uses [`@conda-forge-curator`](https://github.com/conda-forge-curator)
 - 🔒 Has access to Github API, Anaconda.org (conda-forge and cf-staging), Circle, Travis, Azure, Drone
 
-This repository hosts workflows that are running 24/7. 
-Its job is to procure an automation loop where some maintenance tasks are added. 
+This repository hosts workflows that are running 24/7.
+Its job is to procure an automation loop where some maintenance tasks are added.
 Its main user is the core team.
 
 ## admin-requests
@@ -16,7 +16,7 @@ Its main user is the core team.
 - 🤖 Uses [`@conda-forge-curator`](https://github.com/conda-forge-curator)
 - 🔒 Has access to Github API, Anaconda.org
 
-This repository hosts workflows that mainly run when triggered by an user-initiated action. 
+This repository hosts workflows that mainly run when triggered by an user-initiated action.
 This is usually done via a PR that, once approved, it's merged and triggers the requested action (mark a package as broken, archive a feedstock, etc).
 
 ## artifact-validation
@@ -26,7 +26,7 @@ This is usually done via a PR that, once approved, it's merged and triggers the 
 - 🤖 Uses [`@conda-forge-curator`](https://github.com/conda-forge-curator)
 - 🔒 Has access to Github API, Anaconda.org API
 
-The workflows (and code) to scan artifacts uploaded to [anaconda.org/conda-forge](https://anaconda.org/conda-forge). 
+The workflows (and code) to scan artifacts uploaded to [anaconda.org/conda-forge](https://anaconda.org/conda-forge).
 Its main output comes in form of [issues in `conda-forge/artifact-validation`](https://github.com/conda-forge/artifact-validation/issues)
 
 ## autotick-bot
@@ -36,7 +36,7 @@ Its main output comes in form of [issues in `conda-forge/artifact-validation`](h
 - 🤖 Uses [`@regro-cf-autotick-bot`](https://github.com/regro-cf-autotick-bot)
 - 🔒 Has access to Github API
 
-This is the repository running the `regro-cf-autotick-bot` workflows. 
+This is the repository running the `regro-cf-autotick-bot` workflows.
 There are several pipelines in place (see [workflows](https://github.com/regro/autotick-bot/tree/master/.github/workflows)).
 
 ## webservices
@@ -52,4 +52,3 @@ This web application powers several services, like:
 - the `@conda-forge-linter` bot
 - the `cf-staging` to `conda-forge` validation (plus copy)
 - status monitoring
-

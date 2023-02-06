@@ -36,7 +36,7 @@ These accounts also exist but are not in active usage anymore:
 - `conda-forge-abandoned`
 - `conda-forge-drone-ci`
 - `conda-forge-woodpecker-admins`
-:::
+  :::
 
 ## Apps
 

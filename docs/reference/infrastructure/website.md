@@ -2,8 +2,8 @@
 
 ## conda-forge.org
 
-conda-forge.org is a statically generated website published to Github Pages. 
-The main site is built with Sphinx and deployed from `conda-forge/conda-forge.github.io`. 
+conda-forge.org is a statically generated website published to Github Pages.
+The main site is built with Sphinx and deployed from `conda-forge/conda-forge.github.io`.
 The Sphinx site is then extended by three more components:
 
 - `conda-forge/blog` powering the blog.

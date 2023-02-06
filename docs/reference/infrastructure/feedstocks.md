@@ -8,7 +8,7 @@ Most packages in conda-forge come from a repository named `<package_name>-feedst
 
 ## Feedstocks
 
-conda-forge has thousands of feedstocks. 
+conda-forge has thousands of feedstocks.
 Each feedstock hosts a recipe plus the required pipelines, supporting scripts and configuration metadata.
 
 ## cdt-builds
