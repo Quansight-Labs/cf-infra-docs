@@ -36,10 +36,10 @@ Consider the following structure when browsing our docs.
 - Automations in place
 - Projects in use
 
-## Organization
+## Organisation
 
 - Governance
-- Organization & teams
+- Organisation & teams
 - Onboarding
 - Offboarding
 - Common tasks

@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # The life cycle of a package
 
 conda-forge implements a particular workflow for building, publishing and maintaining conda packages.
@@ -32,10 +36,6 @@ Anaconda.org also offers the concept of channel _labels_, which in practice beha
 The default label is `main`.
 When a new label is added, the package is also visible in the subchannel `<channel>/label/<label>`.
 For example, a package uploaded to conda-forge and labeled as `test` and `main` will be available in the `conda-forge` channel, but also in the `conda-forge/label/test` subchannel.
-
-As part of the CDN-driven metadata patching, packages labeled as `broken` are not included in the final repodata index.
-However, they are still available via direct URL access.
-This allows organizations to retire packages from normal, solver-driven installs without compromising the reproducibility offered by lockfiles.
 
 ## The life cycle on conda-forge
 
@@ -75,6 +75,9 @@ The patch instructions are published in `conda-forge/conda-forge-repodata-patche
 Sometimes, there are issues with a published package that cannot be amended with a repodata patch (e.g. libraries were built wrong and segfault).
 In these cases, the packages can be retired by labeling them as `broken`.
 This is done through the `conda-forge/admin-requests` repository.
+As part of the CDN-driven metadata patching, packages labeled as `broken` are not included in the final repodata index.
+However, they are still available via direct URL access.
+This allows organizations to retire packages from normal, solver-driven installs without compromising the reproducibility offered by lockfiles.
 
 Finally, a project might have reached a status where no further updates are needed or expected (e.g. it has been superseded by a new project).
 If the maintainers want to, these feedstocks can be archived and marked as read-only.
@@ -84,7 +87,7 @@ If the maintainers want to, these feedstocks can be archived and marked as read-
 These stages are key concepts in the conda-forge documentation.
 Feel free to refer to this list any time as you check the rest of the material.
 
-1. [Initial submission to `staged-recipes`](/docs/user/life-cycle/1-staged-recipes.md)
+1. [Initial submission to `staged-recipes`](/docs/fundamentals/staged-recipes.md)
 2. Feedstock changes:
    - A. Repository initialization
    - B. Automated maintenance updates
@@ -99,5 +102,5 @@ Feel free to refer to this list any time as you check the rest of the material.
 
 :::info
 If you want to read on the infrastructure details behind these stages,
-consider reading our [Infrastructure guide](/docs/infra/index.md).
+consider reading our [Infrastructure guide](/docs/reference/infrastructure/).
 :::

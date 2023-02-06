@@ -1,7 +1,6 @@
----
-title: External resources
----
+# More resources
 
-# External resources
+## Media
 
-WIP.
+## External resources
+
