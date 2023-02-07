@@ -125,19 +125,15 @@ const config = {
             items: [
               {
                 label: "Getting started",
-                to: "/docs/user",
+                to: "/docs/getting-started",
               },
               {
-                label: "Maintainers",
-                to: "/docs/maintainer",
+                label: "How-to guides",
+                to: "/docs/howto",
               },
               {
-                label: "Organisation",
-                to: "/docs/organisation",
-              },
-              {
-                label: "Infrastructure",
-                to: "/docs/infra",
+                label: "Reference",
+                to: "/docs/reference",
               },
             ],
           },

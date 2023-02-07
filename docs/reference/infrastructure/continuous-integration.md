@@ -8,7 +8,7 @@ Refer to the [`conda-forge.yml` documentation](/docs/reference/feedstock-configu
 
 - 🌐 https://dev.azure.com/conda-forge/feedstock-builds/_build
 - 📍 Available on all feedstocks
-- 🛠 Provides [Microsoft-hosted runners](<(https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml)>) (x64 Linux, macOS and Windows)
+- 🛠 Provides [Microsoft-hosted runners](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml) (x64 Linux, macOS and Windows)
 - 🔒 Needs access to Anaconda.org (cf-staging)
 
 conda-forge benefits from the generously offered Microsoft-hosted runners.
