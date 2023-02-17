@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Organisation
+# Organization
 
 In this section you will information about:
 
