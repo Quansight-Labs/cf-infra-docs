@@ -8,8 +8,35 @@ Most packages in conda-forge come from a repository named `<package_name>-feedst
 
 ## Feedstocks
 
+- ⚙️ Deployed in Github repositories
+- 🔒 Has access to Azure Pipelines, Github Actions, Anaconda.org (cf-staging)
+- 🔐 Might have access to Travis CI, Cirun via `admin-requests` (WIP)
+- 🤖 Integrated with [`admin-migrations`](/docs/reference/infrastructure/automated-maintenance.md#admin-migrations), [`admin-requests`](/docs/reference/infrastructure/automated-maintenance.md#admin-requests), [`autotick-bot`](/docs/reference/infrastructure/automated-maintenance.md#autotick-bot), [`webservices`](/docs/reference/infrastructure/automated-maintenance.md#webservices).
+
 conda-forge has thousands of feedstocks.
 Each feedstock hosts a recipe plus the required pipelines, supporting scripts and configuration metadata.
+
+The contents of a feedstock are well specified. Only two locations are user-managed:
+
+- `recipe/`: Contains the conda-build instructions to build packages. It needs, at least, a `meta.yaml` file. This directory is managed by the user. This is where `conda_build_config.yaml` usually goes.
+- `conda-forge.yml`: The feedstock configuration file.
+
+:::warning
+You should never manually edit files _not_ listed above! Changes will be overridden in the next feedstock rerender.
+:::
+
+Combining these two sources with some external components, `conda-smithy` will generate (render) the contents of the feedstock. Many of the directories are named like that because it is what the external service (e.g. Azure) requests. However, there are some `conda-smithy`-unique directories that are worth discussing:
+
+- `.ci_support/`: Contains the rendered `conda_build_config.yaml` files, passed to `conda-build` via the `-m` flag. Each file here corresponds to one job in the CI build matrix.
+- `.ci_support/migrations/`: Special YAML files that instruct `conda-smithy` how to update the `.ci_support/*.yaml` files. These migration files are usually put here by the `autotick-bot` infrastructure, and removed once the migration is considered finished.
+- `.scripts/`: Common logic and code supporting the steps you can find in the CI pipelines and local debugging tools.
+- `build-locally.py`: A Python script to debug recipes in your machine, roughly equivalent to what's done in the CI pipelines.
+
+
+:::info Learn more (WIP)
+- Rerendering a feedstock
+- Recommended workflow
+:::
 
 ## cdt-builds
 
