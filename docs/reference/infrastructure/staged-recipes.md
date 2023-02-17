@@ -31,7 +31,7 @@ There are two main jobs that run on `staged-recipes`:
 - The `conda-build` jobs that run on every PR (and push to `main`), checking whether the recipes build packages correctly. These jobs run on Azure Pipelines, as defined in [`.azure-pipelines/`](https://github.com/conda-forge/staged-recipes/tree/main/.azure-pipelines).
 - The [`create_feedstocks` workflow](https://github.com/conda-forge/staged-recipes/blob/main/.github/workflows/create_feedstocks.yml) that runs after each push to `main` (and every 10 minutes).
   This workflow will create the new feedstock repositories on the `conda-forge` organization.
-  The core logic is defined in a Python script at 
+  The core logic is defined in a Python script at
   [`.github/workflows/scripts/create_feedstocks.py`](https://github.com/conda-forge/staged-recipes/blob/main/.github/workflows/scripts/create_feedstocks.py).
 
 Additional workflows help users set up their recipes correctly. They react to events in PRs:

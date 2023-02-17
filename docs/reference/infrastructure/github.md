@@ -13,6 +13,7 @@ These organizations exist but they are not in active use anymore:
 
 - [`conda-forge-abandoned`](https://github.com/conda-forge-abandoned)
 - [`conda-forge-woodpecker-admins`](https://github.com/conda-forge-woodpecker-admins)
+
 :::
 
 ## Teams
@@ -54,6 +55,7 @@ Most of them are associated to a feedstock, but there a few special ones that ar
 These accounts also exist but are not in active usage anymore:
 
 - [`conda-forge-drone-ci`](https://github.com/conda-forge-drone-ci)
+
 :::
 
 ## Apps
@@ -65,6 +67,7 @@ These accounts also exist but are not in active usage anymore:
 These apps also exist but are not in active usage anymore:
 
 - `conda-forge drone instance`
+
 :::
 
 ## Actions

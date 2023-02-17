@@ -32,10 +32,11 @@ Combining these two sources with some external components, `conda-smithy` will g
 - `.scripts/`: Common logic and code supporting the steps you can find in the CI pipelines and local debugging tools.
 - `build-locally.py`: A Python script to debug recipes in your machine, roughly equivalent to what's done in the CI pipelines.
 
-
 :::info Learn more (WIP)
+
 - Rerendering a feedstock
 - Recommended workflow
+
 :::
 
 ## cdt-builds
