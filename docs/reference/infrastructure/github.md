@@ -76,3 +76,8 @@ These apps also exist but are not in active usage anymore:
 - [`conda-forge/automerge-action`](https://github.com/conda-forge/automerge-action)
 - [`conda-forge/github-app-token`](https://github.com/conda-forge/github-app-token) (fork)
 - [`conda-forge/webservices-dispatch-action`](https://github.com/conda-forge/webservices-dispatch-action)
+
+
+## Special repositories
+
+- [`conda-forge/.github`](https://github.com/conda-forge/.github): Organization-wide configuration, profile information, etc.

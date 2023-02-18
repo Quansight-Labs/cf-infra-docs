@@ -1,6 +1,6 @@
-# staged-recipes
+# Staged-recipes
 
-- ⚙️ Deployed in a Github repository
+- ⚙️ Deployed in [`conda-forge/staged-recipes`](https://github.com/conda-forge/staged-recipes)
 - 🔒 Has access to Azure Pipelines, Github Actions, Travis CI, Anaconda.org (cf-staging)
 - 🤖 Integrated with [`webservices`](/docs/reference/infrastructure/automated-maintenance.md#webservices)
 
@@ -14,7 +14,7 @@ Most cases will only submit one recipe at a time, but if several subdirectories 
 `.ci_support` once again contains the conda-build YAML configuration files, but in this case (if compared to feedstocks), you will also find some scripts:
 
 - `build_all.py`: Calls conda-build in the right (topographically sorted) order.
-- `computer_build_graph.py`: Supports `build_all.py` by providing the job graph with all the submitted recipes.
+- `compute_build_graph.py`: Supports `build_all.py` by providing the job graph with all the submitted recipes.
 
 The YAML files included in `.ci_support` are minimal and not "rendered" like the ones you find in feedstocks. At runtime, conda-build will take these plus the pinnings take from `conda-forge-pinning`. Also note `staged-recipes` only builds for x64. Support for additional architectures can only be done once a feedstock has been provided.
 

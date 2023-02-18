@@ -29,6 +29,8 @@ conda-forge benefits from the generously offered Microsoft-hosted runners.
 
 Configured with `@conda-forge-daemon`.
 
+Organization-wide configuration can be found in the [`.cirun` repository](https://github.com/conda-forge/.cirun).
+
 ## Github Actions
 
 - 🌐 https://github.com/features/actions
