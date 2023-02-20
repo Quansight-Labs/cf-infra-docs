@@ -39,7 +39,7 @@ Hosts the global pinnings for conda-forge, and the ongoing migrations.
 - ⚙️ Deployed in [Anaconda.org](https://anaconda.org/conda-forge/conda-forge-ci-setup) via [`conda-forge/conda-forge-pinning-feedstock`](https://github.com/conda-forge/conda-forge-ci-setup-feedstock)
 - 🔒 Has access to Azure, Anaconda.org (cf-staging)
 
-This special feedstock provides a package  that defines the logic to install and configure a common CI setup across providers. 
+This special feedstock provides a package that defines the logic to install and configure a common CI setup across providers.
 
 ## docker-images
 

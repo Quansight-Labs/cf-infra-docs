@@ -129,7 +129,6 @@ Organization-wide configuration can be found in the [`.cirun` repository](https:
 - Circle CI
 - Drone.io
 
-
 ## Delivery and distribution
 
 ### Anaconda.org
