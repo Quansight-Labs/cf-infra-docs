@@ -1,4 +1,4 @@
-# Feedstock configuration
+# Feedstock settings
 
 When `conda-smithy` rerenders the contents of the feedstock, it takes into account different sources of configuration:
 
@@ -14,12 +14,20 @@ Everything else is automatically managed!
 
 ## conda-forge.yml {#conda-forge-yml}
 
+```yaml
+# TODO WIP
+```
+
 ## conda_build_config.yaml
 
 This file is normally used by `conda-build`. It defines how to generate the different variants, among other things. Feel free to consult the [conda-build docs for more details](https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html). On conda-forge, we only need to know about these entries:
 
 ```yaml
-# TODO
+# TODO WIP
 ```
 
 ## Migration files
+
+```yaml
+# TODO WIP
+```
