@@ -147,11 +147,6 @@ Organization-wide configuration can be found in the [`.cirun` repository](https:
 - 🌐 https://github.com/orgs/channel-mirrors/packages
 - ⛓ Used by [`channel-mirrors/conda-oci-mirror`](https://github.com/channel-mirrors/conda-oci-mirror)
 
-### Github Pages
-
-- 🌐 https://github.com/orgs/channel-mirrors/packages
-- ⛓ Used by [`channel-mirrors/conda-oci-mirror`](https://github.com/channel-mirrors/conda-oci-mirror)
-
 ### Github Releases
 
 - 🌐 https://github.com/conda-forge/miniforge/releases
@@ -171,7 +166,10 @@ Organization-wide configuration can be found in the [`.cirun` repository](https:
 
 ## Other services
 
-- HackMD: [`conda-forge`](https://hackmd.io/team/conda-forge)
+- Google: `condaforge@gmail.com`
+- Google Groups: [conda-forge](https://groups.google.com/g/conda-forge) (retired)
+- HackMD: [conda-forge](https://hackmd.io/team/conda-forge)
 - Open Collective: [conda-forge](https://opencollective.com/conda-forge/)
-- Twitter: [`@condaforge`](https://twitter.com/condaforge)
+- Namecheap (conda-forge.org)
+- Twitter: [@condaforge](https://twitter.com/condaforge)
 - YouTube: [Conda Forge](https://www.youtube.com/@condaforge3075)
