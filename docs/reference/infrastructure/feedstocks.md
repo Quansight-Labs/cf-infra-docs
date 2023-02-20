@@ -11,7 +11,7 @@ Most packages in conda-forge come from a repository named `<package_name>-feedst
 - ⚙️ Deployed in Github repositories
 - 🔒 Has access to Azure Pipelines, Github Actions, Anaconda.org (cf-staging)
 - 🔐 Might have access to Travis CI, Cirun via `admin-requests` (WIP)
-- 🤖 Integrated with [`admin-migrations`](/docs/reference/infrastructure/automated-maintenance.md#admin-migrations), [`admin-requests`](/docs/reference/infrastructure/automated-maintenance.md#admin-requests), [`autotick-bot`](/docs/reference/infrastructure/automated-maintenance.md#autotick-bot), [`webservices`](/docs/reference/infrastructure/automated-maintenance.md#webservices).
+- 🤖 Integrated with [`admin-migrations`](./automated-maintenance.md#admin-migrations), [`admin-requests`](./automated-maintenance.md#admin-requests), [`autotick-bot`](./automated-maintenance.md#autotick-bot), [`webservices`](./automated-maintenance.md#webservices).
 
 conda-forge has thousands of feedstocks.
 Each feedstock hosts a recipe plus the required pipelines, supporting scripts and configuration metadata.

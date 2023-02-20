@@ -2,7 +2,7 @@
 
 - ⚙️ Deployed in [`conda-forge/staged-recipes`](https://github.com/conda-forge/staged-recipes)
 - 🔒 Has access to Azure Pipelines, Github Actions, Travis CI, Anaconda.org (cf-staging)
-- 🤖 Integrated with [`webservices`](/docs/reference/infrastructure/automated-maintenance.md#webservices)
+- 🤖 Integrated with [`webservices`](./automated-maintenance.md#webservices)
 
 This repository is the gateway to conda-forge. This is where users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
 
@@ -42,4 +42,4 @@ Additional workflows help users set up their recipes correctly. They react to ev
 
 External services connect to `staged-recipes` too:
 
-- The `@conda-forge-linter` bot (deployed at [`webservices`](/docs/reference/infrastructure/automated-maintenance.md#webservices)) will lint and provide hints in PRs based on the contents of the recipe.
+- The `@conda-forge-linter` bot (deployed at [`webservices`](./automated-maintenance.md#webservices)) will lint and provide hints in PRs based on the contents of the recipe.
