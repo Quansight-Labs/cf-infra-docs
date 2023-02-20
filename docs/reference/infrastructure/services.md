@@ -86,7 +86,7 @@ These apps also exist but are not in active usage anymore:
 ## Continuous integration
 
 :::tip See also
-Refer to the [`conda-forge.yml` documentation](/docs/reference/feedstock-configuration.md#conda-forge-yml) to learn how to configure your CI providers
+Refer to the [`conda-forge.yml` documentation](/docs/reference/feedstock-settings.md#conda-forge-yml) to learn how to configure your CI providers
 :::
 
 ### Azure Pipelines
