@@ -1,6 +1,6 @@
 # Feedstock settings
 
-When `conda-smithy` rerenders the contents of the feedstock, it takes into account different sources of configuration:
+When [`conda-smithy`](./infrastructure/tooling-data.md#conda-smithy) rerenders the contents of the feedstock, it takes into account different sources of configuration:
 
 - `conda-forge.yml`
 - `recipe/conda_build_config.yaml`
@@ -14,9 +14,7 @@ Everything else is automatically managed!
 
 ## conda-forge.yml {#conda-forge-yml}
 
-```yaml
-# TODO WIP
-```
+> WIP. Refer to [`conda_smithy.configure_feedstock._load_forge_config()`](https://github.com/search?q=repo%3Aconda-forge%2Fconda-smithy+symbol%3A_load_forge_config&type=code) in the meantime.
 
 ## conda_build_config.yaml
 

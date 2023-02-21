@@ -2,13 +2,13 @@
 
 |                         Provider                          |                         Platforms                          | CPU | GPU | RAM  |   Disk    | Time  | Concurrent jobs |                    Notes                     |
 | :-------------------------------------------------------: | :--------------------------------------------------------: | :-: | :-: | :--: | :-------: | :---: | :-------------: | :------------------------------------------: |
-| [Azure Pipelines][azure] ([Microsoft-hosted][ms-hosted])  | `linux-64`, `win-64`, `linux-aarch64`†‡, `linux-ppc64le`†‡ |  2  | No  | 7GB  | 14GB SSD˟ |  6h   |       100       |          [More details][ms-hosted]           |
+| [Azure Pipelines][azure] ([Microsoft-hosted][ms-hosted])  | `linux-64`, `win-64`, `linux-aarch64`※‡, `linux-ppc64le`※‡ |  2  | No  | 7GB  | 14GB SSD˟ |  6h   |       100       |          [More details][ms-hosted]           |
 |                             ↳                             |                   `osx-64`, `osx-arm64`‡                   |  3  |     | 14GB |           |       |                 |
-| [Github Actions][gh-actions] ([Github-hosted][gh-hosted]) | `linux-64`, `win-64`, `linux-aarch64`†‡, `linux-ppc64le`†‡ |  2  | No  | 7GB  | 14GB SSD˟ |  6h   |       100       | Reserved for internal conda-forge usage only |
+| [Github Actions][gh-actions] ([Github-hosted][gh-hosted]) | `linux-64`, `win-64`, `linux-aarch64`※‡, `linux-ppc64le`※‡ |  2  | No  | 7GB  | 14GB SSD˟ |  6h   |       100       | Reserved for internal conda-forge usage only |
 |                             ↳                             |                   `osx-64`, `osx-arm64`‡                   |  3  |     | 14GB |           |       |                 |
 |                    [Travis CI][travis]                    |              `linux-aarch64`, `linux-ppc64le`              |  2  | No  | ~4GB |   ~18GB   | 50min |        ?        |
 
-_†_ Emulated (5-6x performance penalty) <br />
+_※_ Emulated (5-6x performance penalty) <br />
 _‡_ Cross-compiled (cannot test) <br />
 _˟_ 10GB guaranteed free <br/>
 

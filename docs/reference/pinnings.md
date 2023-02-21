@@ -108,11 +108,11 @@ _‡_ Cross-compiled only <br />
 |        CPython        |      3.8       |     1.20      |
 |        CPython        |      3.9       |     1.20      |
 |        CPython        |      3.10      |     1.21      |
-|        CPython        |     3.11†      |     1.23      |
-|         PyPy          |      3.8†      |     1.20      |
-|         PyPy          |      3.9†      |     1.20      |
+|        CPython        |     3.11※      |     1.23      |
+|         PyPy          |      3.8※      |     1.20      |
+|         PyPy          |      3.9※      |     1.20      |
 
-_†_ Only via migration
+_※_ Only via migration
 
 ## R
 
