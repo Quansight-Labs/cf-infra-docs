@@ -56,14 +56,14 @@ The main idea is that each conda recipe is processed by a separate GitHub reposi
 These repositories, named _feedstocks_ in conda-forge, host the user-contributed conda recipe plus a number of auto-generated required scripts, configuration files and CI pipelines to build and export the conda artifacts.
 Under this setup, the conda-forge bots can traverse the conda-forge repositories to re-generate and update feedstocks as needed when a global change or fix needs to be issued.
 
-To be given a conda-forge feedstock, contributors must first submit their recipe for review to the the `conda-forge/staged-recipes` repository.
+To be given a conda-forge feedstock, contributors must first submit their recipe for review to the the [`staged-recipes`][staged-recipes] repository.
 Once reviewed and approved, the PR is merged to `main`, which triggers the feedstock creation.
 
 After accepting the invitations to the `conda-forge` organization, the submitting contributor(s) will have been given commit rights to that repository.
-By then, the `staged-recipes` machinery will have populated the feedstock with the submitted recipe, plus the supporting scripts, configuration files and CI pipelines.
+By then, the [`staged-recipes` machinery][staged-recipes] will have populated the feedstock with the submitted recipe, plus the supporting scripts, configuration files and CI pipelines.
 
 These pipelines will process the initial commits to produce and upload the conda artifacts to the `cf-staging` channel.
-Any subsequent pushes to `main` (e.g. merged PRs) or other branches will undergo the same process.
+Any subsequent pushes to `main` (e.g. merged PRs) or other enabled branches will undergo the same process.
 
 :::info
 For existing feedstocks, conda-forge bots will often send automated PRs for new project releases or maintenance tasks.
@@ -121,3 +121,5 @@ consider reading our [Infrastructure guide](/docs/reference/infrastructure/).
 <!-- LINKS -->
 
 [anaconda-org-labels]: https://docs.anaconda.com/anacondaorg/user-guide/tutorials/
+[staged-recipes]: /docs/reference/infrastructure/staged-recipes.md
+[feedstocks]: /docs/reference/infrastructure/feedstocks.md
