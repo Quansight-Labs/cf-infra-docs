@@ -41,7 +41,15 @@ also in the `conda-forge/label/test` subchannel.
 
 ## The life cycle on conda-forge
 
-The stages described above can be performed manually by any user, from their laptop.
+Anyone can run `conda-build` on their computer and manually upload their packages to Anaconda.org.
+However, that approach has a few problems:
+
+- It doesn't facilitate collaboration.
+- There's no transparency in the process.
+- Reproducibility is very system dependent.
+- Compatibility across packages is not guaranteed.
+- It doesn't scale well beyond a handful of packages.
+
 On conda-forge, most packages are built using public CI services and maintained by thousands of volunteers, which require approaching the problem in a different way to guarantee fine-controlled permissions, independent project management and automated batch updates.
 
 The main idea is that each conda recipe is processed by a separate GitHub repository.
