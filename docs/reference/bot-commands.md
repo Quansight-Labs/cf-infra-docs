@@ -1,3 +1,3 @@
 # Bot commands
 
-WIP
+WIP.

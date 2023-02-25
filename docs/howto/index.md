@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # How-to guides
 
-This page temporarily holds miscellaneous notes while the rest of the documentation is written.
+> This page temporarily holds miscellaneous notes while the rest of the documentation is written.
 
 ## Pipeline triggers
 

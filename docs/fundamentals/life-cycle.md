@@ -70,11 +70,11 @@ In an ideal world, that would be the end of the life cycle. However, in some cas
 
 If the package metadata is found to be wrong or out-of-date, it can be modified without rebuilding the package.
 The channel server can apply patches to the repodata files directly.
-The patch instructions are published in `conda-forge/conda-forge-repodata-patches` and processed weekly.
+The patch instructions are published in [`conda-forge-repodata-patches`](/docs/reference/infrastructure/tooling-data.md#conda-forge-repodata-patches) and processed weekly.
 
 Sometimes, there are issues with a published package that cannot be amended with a repodata patch (e.g. libraries were built wrong and segfault).
 In these cases, the packages can be retired by labeling them as `broken`.
-This is done through the `conda-forge/admin-requests` repository.
+This is done through the [`admin-requests` repository](/docs/reference/infrastructure/automated-maintenance.md#admin-requests).
 As part of the CDN-driven metadata patching, packages labeled as `broken` are not included in the final repodata index.
 However, they are still available via direct URL access.
 This allows organizations to retire packages from normal, solver-driven installs without compromising the reproducibility offered by lockfiles.

@@ -2,6 +2,8 @@
 title: Pinnings
 ---
 
+<!-- TODO: This could be automated somehow -->
+
 # Global pinnings & configuration
 
 For consistent builds and inter-artifact compatibility, many of the libraries and projects used to build packages on conda-forge are pinned or locked to a globally controlled value. We call this "pinnings". This includes compilers, runtime libraries, base systems, and others.

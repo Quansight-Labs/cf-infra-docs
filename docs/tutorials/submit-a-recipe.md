@@ -6,4 +6,4 @@ tags:
 
 # Submit your first recipe to conda-forge
 
-WIP
+WIP.

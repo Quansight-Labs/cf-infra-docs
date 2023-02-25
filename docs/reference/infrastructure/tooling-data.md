@@ -32,6 +32,10 @@ Hosts the global pinnings for conda-forge, and the ongoing migrations.
 - ⚙️ Deployed in [Anaconda.org](https://anaconda.org/conda-forge/conda-forge-repodata-patches) via [`conda-forge/conda-forge-repodata-patches`](https://github.com/conda-forge/conda-forge-repodata-patches)
 - 🔒 Has access to Azure, Anaconda.org (cf-staging)
 
+This repository creates the `repodata.json` patches used by the Anaconda.org to amend the metadata coming from the published packages.
+
+Read more bout this in [The package life cycle](/docs/fundamentals/life-cycle.md#post-publication-particularities-1).
+
 ---
 
 ## conda-forge-ci-setup
