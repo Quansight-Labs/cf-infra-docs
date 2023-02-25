@@ -6,6 +6,14 @@ Application Binary Interface. ABI is a document that comprehensively defines the
 
 [Learn more](https://en.wikipedia.org/wiki/Application_binary_interface).
 
+## CDN
+
+Content Delivery Network. CDNs are geographically distributed networks of servers that mirror
+contents of a primary source. Having multiple servers offering the same content increases
+performance (reduced latency, higher download speeds) and availability.
+
+[Learn more](https://en.wikipedia.org/wiki/Content_delivery_network).
+
 ## CDT
 
 Core Dependency Tree. Core Dependency Tree packages take care of the dependencies which are so close to the system that they are not packaged with conda-forge. A CDT package consists of repackaged CentOS binaries from the appropriate version, either 6 or 7 depending on user choice and platform.
