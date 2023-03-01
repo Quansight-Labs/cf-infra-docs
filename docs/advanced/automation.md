@@ -1,14 +1,4 @@
----
-sidebar_position: 5
----
-
-# The bot ecosystem
-
-<!-- ![The bot ecosystem](/img/bot-ecosystem.png) -->
-<p align="center">
-  <img src="/img/bot-ecosystem.png" alt="Sublime's custom image"/>
-</p>
-
+# Automation & bots
 
 The conda-forge community is supported by a set of bots that automate many of the tasks that would otherwise be performed manually
 by the core team or simply impossible to accomplish in a feasible time. This document provides a high level overview of the bot
