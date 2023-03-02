@@ -1,5 +1,7 @@
 # Glossary
 
+List of frequently used terms and acronyms.
+
 ## ABI
 
 Application Binary Interface. ABI is a document that comprehensively defines the binary system interface between applications and the operating system on which they run.

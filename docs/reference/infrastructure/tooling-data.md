@@ -1,5 +1,8 @@
 # Tooling & data
 
+These components do not necessarily perform automation actions on their own (e.g. they don't change the state of a feedstock or a package).
+Instead, they support other components in conda-forge's infrastructure.
+
 ## conda-smithy
 
 - 📜 Source at [`conda-forge/conda-smithy`](https://github.com/conda-forge/conda-smithy)
