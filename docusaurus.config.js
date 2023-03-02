@@ -89,30 +89,30 @@ const config = {
         items: [
           {
             type: "doc",
+            docId: "index",
+            position: "left",
+            label: "Docs",
+          },
+          {
+            type: "doc",
             docsPluginId: "community",
             docId: "index",
             position: "left",
             label: "Community",
           },
           {
-            type: "doc",
-            docId: "index",
-            position: "left",
-            label: "Docs",
-          },
-          {
             to: "/blog",
             label: "Blog",
-            position: "right",
+            position: "left",
           },
           {
             to: "/news",
             label: "News",
-            position: "right",
+            position: "left",
           },
           {
-            href: "https://github.com/quansight-labs/cf-infra-docs",
-            label: "GitHub",
+            href: "https://conda-forge.org/status",
+            label: "Status",
             position: "right",
           },
         ],
@@ -159,8 +159,12 @@ const config = {
             ],
           },
           {
-            title: "Stay updated",
+            title: "Stay up-to-date",
             items: [
+              {
+                label: "Status",
+                href: "https://conda-forge.org/status",
+              },
               {
                 label: "News",
                 to: "/news",
@@ -170,12 +174,8 @@ const config = {
                 to: "/blog",
               },
               {
-                label: "Dashboard",
-                to: "/dashboard",
-              },
-              {
-                label: "Status Panel",
-                href: "https://conda-forge.org/status",
+                label: "Twitter",
+                href: "https://twitter.com/condaforge",
               },
             ],
           },
@@ -183,8 +183,16 @@ const config = {
             title: "Resources",
             items: [
               {
-                label: "Gitter",
-                href: "https://gitter.im/conda-forge/conda-forge.github.io",
+                label: "Dashboard",
+                to: "/dashboard",
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/conda-forge",
+              },
+              {
+                label: "Element",
+                href: "https://app.element.io/#/room/#conda-forge:matrix.org",
               },
               {
                 label: "Discourse",
@@ -194,18 +202,7 @@ const config = {
                 label: "Stack Overflow",
                 href: "https://stackoverflow.com/questions/tagged/conda-forge",
               },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/condaforge",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/conda-forge",
-              },
-              {
-                label: "Anaconda.org",
-                href: "https://anaconda.org/conda-forge",
-              },
+
             ],
           },
         ],
