@@ -1,10 +1,10 @@
 # Staged-recipes
 
+This repository is the gateway to conda-forge. This is where users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
+
 - ⚙️ Deployed in [`conda-forge/staged-recipes`](https://github.com/conda-forge/staged-recipes)
 - 🔒 Has access to Azure Pipelines, Github Actions, Travis CI, Anaconda.org (cf-staging)
 - 🤖 Integrated with [`webservices`](./automated-maintenance.md#webservices)
-
-This repository is the gateway to conda-forge. This is where users can submit new recipes which, once reviewed and accepted, will generate a new feedstock and team.
 
 ## Anatomy of staged-recipes
 

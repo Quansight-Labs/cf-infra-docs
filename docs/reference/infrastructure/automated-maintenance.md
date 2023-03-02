@@ -1,5 +1,7 @@
 # Automated maintenance
 
+These components perform actions in automated ways, either triggered by a specific event or continuously as part of a loop.
+
 ## admin-migrations
 
 - ⚙️ Deployed in [Github Actions via `conda-forge/admin-migrations`](https://github.com/conda-forge/admin-migrations)

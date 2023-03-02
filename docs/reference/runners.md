@@ -1,5 +1,8 @@
 # Runners
 
+This list is a best effort to compile publicly available information about the runners powering the build infrastructure in conda-forge.
+It might not be up-to-date, so in case of doubt refer to the documentation of the provider.
+
 |                         Provider                          |                         Platforms                          | CPU | GPU | RAM  |   Disk    | Time  | Concurrent jobs |                    Notes                     |
 | :-------------------------------------------------------: | :--------------------------------------------------------: | :-: | :-: | :--: | :-------: | :---: | :-------------: | :------------------------------------------: |
 | [Azure Pipelines][azure] ([Microsoft-hosted][ms-hosted])  | `linux-64`, `win-64`, `linux-aarch64`※‡, `linux-ppc64le`※‡ |  2  | No  | 7GB  | 14GB SSD˟ |  6h   |       100       |          [More details][ms-hosted]           |
