@@ -162,16 +162,16 @@ const config = {
             title: "Stay up-to-date",
             items: [
               {
-                label: "Status",
-                href: "https://conda-forge.org/status",
-              },
-              {
                 label: "News",
                 to: "/news",
               },
               {
                 label: "Blog",
                 to: "/blog",
+              },
+              {
+                label: "Status",
+                href: "https://conda-forge.org/status",
               },
               {
                 label: "Twitter",
