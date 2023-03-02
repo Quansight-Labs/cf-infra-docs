@@ -202,7 +202,6 @@ const config = {
                 label: "Stack Overflow",
                 href: "https://stackoverflow.com/questions/tagged/conda-forge",
               },
-
             ],
           },
         ],
