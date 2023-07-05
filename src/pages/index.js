@@ -17,9 +17,9 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="https://github.com/Quansight-Labs/czi-conda-forge-mgmt"
+            to="/docs/"
           >
-            More info ➡️
+            Start reading ➡️
           </Link>
         </div>
       </div>
