@@ -6,20 +6,19 @@
 
 /* You can override the default Infima variables here. */
 
-
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-VariableFont_slnt,wght.ttf');
+  font-family: "Inter";
+  src: url("/fonts/Inter-VariableFont_slnt,wght.ttf");
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-VariableFont_wght.ttf');
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf");
 }
 
 :root {
-  --ifm-font-heading-family: 'Montserrat';
-  --ifm-font-content-family: 'Inter';
+  --ifm-font-heading-family: "Montserrat";
+  --ifm-font-content-family: "Inter";
   transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -38,7 +37,7 @@ a {
 }
 
 .gradient_text {
-  background: linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%);
+  background: linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -47,30 +46,30 @@ a {
 .button.button--secondary {
   background:
     linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%) border-box;
+    linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
 }
 
 .button.button--secondary:hover {
   background:
     linear-gradient(#ebedf0, #ebedf0) padding-box,
-    linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%) border-box;
+    linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
 }
 
 [data-theme="dark"] .button.button--secondary {
   background:
-    linear-gradient(#4C4C4C, #4C4C4C) padding-box,
-    linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%) border-box;
+    linear-gradient(#4c4c4c, #4c4c4c) padding-box,
+    linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 [data-theme="dark"] .button.button--secondary:hover {
   background:
     linear-gradient(#3a3a3a, #3a3a3a) padding-box,
-    linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%) border-box;
+    linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 :root {
@@ -83,7 +82,7 @@ a {
   --ifm-color-primary-lightest: #e95800;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --gradient: linear-gradient(62deg, #FF3664 0%, #FF4B2B 100%);
+  --gradient: linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

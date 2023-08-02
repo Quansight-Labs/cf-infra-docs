@@ -36,10 +36,10 @@ const config = {
 
   stylesheets: [
     //Add Font Awesome stylesheets
-    '/fonts/font-awesome/fontawesome.css',
-    '/fonts/font-awesome/solid.css',
-    '/fonts/font-awesome/regular.css',
-    '/fonts/font-awesome/brands.css'
+    "/fonts/font-awesome/fontawesome.css",
+    "/fonts/font-awesome/solid.css",
+    "/fonts/font-awesome/regular.css",
+    "/fonts/font-awesome/brands.css",
   ],
 
   // Mermaid configuration
@@ -124,18 +124,18 @@ const config = {
             position: "left",
           },
           {
-            to: 'https://github.com/conda-forge',
-            title: 'GitHub',
-            position: 'right',
-            target: '_blank',
-            className: 'fab fa-lg fa-github',
+            to: "https://github.com/conda-forge",
+            title: "GitHub",
+            position: "right",
+            target: "_blank",
+            className: "fab fa-lg fa-github",
           },
           {
-            to: 'https://twitter.com/condaforge',
-            title: 'Twitter',
-            position: 'right',
-            target: '_blank',
-            className: 'fab fa-lg fa-twitter',
+            to: "https://twitter.com/condaforge",
+            title: "Twitter",
+            position: "right",
+            target: "_blank",
+            className: "fab fa-lg fa-twitter",
           },
           {
             href: "https://conda-forge.org/status",
