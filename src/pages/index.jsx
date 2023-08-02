@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <Layout
       title={siteConfig.title}
-      description="Distribute Artifacts Across OCI Registries With Ease">
+      description="Documentation for conda-forge infrastructure">
       <main>
         <Header />
       </main>

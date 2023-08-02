@@ -10,7 +10,7 @@ const editUrl = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "conda-forge documentation",
+  title: "🚧 cf-infra-docs 🚧",
   tagline: "Draft documentation for conda-forge infrastructure",
   url: "https://cf-infra-docs.netlify.app/",
   baseUrl: "/",
