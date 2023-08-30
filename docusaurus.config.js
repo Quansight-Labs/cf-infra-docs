@@ -101,10 +101,30 @@ const config = {
         },
         items: [
           {
+            href: "https://conda-forge.org/status",
+            label: "Status",
+            position: "left",
+          },
+          {
+            href: "https://conda-forge.org/feedstock-outputs",
+            label: "Packages",
+            position: "left",
+          },
+          {
+            to: "/news",
+            label: "News",
+            position: "left",
+          },
+          {
             type: "doc",
             docId: "index",
             position: "left",
             label: "Docs",
+          },
+          {
+            to: "/blog",
+            label: "Blog",
+            position: "left",
           },
           {
             type: "doc",
@@ -114,14 +134,9 @@ const config = {
             label: "Community",
           },
           {
-            to: "/blog",
-            label: "Blog",
-            position: "left",
-          },
-          {
-            to: "/news",
-            label: "News",
-            position: "left",
+            href: "https://opencollective.com/conda-forge",
+            label: "Donate",
+            position: "right",
           },
           {
             to: "https://github.com/conda-forge",
@@ -136,11 +151,6 @@ const config = {
             position: "right",
             target: "_blank",
             className: "fab fa-lg fa-twitter",
-          },
-          {
-            href: "https://conda-forge.org/status",
-            label: "Status",
-            position: "right",
           },
         ],
       },
