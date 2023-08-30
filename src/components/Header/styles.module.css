@@ -36,7 +36,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1em;
+  margin-top: 2em;
+}
+
+.header_content_input a {
+  text-decoration: none;
+}
+
+.header_content_input a:focus {
+  background: none;
 }
 
 @media screen and (max-width: 1050px) {
