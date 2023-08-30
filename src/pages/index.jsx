@@ -3,6 +3,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Header from "@site/src/components/Header";
 import About from "@site/src/components/About";
+import Contributing from "@site/src/components/Contributing";
 
 //import styles from "./modules/index.module.css";
 
@@ -16,6 +17,7 @@ export default function Home() {
             <main>
                 <Header />
                 <About />
+                <Contributing />
             </main>
         </Layout>
     );
