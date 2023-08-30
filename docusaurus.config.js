@@ -224,6 +224,10 @@ const config = {
                 to: "/dashboard",
               },
               {
+                label: "Styleguide",
+                to: "/style-guide",
+              },
+              {
                 label: "GitHub",
                 href: "https://github.com/conda-forge",
               },
