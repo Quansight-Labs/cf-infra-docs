@@ -31,9 +31,35 @@ h6 {
   font-family: var(--ifm-font-heading-family);
 }
 
-p,
-a {
+p {
   font-family: var(--ifm-font-content-family);
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  background: #ffff00;
+  border-radius: 5px;
+  color: #000;
+}
+
+.navbar-sidebar__item,
+.menu a {
+  text-decoration: none;
+}
+
+.navbar__items--right a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--ifm-color-primary-lightest);
 }
 
 .gradient_text {
@@ -43,14 +69,14 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.button.button--secondary {
+.homepage_button {
   background:
     linear-gradient(#fff, #fff) padding-box,
     linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
 }
 
-.button.button--secondary:hover {
+.homepage_button:hover {
   background:
     linear-gradient(#ebedf0, #ebedf0) padding-box,
     linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
@@ -58,7 +84,7 @@ a {
 
 [data-theme="dark"] .button.button--secondary {
   background:
-    linear-gradient(#4c4c4c, #4c4c4c) padding-box,
+    linear-gradient(#3a3a3a, #3a3a3a) padding-box,
     linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
   color: #ffffff;
@@ -66,7 +92,7 @@ a {
 
 [data-theme="dark"] .button.button--secondary:hover {
   background:
-    linear-gradient(#3a3a3a, #3a3a3a) padding-box,
+    linear-gradient(#4c4c4c, #4c4c4c) padding-box,
     linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%) border-box;
   border: 2px solid transparent;
   color: #ffffff;
@@ -82,7 +108,10 @@ a {
   --ifm-color-primary-lightest: #e95800;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --gradient: linear-gradient(62deg, #ff3664 0%, #ff4b2b 100%);
+  --gradient: linear-gradient(60deg, #ff3664 0%, #ff4b2b 100%);
+  --theme-card: #f6f6f6;
+  --dark-theme-bg-color: #1b1b1d;
+  --light-theme-bg-color: #fff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -95,4 +124,73 @@ a {
   --ifm-color-primary-lighter: #ff6f27;
   --ifm-color-primary-lightest: #ff884e;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --theme-card: #3a3a3a;
+}
+
+.color-container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.color {
+  height: 4rem;
+  margin: 0.5rem;
+  width: 4rem;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.color-gradient {
+  height: 4rem;
+  margin: 0.5rem;
+  width: 4rem;
+  border-radius: 100%;
+  text-align: center;
+  background: var(--gradient);
+}
+
+.color-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.color-palette-theme-container {
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.color-palette-light-theme-container {
+  background: var(--light-theme-bg-color);
+  color: var(--dark-theme-bg-color);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.color-palette-dark-theme-container {
+  background: var(--dark-theme-bg-color);
+  color: var(--light-theme-bg-color);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.logo-container-dark {
+  background: var(--dark-theme-bg-color);
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container-light {
+  background: var(--light-theme-bg-color);
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
