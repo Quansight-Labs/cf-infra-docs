@@ -6,8 +6,6 @@ import About from "@site/src/components/About";
 import Contributing from "@site/src/components/Contributing";
 import Supporters from "@site/src/components/Supporters";
 
-//import styles from "./modules/index.module.css";
-
 export default function Home() {
     const { siteConfig } = useDocusaurusContext();
     return (

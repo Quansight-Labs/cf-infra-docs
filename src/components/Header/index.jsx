@@ -1,15 +1,15 @@
 import React from "react";
-import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
+import ThemedImage from "@theme/ThemedImage";
+import styles from "./styles.module.css";
 
 export default function Header() {
     return (
         <div className={[styles.header, styles.section_padding].join(" ")}>
             <div className={styles.header_image}>
                 <ThemedImage
-                    alt="Anvil"
+                    alt="3D-Anvil illustration for conda-forge"
                     sources={{
                         light: useBaseUrl("/img/anvil-light.svg"),
                         dark: useBaseUrl("/img/anvil-dark.svg"),

@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 const contributing = [
     {
         Svg: require("@site/static/img/contributing/edit.svg").default,
+        alt: "GitHub edit pen tool icon",
         title: "Update A Package",
         content:
             "Edit the recipe as desired. You may even consider adding yourself as a recipe maintainer.",
@@ -11,6 +12,7 @@ const contributing = [
     },
     {
         Svg: require("@site/static/img/contributing/issue.svg").default,
+        alt: "GitHub issue icon",
         title: "Report An Issue",
         content:
             "Take a look to see if the issue has already been raised on the feedstock's issue tracker.",
@@ -18,6 +20,7 @@ const contributing = [
     },
     {
         Svg: require("@site/static/img/contributing/pr.svg").default,
+        alt: "GitHub pull request icon",
         title: "Add A Recipe",
         content:
             'Add a new conda recipe in a new "recipes/[your-package-name]" directory.',
@@ -25,6 +28,7 @@ const contributing = [
     },
     {
         Svg: require("@site/static/img/contributing/help.svg").default,
+        alt: "Question mark icon",
         title: "Ask For Help",
         content: (
             <>
@@ -53,12 +57,12 @@ export default function Contributing() {
                 <h1>Contributing to conda-forge</h1>
                 <p>For a package on conda-forge, I want to ...</p>
             </div>
-            {contributing.map(({ Svg, title, content, width }, index) => (
+            {contributing.map(({ Svg, alt, title, content, width }, index) => (
                 <div
                     className={styles.contributing_conda_forge_card}
                     key={index}
                 >
-                    <Svg width={width} alt={title} role="img" />
+                    <Svg width={width} alt={alt} role="img" />
                     <h3>{title}</h3>
                     <p>{content}</p>
                 </div>

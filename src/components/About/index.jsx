@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
+import styles from "./styles.module.css";
 
 export default function Stats() {
     const [stats, setStats] = useState(null);

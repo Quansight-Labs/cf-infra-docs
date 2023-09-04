@@ -96,7 +96,7 @@ const config = {
     ({
       navbar: {
         logo: {
-          alt: "Anvil logo",
+          alt: "conda-forge anvil logo without text",
           src: "img/logo.png",
         },
         items: [
@@ -224,7 +224,7 @@ const config = {
                 to: "/dashboard",
               },
               {
-                label: "Styleguide",
+                label: "Style guide",
                 to: "/style-guide",
               },
               {

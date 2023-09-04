@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
-import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import ThemedImage from "@theme/ThemedImage";
+import styles from "./styles.module.css";
 
 /* data of supporters */
 const financial = [
@@ -152,7 +152,7 @@ export default function Supporters() {
                                     <Link to={link}>
                                         <ThemedImage
                                             className={styles.image}
-                                            alt={name}
+                                            alt={`${name} logo`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
@@ -181,7 +181,7 @@ export default function Supporters() {
                                     <Link to={link}>
                                         <ThemedImage
                                             className={styles.image}
-                                            alt={name}
+                                            alt={`${name} logo`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
@@ -208,7 +208,7 @@ export default function Supporters() {
                                     <Link to={link}>
                                         <ThemedImage
                                             className={styles.image}
-                                            alt={name}
+                                            alt={`${name} logo`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
