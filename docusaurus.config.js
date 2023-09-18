@@ -16,8 +16,6 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
-  // Temporarily using Twitter's emoji for construction
-  // Copyright 2020 Twitter, Inc and other contributors, CC-BY 4.0
   favicon: "img/favicon.ico",
   trailingSlash: true,
 
