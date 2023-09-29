@@ -1,20 +1,20 @@
-.dashboard {
+.status_dashboard {
   margin: 0;
   max-width: 100%;
   min-height: 1000px;
 }
 
-.dashboard_toc {
+.status_dashboard_toc {
   font-size: 16px;
   position: sticky;
   top: 80px;
 }
 
-.dashboard_toc a {
+.status_dashboard_toc a {
   text-decoration: none;
 }
 
-.dashboard_toc ul {
+.status_dashboard_toc ul {
   padding: 0;
   list-style-type: none;
 }

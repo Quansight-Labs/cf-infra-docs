@@ -27,7 +27,7 @@ Consider the following structure when browsing our docs.
 - Configure your feedstock
 - Tasks & responsibilities
 - Howtos & knowledge base
-- Maintainer's dashboard manual
+- Maintainer's status dashboard
 - Frequently asked questions
 
 ## For contributors

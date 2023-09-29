@@ -10,7 +10,7 @@ import TOC from "./toc";
 import TravisCIUsage from "./travis_ci_usage";
 import VersionUpdates from "./version_updates";
 
-export default function Dashboard() {
+export default function StatusDashboard() {
     return (
         <main className={["container", styles.dashboard].join(" ")}>
             <div className="row">

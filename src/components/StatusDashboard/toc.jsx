@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 
 export default function TOC() {
     return (
-    <aside className={styles.dashboard_toc}>
+    <aside className={styles.status_dashboard_toc}>
         <ul>
             <li>
                 <a href="#incidents">Incidents</a>

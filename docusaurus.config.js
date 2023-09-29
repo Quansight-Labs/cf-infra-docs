@@ -181,7 +181,7 @@ const config = {
         },
         items: [
           {
-            href: "https://conda-forge.org/status",
+            href: "/status",
             label: "Status",
             position: "left",
           },
@@ -288,7 +288,7 @@ const config = {
               },
               {
                 label: "Status",
-                href: "https://conda-forge.org/status",
+                href: "/status",
               },
               {
                 label: "Twitter",
@@ -300,8 +300,8 @@ const config = {
             title: "Resources",
             items: [
               {
-                label: "Dashboard",
-                to: "/dashboard",
+                label: "Status",
+                to: "/status",
               },
               {
                 label: "Style guide",
