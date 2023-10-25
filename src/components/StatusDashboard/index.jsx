@@ -11,23 +11,23 @@ import TravisCIUsage from "./travis_ci_usage";
 import VersionUpdates from "./version_updates";
 
 export default function StatusDashboard() {
-    return (
-        <main className={["container", styles.dashboard].join(" ")}>
-            <div className="row">
-                <div className="col col--2">
-                    <TOC />
-                </div>
-                <div className="col col--10">
-                    <Incidents />
-                    <ReposAndBots />
-                    <CloudServices />
-                    <CurrentMigrations />
-                    <VersionUpdates />
-                    <AzurePipelineUsage />
-                    <GitHubActionsUsage />
-                    <TravisCIUsage />
-                </div>
-            </div>
-        </main>
-    );
+  return (
+    <main className={["container", styles.dashboard].join(" ")}>
+      <div className="row">
+        <div className="col col--2">
+          <TOC />
+        </div>
+        <div className="col col--10">
+          <Incidents />
+          <ReposAndBots />
+          <CloudServices />
+          <CurrentMigrations />
+          <VersionUpdates />
+          <AzurePipelineUsage />
+          <GitHubActionsUsage />
+          <TravisCIUsage />
+        </div>
+      </div>
+    </main>
+  );
 }

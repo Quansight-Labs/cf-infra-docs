@@ -264,3 +264,9 @@ not pretty but it's the best we can do so far */
   align-items: center;
   justify-content: center;
 }
+
+.migration {
+  background-color: #ccc;
+  text-align: center;
+  padding: 5px;
+}

@@ -1,65 +1,64 @@
 import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
+import { urls } from "../../urls";
 
 export default function Stats() {
-    const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    "https://raw.githubusercontent.com/conda-forge/by-the-numbers/main/data/live_counts.json"
-                );
-                const data = await response.json();
-                setStats(data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(urls.stats);
+        const data = await response.json();
+        setStats(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-        fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
-    const stats1 = [
-        {
-            number: stats ? `${(stats.downloads.month / 1e6).toFixed(0)}M` : "",
-            content: "Monthly downloads",
-        },
-        {
-            number: stats ? `${(stats.downloads.all / 1e9).toFixed(1)}B` : "",
-            content: "Overall Downloads",
-        },
-        {
-            number: stats ? `${(stats.n_repos / 1e3).toFixed(1)}K` : "",
-            content: "Feedstocks",
-        },
-        {
-            number: stats ? `${(stats.n_packages / 1e3).toFixed(1)}K` : "",
-            content: "Packages",
-        },
-    ];
+  const stats1 = [
+    {
+      number: stats ? `${(stats.downloads.month / 1e6).toFixed(0)}M` : "",
+      content: "Monthly downloads",
+    },
+    {
+      number: stats ? `${(stats.downloads.all / 1e9).toFixed(1)}B` : "",
+      content: "Overall Downloads",
+    },
+    {
+      number: stats ? `${(stats.n_repos / 1e3).toFixed(1)}K` : "",
+      content: "Feedstocks",
+    },
+    {
+      number: stats ? `${(stats.n_packages / 1e3).toFixed(1)}K` : "",
+      content: "Packages",
+    },
+  ];
 
-    const stats2 = [
-        {
-            number: stats ? stats.n_members_core : "",
-            content: "Core Developers",
-        },
-        {
-            number: stats ? `${(stats.n_artifacts / 1e6).toFixed(1)}M` : "",
-            content: "Artifacts",
-        },
-        {
-            number: stats ? `${(stats.n_members / 1e3).toFixed(1)}K` : "",
-            content: "Feedstock Maintainers",
-        },
-        {
-            number: stats
-                ? `${((stats.n_prs + stats.n_issues) / 1e3).toFixed(1)}K`
-                : "",
-            content: "Issues + PRs",
-        },
-    ];
+  const stats2 = [
+    {
+      number: stats ? stats.n_members_core : "",
+      content: "Core Developers",
+    },
+    {
+      number: stats ? `${(stats.n_artifacts / 1e6).toFixed(1)}M` : "",
+      content: "Artifacts",
+    },
+    {
+      number: stats ? `${(stats.n_members / 1e3).toFixed(1)}K` : "",
+      content: "Feedstock Maintainers",
+    },
+    {
+      number: stats
+        ? `${((stats.n_prs + stats.n_issues) / 1e3).toFixed(1)}K`
+        : "",
+      content: "Issues + PRs",
+    },
+  ];
 
     return (
         <div className={[styles.about, styles.section_padding].join(" ")}>
