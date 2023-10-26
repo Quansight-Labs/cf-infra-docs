@@ -41,6 +41,9 @@ export const urls = {
         "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/regular_status.json",
     },
   },
+  travis: {
+    usage: "https://conda-forge.herokuapp.com/status-monitor/report/travis-ci",
+  },
   versions:
     "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/version_status.json",
 };
