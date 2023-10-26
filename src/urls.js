@@ -1,6 +1,7 @@
 export const urls = {
   azure: {
-    pipelines: "https://conda-forge.herokuapp.com/status-monitor/report/azure-pipelines",
+    pipelines:
+      "https://conda-forge.herokuapp.com/status-monitor/report/azure-pipelines",
     status: "https://conda-forge.herokuapp.com/status-monitor/azure",
   },
   stats:
