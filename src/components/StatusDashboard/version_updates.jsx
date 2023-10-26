@@ -18,7 +18,9 @@ export default function VersionUpdates() {
       }
       setUpdates(updated);
     };
-    void load();
+    if (updates.errored.length + updates.queued.length === 0) {
+      void load();
+    }
   });
 
   return (
