@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { urls } from "../../urls";
+import { urls } from "../../constants";
 
 export default function VersionUpdates() {
   const [updates, setUpdates] = useState({

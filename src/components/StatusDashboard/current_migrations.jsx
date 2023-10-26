@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { urls } from "../../urls";
+import { urls } from "../../constants";
 
 export default function CurrentMigrations() {
   const [totals, setTotals] = useState({ closed: 0, longterm: 0, regular: 0 });

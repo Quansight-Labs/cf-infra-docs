@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
-import { urls } from "../../urls";
+import { urls } from "../../constants";
 
 export default function Stats() {
   const [stats, setStats] = useState(null);
