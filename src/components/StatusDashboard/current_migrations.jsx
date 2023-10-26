@@ -17,7 +17,7 @@ export default function CurrentMigrations() {
       setTotals({ ...totals, ...updated });
     };
     if (totals.closed + totals.longterm + totals.regular === 0) {
-        void load();
+      void load();
     }
   });
 

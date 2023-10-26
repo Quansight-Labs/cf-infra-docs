@@ -1,3 +1,14 @@
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import "chartjs-adapter-moment";
 import React from "react";
 import AzurePipelineUsage from "./azure_pipeline_usage";
 import CloudServices from "./cloud_services";
@@ -9,6 +20,16 @@ import styles from "./styles.module.css";
 import TOC from "./toc";
 import TravisCIUsage from "./travis_ci_usage";
 import VersionUpdates from "./version_updates";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function StatusDashboard() {
   return (
