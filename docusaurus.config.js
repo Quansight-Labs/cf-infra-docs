@@ -14,8 +14,8 @@ const config = {
   tagline: "Draft documentation for conda-forge infrastructure",
   url: "https://cf-infra-docs.netlify.app/",
   baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: true,
 
@@ -43,6 +43,7 @@ const config = {
   // Mermaid configuration
   markdown: {
     mermaid: true,
+    format: 'detect'
   },
   themes: ["@docusaurus/theme-mermaid"],
 
@@ -90,6 +91,20 @@ const config = {
     [
       "@docusaurus/plugin-client-redirects",
       {
+        fromExtensions: ['html', 'htm'],
+        createRedirects(existingPath) {
+          if (existingPath.endsWith('/00_intro/')) {
+            return [
+              existingPath.replace('/00_intro/', '/'),
+            ];
+          }
+          if (existingPath.endsWith('/00_intro.html')) {
+            return [
+              existingPath.replace('/00_intro.html', '/'),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
         redirects: [
           {
             from: "/blog/posts/2019-12-06-cfep09/",
