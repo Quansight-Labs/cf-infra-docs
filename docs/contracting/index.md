@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # Contracting Information
 
 If you are interested in a contractual engagement to solve a specific problem that you’re facing, this page details the kinds of services that are available to you. conda-forge, as an entity, does not have the ability to engage in a contractual arrangement as of now.

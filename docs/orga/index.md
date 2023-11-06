@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Organisation Documentation
 
 * [Guidelines](guidelines.md)
