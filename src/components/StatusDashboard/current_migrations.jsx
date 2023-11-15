@@ -1,50 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
+function FullView(state) {
+  console.log('state', state);
+  return (
+      <div className="card__body">
+        work in progress
+      </div>
+  );
+}
+
+function SummaryView({longterm, regular, closed}) {
+  return (
+      <div className="card__body">
+        <div className="row">
+          <div className="col col--4">
+            <div className="migration">
+              Long-running migrations ({longterm.length || ""})
+            </div>
+          </div>
+          <div className="col col--4">
+            <div className="migration">
+              Regular migrations ({regular.length || ""})
+            </div>
+          </div>
+          <div className="col col--4">
+            <div className="migration">
+              Closed migrations ({closed.length || ""})
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+}
+
 export default function CurrentMigrations() {
-  const [totals, setTotals] = useState({ closed: 0, longterm: 0, regular: 0 });
+  const [state, setState] = useState({
+    closed: [],
+    loaded: false,
+    longterm: [],
+    regular: [],
+    summary: true
+  });
+  const toggle = event => {
+    event.preventDefault();
+    setState({ ...state, summary: !state.summary });
+  };
+
   useEffect(() => {
-    const load = async () => {
+    if (state.loaded) {
+      return;
+    }
+    void (async () => {
       const updated = {};
       for (const key in urls.migrations.status) {
         try {
           const response = await fetch(urls.migrations.status[key]);
-          totals[key] = Object.keys(await response.json()).length;
+          state[key] = Object.keys(await response.json());
         } catch (error) {
-          console.log("error", error);
+          console.warn("error loading current migrations", error);
         }
       }
-      setTotals({ ...totals, ...updated });
-    };
-    if (totals.closed + totals.longterm + totals.regular === 0) {
-      void load();
-    }
+      setState({ ...state, ...updated, loaded: true });
+    })();
   });
 
   return (
     <div id="current_migrations" className="card margin-top--xs">
       <div className="card__header">
-        <h3>Current Migrations</h3>
+        <h3>
+          Current Migrations
+          <a href="" onClick={toggle}>View all migrations</a>
+        </h3>
       </div>
-      <div className="card__body">
-        <div className="row">
-          <div className="col col--4">
-            <div className="migration">
-              Long-running migrations ({totals.longterm || ""})
-            </div>
-          </div>
-          <div className="col col--4">
-            <div className="migration">
-              Regular migrations ({totals.regular || ""})
-            </div>
-          </div>
-          <div className="col col--4">
-            <div className="migration">
-              Closed migrations ({totals.closed || ""})
-            </div>
-          </div>
-        </div>
-      </div>
+      {state.summary ? (<SummaryView {...state} />) : (<FullView {...state} />)}
     </div>
   );
 }

@@ -265,7 +265,22 @@ not pretty but it's the best we can do so far */
   justify-content: center;
 }
 
-.migration {
+#current_migrations .card__header a {
+  border: 1px solid var(--ifm-color-primary-darkest);
+  border-radius: 10px;
+  color: rgb(22, 161, 255);
+  float: right;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 4px;
+  text-decoration: none;
+}
+
+#current_migrations .card__header a:focus {
+  background-color: inherit;
+}
+
+#current_migrations .migration {
   background-color: #ccc;
   text-align: center;
   padding: 5px;
