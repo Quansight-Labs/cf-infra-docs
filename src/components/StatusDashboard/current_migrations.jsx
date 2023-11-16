@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
-function FullView(state) {
-  console.log("state", state);
-  return <div className="card__body">work in progress</div>;
+function Full({ longterm, regular, closed }) {
+  return (
+    <div className="card__body">
+      <table>
+        <TableContent name="Long-running migrations" rows={longterm} />
+        <TableContent name="Regular migrations" rows={regular} />
+        <TableContent name="Closed migrations" rows={closed} />
+      </table>
+    </div>
+  );
 }
 
-function SummaryView({ longterm, regular, closed }) {
+function Row({ name, description }) {
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{description.replace(/\ Migration Status$/, "")}</td>
+    </tr>
+  );
+}
+
+function Summary({ longterm, regular, closed }) {
   return (
     <div className="card__body">
       <div className="row">
@@ -27,6 +43,25 @@ function SummaryView({ longterm, regular, closed }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function TableContent({ name, rows }) {
+  return (
+    <>
+    <thead>
+      <tr>
+        <th colSpan="2">{name}</th>
+      </tr>
+      <tr>
+        <th>name</th>
+        <th>description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(row => (<Row {...row} key={row.name} />))}
+    </tbody>
+    </>
   );
 }
 
@@ -73,7 +108,7 @@ export default function CurrentMigrations() {
           </a>
         </h3>
       </div>
-      {state.summary ? <SummaryView {...state} /> : <FullView {...state} />}
+      {state.summary ? <Summary {...state} /> : <Full {...state} />}
     </div>
   );
 }
