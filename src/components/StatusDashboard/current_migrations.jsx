@@ -17,7 +17,7 @@ function Row({ name, description }) {
   return (
     <tr>
       <td>{name}</td>
-      <td>{description.replace(/\ Migration Status$/, "")}</td>
+      <td>{description}</td>
     </tr>
   );
 }
@@ -49,18 +49,20 @@ function Summary({ longterm, regular, closed }) {
 function TableContent({ name, rows }) {
   return (
     <>
-    <thead>
-      <tr>
-        <th colSpan="2">{name}</th>
-      </tr>
-      <tr>
-        <th>name</th>
-        <th>description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map(row => (<Row {...row} key={row.name} />))}
-    </tbody>
+      <thead>
+        <tr>
+          <th colSpan="2">{name}</th>
+        </tr>
+        <tr>
+          <th>name</th>
+          <th>description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <Row {...row} key={row.name} />
+        ))}
+      </tbody>
     </>
   );
 }
@@ -88,7 +90,10 @@ export default function CurrentMigrations() {
         try {
           const response = await fetch(urls.migrations.status[key]);
           state[key] = Object.entries(await response.json()).map(
-            ([name, description]) => ({ name, description })
+            ([name, description]) => ({
+              name,
+              description: description.replace(/\ Migration Status$/, ""),
+            })
           );
         } catch (error) {
           console.warn("error loading current migrations", error);
