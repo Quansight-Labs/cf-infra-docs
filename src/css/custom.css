@@ -265,6 +265,22 @@ not pretty but it's the best we can do so far */
   justify-content: center;
 }
 
+#current_migrations .card__body table {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#current_migrations .card__body th {
+  display: table-cell;
+  text-align: left;
+}
+
+#current_migrations .card__body td {
+  display: table-cell;
+}
+
 #current_migrations .card__header a {
   border: 1px solid var(--ifm-color-primary-darkest);
   border-radius: 10px;
@@ -274,6 +290,8 @@ not pretty but it's the best we can do so far */
   font-weight: 500;
   padding: 4px;
   text-decoration: none;
+  text-align: center;
+  min-width: 180px;
 }
 
 #current_migrations .card__header a:focus {

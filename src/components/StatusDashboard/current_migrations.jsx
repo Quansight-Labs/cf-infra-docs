@@ -52,7 +52,7 @@ function TableContent({ name, rows }) {
     <>
       <thead>
         <tr onClick={() => setToggled(!toggled)}>
-          <th colSpan="2">{name}</th>
+          <th colSpan="2">{name}{toggled ? "" : "…"}</th>
         </tr>
         <tr style={toggled ? undefined : { display: "none" }}>
           <th>name</th>
@@ -111,7 +111,7 @@ export default function CurrentMigrations() {
         <h3>
           Current Migrations
           <a href="" onClick={toggle}>
-            View all migrations
+          {state.summary ? "View all migrations" : "View summary"}
           </a>
         </h3>
       </div>
