@@ -47,18 +47,19 @@ function Summary({ longterm, regular, closed }) {
 }
 
 function TableContent({ name, rows }) {
+  const [toggled, setToggled] = useState(true);
   return (
     <>
       <thead>
-        <tr>
+        <tr onClick={() => setToggled(!toggled)}>
           <th colSpan="2">{name}</th>
         </tr>
-        <tr>
+        <tr style={toggled ? undefined : { display: "none" }}>
           <th>name</th>
           <th>description</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style={toggled ? undefined : { display: "none" }}>
         {rows.map((row) => (
           <Row {...row} key={row.name} />
         ))}
@@ -92,6 +93,7 @@ export default function CurrentMigrations() {
           state[key] = Object.entries(await response.json()).map(
             ([name, description]) => ({
               name,
+              // Remove superfluous text at the end of each description.
               description: description.replace(/\ Migration Status$/, ""),
             })
           );
