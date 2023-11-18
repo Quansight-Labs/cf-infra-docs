@@ -272,6 +272,10 @@ not pretty but it's the best we can do so far */
   width: 100%;
 }
 
+#current_migrations .card__body thead > tr:first-child {
+  cursor: pointer;
+}
+
 #current_migrations .card__body th {
   display: table-cell;
   text-align: left;

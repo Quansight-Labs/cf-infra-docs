@@ -13,11 +13,13 @@ function Full({ longterm, regular, closed }) {
   );
 }
 
-function Row({ name, description }) {
+function Row({ description }) {
   return (
     <tr>
-      <td>{name}</td>
       <td>{description}</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   );
 }
@@ -52,11 +54,13 @@ function TableContent({ name, rows }) {
     <>
       <thead>
         <tr onClick={() => setToggled(!toggled)}>
-          <th colSpan="2">{name}{toggled ? "" : "…"}</th>
+          <th colSpan="4">{name}{toggled ? "" : "…"}</th>
         </tr>
         <tr style={toggled ? undefined : { display: "none" }}>
-          <th>name</th>
-          <th>description</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Awaiting parents</th>
+          <th>Awaiting PR</th>
         </tr>
       </thead>
       <tbody style={toggled ? undefined : { display: "none" }}>
@@ -87,10 +91,10 @@ export default function CurrentMigrations() {
     }
     void (async () => {
       const updated = {};
-      for (const key in urls.migrations.status) {
+      for (const status in urls.migrations.status) {
         try {
-          const response = await fetch(urls.migrations.status[key]);
-          state[key] = Object.entries(await response.json()).map(
+          const response = await fetch(urls.migrations.status[status]);
+          state[status] = Object.entries(await response.json()).map(
             ([name, description]) => ({
               name,
               // Remove superfluous text at the end of each description.
@@ -98,9 +102,26 @@ export default function CurrentMigrations() {
             })
           );
         } catch (error) {
-          console.warn("error loading current migrations", error);
+          console.warn(`error loading top-level ${status} migrations`, error);
         }
       }
+      const details = async (status, name, index) => {
+        try {
+          const url = urls.migrations.details.replace("<NAME>", name);
+          const response = await fetch(url);
+          state[status][index].details = await response.json();
+        } catch (error) {
+          console.warn(`error loading ${status}/${name} migration`, error);
+        }
+      };
+      const promises = [];
+      for (const status in urls.migrations.status) {
+        let index = 0;
+        for (const {name} of state[status]) {
+          promises.push(details(status, name, index++));
+        }
+      }
+      await Promise.all(promises);
       setState({ ...state, ...updated, loaded: true });
     })();
   });
