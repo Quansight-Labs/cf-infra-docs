@@ -13,17 +13,6 @@ function Full({ longterm, regular, closed }) {
   );
 }
 
-function Row({ description }) {
-  return (
-    <tr>
-      <td>{description}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  );
-}
-
 function Summary({ longterm, regular, closed }) {
   return (
     <div className="card__body">
@@ -65,7 +54,12 @@ function TableContent({ name, rows }) {
       </thead>
       <tbody style={toggled ? undefined : { display: "none" }}>
         {rows.map((row) => (
-          <Row {...row} key={row.name} />
+          <tr key={row.name}>
+            <td>{row.description}</td>
+            <td></td>
+            <td>{row.details["awaiting-parents"].length}</td>
+            <td>{row.details["awaiting-pr"].length}</td>
+          </tr>
         ))}
       </tbody>
     </>
@@ -105,20 +99,19 @@ export default function CurrentMigrations() {
           console.warn(`error loading top-level ${status} migrations`, error);
         }
       }
-      const details = async (status, name, index) => {
-        try {
-          const url = urls.migrations.details.replace("<NAME>", name);
-          const response = await fetch(url);
-          state[status][index].details = await response.json();
-        } catch (error) {
-          console.warn(`error loading ${status}/${name} migration`, error);
-        }
-      };
       const promises = [];
       for (const status in urls.migrations.status) {
         let index = 0;
         for (const {name} of state[status]) {
-          promises.push(details(status, name, index++));
+          promises.push((async (status, name, index) => {
+            try {
+              const url = urls.migrations.details.replace("<NAME>", name);
+              const response = await fetch(url);
+              state[status][index].details = await response.json();
+            } catch (error) {
+              console.warn(`error loading ${status}/${name} migration`, error);
+            }
+          })(status, name, index++));
         }
       }
       await Promise.all(promises);
