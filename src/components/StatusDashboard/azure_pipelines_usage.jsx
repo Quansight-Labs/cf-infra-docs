@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 
-export default function TravisCIUsage() {
+export default function AzurePipelinesUsage() {
   const [state, setState] = useState({
+    loaded: false,
     rates: {},
     repos: {},
     total: 0,
-    loaded: false,
   });
   useEffect(() => {
     if (state.loaded) {
@@ -18,11 +18,11 @@ export default function TravisCIUsage() {
       try {
         setState({
           ...state,
-          ...(await (await fetch(urls.travis.usage)).json()),
+          ...(await (await fetch(urls.azure.pipelines)).json()),
           loaded: true,
         });
       } catch (error) {
-        console.warn("error loading travis ci usage", error);
+        console.log("error loading azure pipelines", error);
       }
     })();
   });
@@ -33,12 +33,12 @@ export default function TravisCIUsage() {
     return moment(rate).local();
   });
   return (
-    <div id="travis_ci_usage" className="card margin-top--xs margin-bottom--xs">
+    <div id="azure_pipelines_usage" className="card margin-top--xs">
       <div className="card__header">
-        <h3>Travis CI Usage</h3>
+        <h3>Azure Pipelines usage</h3>
       </div>
       <div className="card__body">
-        <p>Travis CI ran {state.total} jobs in the past eight hours.</p>
+        <p>Azure Pipelines ran {state.total} jobs in the past eight hours.</p>
         <Bar data={{ labels, datasets: [{ data }] }} options={options} />
       </div>
     </div>

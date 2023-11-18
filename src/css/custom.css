@@ -307,3 +307,9 @@ not pretty but it's the best we can do so far */
   text-align: center;
   padding: 5px;
 }
+
+#azure_pipelines_usage .card__body canvas,
+#github_actions_usage .card__body canvas,
+#travis_ci_usage .card__body canvas {
+  max-height: 200px;
+}

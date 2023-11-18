@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import "chartjs-adapter-moment";
 import React from "react";
-import AzurePipelineUsage from "./azure_pipeline_usage";
+import AzurePipelineUsage from "./azure_pipelines_usage";
 import CloudServices from "./cloud_services";
 import CurrentMigrations from "./current_migrations";
 import GitHubActionsUsage from "./github_actions_usage";

@@ -2,25 +2,27 @@ import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
 export default function VersionUpdates() {
-  const [updates, setUpdates] = useState({
+  const [state, setState] = useState({
     errored: [],
     errors: {},
     queued: [],
+    loaded: false,
   });
   useEffect(() => {
-    const load = async () => {
-      let updated = {};
-      try {
-        const response = await fetch(urls.versions);
-        updated = await response.json();
-      } catch (error) {
-        console.log("error", error);
-      }
-      setUpdates(updated);
-    };
-    if (updates.errored.length + updates.queued.length === 0) {
-      void load();
+    if (state.loaded) {
+      return;
     }
+    void (async () => {
+      try {
+        setState({
+          ...state,
+          ...(await (await fetch(urls.versions)).json()),
+          loaded: true,
+        });
+      } catch (error) {
+        console.log("error loading version updates", error);
+      }
+    })();
   });
 
   return (
@@ -29,8 +31,8 @@ export default function VersionUpdates() {
         <h3>Version Updates</h3>
       </div>
       <div className="card__body">
-        There are currently {updates.queued.length} queued and{" "}
-        {updates.errored.length} errored version updates.
+        There are currently {state.queued.length} queued and{" "}
+        {state.errored.length} errored version updates.
       </div>
     </div>
   );

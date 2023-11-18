@@ -43,7 +43,10 @@ function TableContent({ name, rows }) {
     <>
       <thead>
         <tr onClick={() => setToggled(!toggled)}>
-          <th colSpan="4">{name}{toggled ? "" : "…"}</th>
+          <th colSpan="4">
+            {name}
+            {toggled ? "" : "…"}
+          </th>
         </tr>
         <tr style={toggled ? undefined : { display: "none" }}>
           <th>Name</th>
@@ -84,11 +87,11 @@ export default function CurrentMigrations() {
       return;
     }
     void (async () => {
-      const updated = {};
+      let fetched = {};
       for (const status in urls.migrations.status) {
         try {
           const response = await fetch(urls.migrations.status[status]);
-          state[status] = Object.entries(await response.json()).map(
+          fetched[status] = Object.entries(await response.json()).map(
             ([name, description]) => ({
               name,
               // Remove superfluous text at the end of each description.
@@ -102,20 +105,25 @@ export default function CurrentMigrations() {
       const promises = [];
       for (const status in urls.migrations.status) {
         let index = 0;
-        for (const {name} of state[status]) {
-          promises.push((async (status, name, index) => {
-            try {
-              const url = urls.migrations.details.replace("<NAME>", name);
-              const response = await fetch(url);
-              state[status][index].details = await response.json();
-            } catch (error) {
-              console.warn(`error loading ${status}/${name} migration`, error);
-            }
-          })(status, name, index++));
+        for (const { name } of fetched[status]) {
+          promises.push(
+            (async (status, name, index) => {
+              try {
+                const url = urls.migrations.details.replace("<NAME>", name);
+                const response = await fetch(url);
+                fetched[status][index].details = await response.json();
+              } catch (error) {
+                console.warn(
+                  `error loading ${status}/${name} migration`,
+                  error
+                );
+              }
+            })(status, name, index++)
+          );
         }
       }
       await Promise.all(promises);
-      setState({ ...state, ...updated, loaded: true });
+      setState({ ...state, ...fetched, loaded: true });
     })();
   });
 
@@ -125,7 +133,7 @@ export default function CurrentMigrations() {
         <h3>
           Current Migrations
           <a href="" onClick={toggle}>
-          {state.summary ? "View all migrations" : "View summary"}
+            {state.summary ? "View all migrations" : "View summary"}
           </a>
         </h3>
       </div>

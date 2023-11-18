@@ -21,7 +21,7 @@ export default function TOC() {
           <a href="#version_updates">Version Updates</a>
         </li>
         <li>
-          <a href="#azure_pipeline_usage">Azure Pipeline Usage</a>
+          <a href="#azure_pipelines_usage">Azure Pipelines Usage</a>
         </li>
         <li>
           <a href="#github_actions_usage">GitHub Actions Usage</a>
