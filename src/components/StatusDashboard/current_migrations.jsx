@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
-function Full({ longterm, regular, closed }) {
+function Full({ longterm, regular, closed, style }) {
   return (
-    <div className="card__body">
+    <div className="card__body" style={style}>
       <table>
         <TableContent name="Long-running migrations" rows={longterm} />
         <TableContent name="Regular migrations" rows={regular} />
@@ -13,9 +13,9 @@ function Full({ longterm, regular, closed }) {
   );
 }
 
-function Summary({ longterm, regular, closed }) {
+function Summary({ longterm, regular, closed, style }) {
   return (
-    <div className="card__body">
+    <div className="card__body" style={style}>
       <div className="row">
         <div className="col col--4">
           <div className="migration">
@@ -37,12 +37,12 @@ function Summary({ longterm, regular, closed }) {
   );
 }
 
-function TableContent({ name, rows }) {
-  const [toggled, setToggled] = useState(true);
+function TableContent({ collapsed = false, name, rows }) {
+  const [{ toggled }, setState] = useState({ toggled: !collapsed });
   return (
     <>
       <thead>
-        <tr onClick={() => setToggled(!toggled)}>
+        <tr onClick={() => setState({ toggled: !toggled })}>
           <th colSpan="4">
             {name}
             {toggled ? "" : "…"}
@@ -87,7 +87,8 @@ export default function CurrentMigrations() {
       return;
     }
     void (async () => {
-      let fetched = {};
+      const promises = [];
+      const fetched = {};
       for (const status in urls.migrations.status) {
         try {
           const response = await fetch(urls.migrations.status[status]);
@@ -98,28 +99,22 @@ export default function CurrentMigrations() {
               description: description.replace(/\ Migration Status$/, ""),
             })
           );
+          let index = 0;
+          for (const { name } of fetched[status]) {
+            promises.push(
+              (async (status, name, index) => {
+                try {
+                  const url = urls.migrations.details.replace("<NAME>", name);
+                  const response = await fetch(url);
+                  fetched[status][index].details = await response.json();
+                } catch (error) {
+                  console.warn(`error loading migration: ${name}`, error);
+                }
+              })(status, name, index++)
+            );
+          }
         } catch (error) {
           console.warn(`error loading top-level ${status} migrations`, error);
-        }
-      }
-      const promises = [];
-      for (const status in urls.migrations.status) {
-        let index = 0;
-        for (const { name } of fetched[status]) {
-          promises.push(
-            (async (status, name, index) => {
-              try {
-                const url = urls.migrations.details.replace("<NAME>", name);
-                const response = await fetch(url);
-                fetched[status][index].details = await response.json();
-              } catch (error) {
-                console.warn(
-                  `error loading ${status}/${name} migration`,
-                  error
-                );
-              }
-            })(status, name, index++)
-          );
         }
       }
       await Promise.all(promises);
@@ -137,7 +132,14 @@ export default function CurrentMigrations() {
           </a>
         </h3>
       </div>
-      {state.summary ? <Summary {...state} /> : <Full {...state} />}
+      <Summary
+        {...state}
+        style={state.summary ? undefined : { display: "none" }}
+      />
+      <Full
+        {...state}
+        style={state.summary ? { display: "none" } : undefined}
+      />
     </div>
   );
 }
