@@ -16,11 +16,8 @@ export default function AzurePipelinesUsage() {
     }
     void (async () => {
       try {
-        setState({
-          ...state,
-          ...(await (await fetch(urls.azure.pipelines)).json()),
-          loaded: true,
-        });
+        const fetched = await (await fetch(urls.azure.pipelines)).json();
+        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
       } catch (error) {
         console.log("error loading azure pipelines", error);
       }

@@ -16,11 +16,8 @@ export default function GitHubActionsUsage() {
     }
     void (async () => {
       try {
-        setState({
-          ...state,
-          ...(await (await fetch(urls.github.actions)).json()),
-          loaded: true,
-        });
+        const fetched = await (await fetch(urls.github.actions)).json();
+        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
       } catch (error) {
         console.log("error loading github actions", error);
       }

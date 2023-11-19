@@ -16,11 +16,8 @@ export default function TravisCIUsage() {
     }
     void (async () => {
       try {
-        setState({
-          ...state,
-          ...(await (await fetch(urls.travis.usage)).json()),
-          loaded: true,
-        });
+        const fetched = await (await fetch(urls.travis.usage)).json();
+        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
       } catch (error) {
         console.warn("error loading travis ci usage", error);
       }

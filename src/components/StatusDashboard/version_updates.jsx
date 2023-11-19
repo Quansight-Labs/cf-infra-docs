@@ -14,11 +14,8 @@ export default function VersionUpdates() {
     }
     void (async () => {
       try {
-        setState({
-          ...state,
-          ...(await (await fetch(urls.versions)).json()),
-          loaded: true,
-        });
+        const fetched = await (await fetch(urls.versions)).json();
+        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
       } catch (error) {
         console.log("error loading version updates", error);
       }
