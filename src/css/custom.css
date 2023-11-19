@@ -304,6 +304,7 @@ not pretty but it's the best we can do so far */
 
 #current_migrations .migration {
   background-color: #ccc;
+  cursor: pointer;
   text-align: center;
   padding: 5px;
 }
