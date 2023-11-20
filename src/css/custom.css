@@ -326,9 +326,10 @@ not pretty but it's the best we can do so far */
 
 .progress_bar {
   display: flex;
+  position: relative;
 }
 
-.progress_bar > span:first-child {
+.progress_bar .meter {
   border: 1px solid var(--ifm-color-primary-darkest);
   flex: 1;
   min-width: 150px;
@@ -336,13 +337,23 @@ not pretty but it's the best we can do so far */
   text-align: left;
 }
 
-.progress_bar > span:first-child span:first-child {
+.progress_bar .progress {
   background-color: var(--ifm-color-primary-lightest);
   display: inline-block;
-  text-align: center;
 }
 
-.progress_bar > span:last-child {
+.progress_bar .ratio {
   text-align: right;
   width: 80px;
+}
+
+.progress_bar .percentage {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(100% - 80px);
+  z-index: 1;
+  text-align: center;
 }

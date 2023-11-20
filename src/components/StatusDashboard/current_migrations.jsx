@@ -37,13 +37,14 @@ function ProgressBar({ row }) {
     details["bot-error"].length +
     details["in-pr"].length +
     details["not-solvable"].length;
-  const percentage = ((done / total) * 100).toFixed(0);
+  const percentage = ((done / (total || 1)) * 100).toFixed(0);
   return (
     <div className="progress_bar">
-      <span>
-        <span style={{width: `${percentage}%`}}>{percentage}%</span>
-      </span>
-      <span>{done}/{total}</span>
+      <div className="meter">
+        <div className="progress" style={{width: `${percentage}%`}}>&nbsp;</div>
+        <div className="percentage">{percentage}%</div>
+      </div>
+      <div className="ratio">{done}/{total}</div>
     </div>
   );
 }
