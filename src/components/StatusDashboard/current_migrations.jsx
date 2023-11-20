@@ -31,7 +31,8 @@ function Full({ closed, collapsed, longterm, regular, select, style }) {
 function ProgressBar({ row }) {
   const { details } = row;
   const done = details["done"].length;
-  const total = done +
+  const total =
+    done +
     details["awaiting-parents"].length +
     details["awaiting-pr"].length +
     details["bot-error"].length +
@@ -41,10 +42,14 @@ function ProgressBar({ row }) {
   return (
     <div className="progress_bar">
       <div className="meter">
-        <div className="progress" style={{width: `${percentage}%`}}>&nbsp;</div>
+        <div className="progress" style={{ width: `${percentage}%` }}>
+          &nbsp;
+        </div>
         <div className="percentage">{percentage}%</div>
       </div>
-      <div className="ratio">{done}/{total}</div>
+      <div className="ratio">
+        {done}/{total}
+      </div>
     </div>
   );
 }
@@ -79,7 +84,7 @@ function TableContent({ collapsed, name, rows, select }) {
     <>
       <thead>
         <tr onClick={select}>
-          <th colSpan="4" className={className}>
+          <th colSpan="7" className={className}>
             {name}
           </th>
         </tr>
@@ -88,6 +93,9 @@ function TableContent({ collapsed, name, rows, select }) {
           <th>Status</th>
           <th>Awaiting parents</th>
           <th>Awaiting PR</th>
+          <th>In PR</th>
+          <th>Not solvable</th>
+          <th>Bot error</th>
         </tr>
       </thead>
       <tbody className={className}>
@@ -99,6 +107,9 @@ function TableContent({ collapsed, name, rows, select }) {
             </td>
             <td>{row.details["awaiting-parents"].length}</td>
             <td>{row.details["awaiting-pr"].length}</td>
+            <td>{row.details["in-pr"].length}</td>
+            <td>{row.details["not-solvable"].length}</td>
+            <td>{row.details["bot-error"].length}</td>
           </tr>
         ))}
       </tbody>
