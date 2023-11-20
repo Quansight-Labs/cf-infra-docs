@@ -323,3 +323,26 @@ not pretty but it's the best we can do so far */
 #travis_ci_usage .card__body canvas {
   max-height: 200px;
 }
+
+.progress_bar {
+  display: flex;
+}
+
+.progress_bar > span:first-child {
+  border: 1px solid var(--ifm-color-primary-darkest);
+  flex: 1;
+  min-width: 150px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.progress_bar > span:first-child span:first-child {
+  background-color: var(--ifm-color-primary-lightest);
+  display: inline-block;
+  text-align: center;
+}
+
+.progress_bar > span:last-child {
+  text-align: right;
+  width: 80px;
+}

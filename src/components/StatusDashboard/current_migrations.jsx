@@ -28,6 +28,26 @@ function Full({ closed, collapsed, longterm, regular, select, style }) {
   );
 }
 
+function ProgressBar({ row }) {
+  const { details } = row;
+  const done = details["done"].length;
+  const total = done +
+    details["awaiting-parents"].length +
+    details["awaiting-pr"].length +
+    details["bot-error"].length +
+    details["in-pr"].length +
+    details["not-solvable"].length;
+  const percentage = ((done / total) * 100).toFixed(0);
+  return (
+    <div className="progress_bar">
+      <span>
+        <span style={{width: `${percentage}%`}}>{percentage}%</span>
+      </span>
+      <span>{done}/{total}</span>
+    </div>
+  );
+}
+
 function Summary({ closed, longterm, regular, select, style }) {
   return (
     <div className="card__body" style={style}>
@@ -73,7 +93,9 @@ function TableContent({ collapsed, name, rows, select }) {
         {rows.map((row) => (
           <tr key={row.name}>
             <td>{row.description}</td>
-            <td></td>
+            <td>
+              <ProgressBar row={row} />
+            </td>
             <td>{row.details["awaiting-parents"].length}</td>
             <td>{row.details["awaiting-pr"].length}</td>
           </tr>
