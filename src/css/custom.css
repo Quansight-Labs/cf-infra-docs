@@ -276,6 +276,15 @@ not pretty but it's the best we can do so far */
   cursor: pointer;
 }
 
+#current_migrations .card__body thead > tr:first-child .collapsed::after {
+  content: "…";
+}
+
+#current_migrations .card__body tr.collapsed,
+#current_migrations .card__body tbody.collapsed {
+  display: none;
+}
+
 #current_migrations .card__body th {
   display: table-cell;
   text-align: left;

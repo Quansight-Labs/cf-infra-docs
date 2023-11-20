@@ -34,17 +34,17 @@ function Summary({ closed, longterm, regular, select, style }) {
       <div className="row">
         <div className="col col--4">
           <div className="migration" onClick={() => select("longterm")}>
-            Long-running migrations ({longterm.length || ""})
+            Long-running migrations ({longterm.length || "…"})
           </div>
         </div>
         <div className="col col--4">
           <div className="migration" onClick={() => select("regular")}>
-            Regular migrations ({regular.length || ""})
+            Regular migrations ({regular.length || "…"})
           </div>
         </div>
         <div className="col col--4">
           <div className="migration" onClick={() => select("closed")}>
-            Closed migrations ({closed.length || ""})
+            Closed migrations ({closed.length || "…"})
           </div>
         </div>
       </div>
@@ -53,23 +53,23 @@ function Summary({ closed, longterm, regular, select, style }) {
 }
 
 function TableContent({ collapsed, name, rows, select }) {
+  const className = collapsed ? "collapsed" : undefined;
   return (
     <>
       <thead>
         <tr onClick={select}>
-          <th colSpan="4">
+          <th colSpan="4" className={className}>
             {name}
-            {collapsed ? "…" : ""}
           </th>
         </tr>
-        <tr style={collapsed ? { display: "none" } : undefined}>
+        <tr className={className}>
           <th>Name</th>
           <th>Status</th>
           <th>Awaiting parents</th>
           <th>Awaiting PR</th>
         </tr>
       </thead>
-      <tbody style={collapsed ? { display: "none" } : undefined}>
+      <tbody className={className}>
         {rows.map((row) => (
           <tr key={row.name}>
             <td>{row.description}</td>
@@ -86,11 +86,7 @@ function TableContent({ collapsed, name, rows, select }) {
 export default function CurrentMigrations() {
   const [state, setState] = useState({
     closed: [],
-    collapsed: {
-      closed: true,
-      longterm: true,
-      regular: true,
-    },
+    collapsed: { closed: true, longterm: true, regular: true },
     loaded: false,
     longterm: [],
     regular: [],
