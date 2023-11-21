@@ -266,10 +266,15 @@ not pretty but it's the best we can do so far */
 }
 
 #current_migrations .card__body table {
+  font-size: small;
   display: table;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+}
+
+#current_migrations .card__body thead {
+  text-wrap: nowrap;
 }
 
 #current_migrations .card__body thead > tr:first-child {

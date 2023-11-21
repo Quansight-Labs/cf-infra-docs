@@ -101,7 +101,7 @@ function TableContent({ collapsed, name, rows, select }) {
       <tbody className={className}>
         {rows.map((row) => (
           <tr key={row.name}>
-            <td>{row.description}</td>
+            <td>{row.name}</td>
             <td>
               <ProgressBar row={row} />
             </td>
@@ -174,6 +174,7 @@ export default function CurrentMigrations() {
                   const url = urls.migrations.details.replace("<NAME>", name);
                   const response = await fetch(url);
                   fetched[status][index++].details = await response.json();
+
                 } catch (error) {
                   console.warn(`error loading migration: ${name}`, error);
                 }
