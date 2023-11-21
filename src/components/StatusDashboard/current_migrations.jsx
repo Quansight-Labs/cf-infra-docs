@@ -174,7 +174,6 @@ export default function CurrentMigrations() {
                   const url = urls.migrations.details.replace("<NAME>", name);
                   const response = await fetch(url);
                   fetched[status][index++].details = await response.json();
-
                 } catch (error) {
                   console.warn(`error loading migration: ${name}`, error);
                 }
