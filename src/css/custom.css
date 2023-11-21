@@ -343,8 +343,19 @@ not pretty but it's the best we can do so far */
 }
 
 .progress_bar .progress {
+  animation: progress_bar 1500ms;
+  animation-fill-mode: both;
   background-color: var(--ifm-color-primary-lightest);
   display: inline-block;
+}
+
+@keyframes progress_bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .progress_bar .ratio {

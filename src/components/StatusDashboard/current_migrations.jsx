@@ -42,7 +42,7 @@ function ProgressBar({ row }) {
   return (
     <div className="progress_bar">
       <div className="meter">
-        <div className="progress" style={{ width: `${percentage}%` }}>
+        <div className="progress" style={{ maxWidth: `${percentage}%` }}>
           &nbsp;
         </div>
         <div className="percentage">{percentage}%</div>
@@ -120,7 +120,7 @@ function TableContent({ collapsed, name, rows, select }) {
 export default function CurrentMigrations() {
   const [state, setState] = useState({
     closed: [],
-    collapsed: { closed: true, longterm: true, regular: true },
+    collapsed: { closed: false, longterm: false, regular: false },
     loaded: false,
     longterm: [],
     regular: [],
