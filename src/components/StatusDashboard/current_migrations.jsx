@@ -40,17 +40,14 @@ function ProgressBar({ row }) {
     details["not-solvable"].length;
   const percentage = ((done / (total || 1)) * 100).toFixed(0);
   return (
-    <div className="progress_bar">
-      <div className="meter">
-        <div className="progress" style={{ maxWidth: `${percentage}%` }}>
-          &nbsp;
-        </div>
-        <div className="percentage">{percentage}%</div>
-      </div>
-      <div className="ratio">
+    <label className="progress_bar">
+      <progress value={done} max={total}>
+        {percentage}%
+      </progress>
+      <span className="ratio">
         {done}/{total}
-      </div>
-    </div>
+      </span>
+    </label>
   );
 }
 
@@ -160,11 +157,7 @@ export default function CurrentMigrations() {
         try {
           const response = await fetch(urls.migrations.status[status]);
           fetched[status] = Object.entries(await response.json()).map(
-            ([name, description]) => ({
-              name,
-              // Remove superfluous text at the end of each description.
-              description: description.replace(/\ Migration Status$/, ""),
-            })
+            ([name, description]) => ({ name, description })
           );
           let index = 0;
           for (const { name } of fetched[status]) {
