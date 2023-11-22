@@ -190,7 +190,7 @@ export default function CurrentMigrations() {
   });
 
   return (
-    <div id="current_migrations" className="card margin-top--xs">
+    <div id="current_migrations" className="card margin--xs padding--xs">
       <div className="card__header">
         <h3>
           Current Migrations

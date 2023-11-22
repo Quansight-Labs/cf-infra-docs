@@ -290,13 +290,24 @@ not pretty but it's the best we can do so far */
   display: none;
 }
 
+#current_migrations .card__body th:only-child {
+  text-align: left;
+}
+
 #current_migrations .card__body th {
   display: table-cell;
+  padding: 3px;
+  text-align: center;
+}
+
+#current_migrations .card__body td:first-child {
   text-align: left;
 }
 
 #current_migrations .card__body td {
   display: table-cell;
+  padding: 3px;
+  text-align: right;
 }
 
 #current_migrations .card__header a {
@@ -320,7 +331,8 @@ not pretty but it's the best we can do so far */
   background-color: #ccc;
   cursor: pointer;
   text-align: center;
-  padding: 5px;
+  margin: 2px;
+  padding: 3px;
 }
 
 #azure_pipelines_usage .card__body canvas,
@@ -343,7 +355,7 @@ not pretty but it's the best we can do so far */
 }
 
 .progress_bar .progress {
-  animation: progress_bar 1500ms;
+  animation: progress_bar 1000ms;
   animation-fill-mode: both;
   background-color: var(--ifm-color-primary-lightest);
   display: inline-block;
