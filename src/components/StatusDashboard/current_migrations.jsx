@@ -1,72 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
-function Full({
-  closed,
-  collapsed,
-  longterm,
-  regular,
-  resort,
-  select,
-  sort,
-  style,
-}) {
-  return (
-    <div className="card__body" style={style}>
-      <table>
-        <TableContent
-          collapsed={collapsed.longterm}
-          name="Long-running migrations"
-          resort={resort}
-          rows={longterm}
-          select={() => select("longterm")}
-          sort={sort}
-        />
-        <TableContent
-          collapsed={collapsed.regular}
-          name="Regular migrations"
-          resort={resort}
-          rows={regular}
-          select={() => select("regular")}
-          sort={sort}
-        />
-        <TableContent
-          collapsed={collapsed.closed}
-          name="Closed migrations"
-          resort={resort}
-          rows={closed}
-          select={() => select("closed")}
-          sort={sort}
-        />
-      </table>
-    </div>
-  );
-}
-
-function Summary({ closed, longterm, regular, select, style }) {
-  return (
-    <div className="card__body" style={style}>
-      <div className="row">
-        <div className="col col--4">
-          <div className="migration" onClick={() => select("longterm")}>
-            Long-running migrations ({longterm.length || "…"})
-          </div>
-        </div>
-        <div className="col col--4">
-          <div className="migration" onClick={() => select("regular")}>
-            Regular migrations ({regular.length || "…"})
-          </div>
-        </div>
-        <div className="col col--4">
-          <div className="migration" onClick={() => select("closed")}>
-            Closed migrations ({closed.length || "…"})
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
   return (
     <>
@@ -279,18 +213,60 @@ export default function CurrentMigrations() {
           </button>
         </h3>
       </div>
-      <Summary
-        {...state}
-        select={select}
+      <div
+        className="card__body"
         style={state.summary ? undefined : { display: "none" }}
-      />
-      <Full
-        {...state}
-        select={select}
+      >
+        <div className="row">
+          <div className="col col--4">
+            <div className="migration" onClick={() => select("longterm")}>
+              Long-running migrations ({state.longterm.length || "…"})
+            </div>
+          </div>
+          <div className="col col--4">
+            <div className="migration" onClick={() => select("regular")}>
+              Regular migrations ({state.regular.length || "…"})
+            </div>
+          </div>
+          <div className="col col--4">
+            <div className="migration" onClick={() => select("closed")}>
+              Closed migrations ({state.closed.length || "…"})
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="card__body"
         style={state.summary ? { display: "none" } : undefined}
-        resort={resort}
-        sort={state.sort}
-      />
+      >
+        <table>
+          <TableContent
+            collapsed={state.collapsed.longterm}
+            name="Long-running migrations"
+            resort={resort}
+            rows={state.longterm}
+            select={() => select("longterm")}
+            sort={state.sort}
+          />
+          <TableContent
+            collapsed={state.collapsed.regular}
+            name="Regular migrations"
+            resort={resort}
+            rows={state.regular}
+            select={() => select("regular")}
+            sort={state.sort}
+          />
+          <TableContent
+            collapsed={state.collapsed.closed}
+            name="Closed migrations"
+            resort={resort}
+            rows={state.closed}
+            select={() => select("closed")}
+            sort={state.sort}
+          />
+        </table>
+      </div>
+
     </div>
   );
 }
