@@ -292,6 +292,7 @@ not pretty but it's the best we can do so far */
   display: table-cell;
   padding: 3px 8px;
   text-align: center;
+  user-select: none;
 }
 
 #current_migrations .card__body th[colspan]::after {
@@ -330,7 +331,7 @@ not pretty but it's the best we can do so far */
   text-align: right;
 }
 
-#current_migrations .card__header a {
+#current_migrations .card__header button {
   border: 1px solid var(--ifm-color-primary-darkest);
   border-radius: 10px;
   color: rgb(22, 161, 255);

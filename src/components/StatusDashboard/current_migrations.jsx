@@ -274,9 +274,9 @@ export default function CurrentMigrations() {
       <div className="card__header">
         <h3>
           Current Migrations
-          <a href="" onClick={toggle}>
+          <button onClick={toggle}>
             {state.summary ? "View all migrations" : "View summary"}
-          </a>
+          </button>
         </h3>
       </div>
       <Summary
