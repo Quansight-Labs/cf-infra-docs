@@ -331,6 +331,15 @@ not pretty but it's the best we can do so far */
   text-align: right;
 }
 
+#current_migrations .card__body td:first-child {
+  cursor: pointer;
+}
+
+#current_migrations .card__body td:first-child:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
+}
+
 #current_migrations .card__header button {
   border: 1px solid var(--ifm-color-primary-darkest);
   border-radius: 10px;
