@@ -94,44 +94,33 @@ export default function CurrentMigrations() {
     sort: { by: "name", order: "ascending" },
     summary: true,
   });
-  const toggle = (event) => {
-    event.preventDefault();
-    setState((prev) => ({ ...prev, summary: !state.summary }));
+  const toggle = () =>
+    setState((prev) => ({ ...prev, summary: !prev.summary }));
+  const compare = (field, order) => {
+    switch (field) {
+      case "name":
+        return order === "ascending"
+          ? (a, b) => a.name.localeCompare(b.name)
+          : (a, b) => b.name.localeCompare(a.name);
+      case "status":
+        return order === "ascending"
+          ? (a, b) => a.progress.percentage - b.progress.percentage
+          : (a, b) => b.progress.percentage - a.progress.percentage;
+      default:
+        return order === "ascending"
+          ? (a, b) => a.details[field].length - b.details[field].length
+          : (a, b) => b.details[field].length - a.details[field].length;
+    }
   };
   const resort = (by) => {
-    setState((prev) => {
-      const order =
-        by === prev.sort.by
-          ? prev.sort.order === "ascending"
-            ? "descending"
-            : "ascending"
-          : "ascending";
-      const compare = (field, order) => {
-        if (field === "name") {
-          if (order === "ascending") {
-            return (a, b) => a.name.localeCompare(b.name);
-          } else {
-            return (a, b) => b.name.localeCompare(a.name);
-          }
-        }
-        if (field === "status") {
-          if (order === "ascending") {
-            return (a, b) => a.progress.percentage - b.progress.percentage;
-          } else {
-            return (a, b) => b.progress.percentage - a.progress.percentage;
-          }
-        }
-        if (order === "ascending") {
-          return (a, b) => a.details[field].length - b.details[field].length;
-        } else {
-          return (a, b) => b.details[field].length - a.details[field].length;
-        }
-      };
+    setState(({ closed, longterm, regular, sort, ...prev }) => {
+      let order = "ascending";
+      order = by === sort.by && order === sort.order ? "descending" : order;
       return {
         ...prev,
-        closed: prev.closed.sort(compare(by, order)),
-        longterm: prev.longterm.sort(compare(by, order)),
-        regular: prev.regular.sort(compare(by, order)),
+        closed: closed.sort(compare(by, order)),
+        longterm: longterm.sort(compare(by, order)),
+        regular: regular.sort(compare(by, order)),
         sort: { by, order },
       };
     });
@@ -163,15 +152,15 @@ export default function CurrentMigrations() {
       const promises = [];
       const fetched = {};
       for (const status in urls.migrations.status) {
+        let count = 0;
         try {
           const response = await fetch(urls.migrations.status[status]);
           fetched[status] = Object.entries(await response.json()).map(
             ([name, description]) => ({ name, description })
           );
-          let index = 0;
           for (const { name } of fetched[status]) {
             promises.push(
-              (async () => {
+              (async (index) => {
                 try {
                   const url = urls.migrations.details.replace("<NAME>", name);
                   const response = await fetch(url);
@@ -187,11 +176,10 @@ export default function CurrentMigrations() {
                   const percentage = (done / (total || 1)) * 100;
                   fetched[status][index].details = details;
                   fetched[status][index].progress = { done, percentage, total };
-                  index += 1;
                 } catch (error) {
                   console.warn(`error loading migration: ${name}`, error);
                 }
-              })()
+              })(count++)
             );
           }
         } catch (error) {
@@ -266,7 +254,6 @@ export default function CurrentMigrations() {
           />
         </table>
       </div>
-
     </div>
   );
 }
