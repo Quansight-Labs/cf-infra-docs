@@ -60,7 +60,7 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           const { progress } = row;
           return (
             <tr key={row.name}>
-              <td>{row.name}</td>
+              <td onClick={() => console.log(row.name)}>{row.name}</td>
               <td>
                 <label className="progress_bar">
                   <progress value={progress.done} max={progress.total}>
@@ -92,10 +92,14 @@ export default function CurrentMigrations() {
     longterm: [],
     regular: [],
     sort: { by: "name", order: "ascending" },
-    summary: true,
+    view: "summary", // or "full" or "details"
   });
-  const toggle = () =>
-    setState((prev) => ({ ...prev, summary: !prev.summary }));
+  const toggle = (event) => {
+    const view = event.target?.dataset?.view;
+    if (view) {
+      setState((prev) => ({ ...prev, view }));
+    }
+  };
   const compare = (field, order) => {
     switch (field) {
       case "name":
@@ -125,24 +129,11 @@ export default function CurrentMigrations() {
       };
     });
   };
-  const select = (selection) =>
-    setState((prev) => ({
+  const select = (status) =>
+    setState(({ collapsed, ...prev }) => ({
       ...prev,
-      collapsed: {
-        closed:
-          selection === "closed"
-            ? !prev.collapsed.closed
-            : prev.collapsed.closed,
-        longterm:
-          selection === "longterm"
-            ? !prev.collapsed.longterm
-            : prev.collapsed.longterm,
-        regular:
-          selection === "regular"
-            ? !prev.collapsed.regular
-            : prev.collapsed.regular,
-      },
-      summary: false,
+      collapsed: { ...collapsed, [status]: !collapsed[status] },
+      view: "full",
     }));
   useEffect(() => {
     if (state.loaded) {
@@ -196,14 +187,22 @@ export default function CurrentMigrations() {
       <div className="card__header">
         <h3>
           Current Migrations
-          <button onClick={toggle}>
-            {state.summary ? "View all migrations" : "View summary"}
-          </button>
+          <span className="button-group">
+            <button data-view="summary" onClick={toggle}>
+              Summary
+            </button>
+            <button data-view="full" onClick={toggle}>
+              Full
+            </button>
+            <button data-view="details" onClick={toggle}>
+              Details
+            </button>
+          </span>
         </h3>
       </div>
       <div
         className="card__body"
-        style={state.summary ? undefined : { display: "none" }}
+        style={state.view === "summary" ? undefined : { display: "none" }}
       >
         <div className="row">
           <div className="col col--4">
@@ -225,7 +224,7 @@ export default function CurrentMigrations() {
       </div>
       <div
         className="card__body"
-        style={state.summary ? { display: "none" } : undefined}
+        style={state.view === "full" ? undefined : { display: "none" }}
       >
         <table>
           <TableContent
