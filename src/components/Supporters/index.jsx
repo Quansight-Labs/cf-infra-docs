@@ -174,7 +174,7 @@ export default function Supporters() {
                         </h2>
                     </div>
                     <div className={styles.card}>
-                        {financial.map(
+                        {financial.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
                                 <div className={styles.cardWrapper} key={index}>
                                     <Link to={link}>
@@ -203,7 +203,7 @@ export default function Supporters() {
                         </h2>
                     </div>
                     <div className={styles.card}>
-                        {infrastructure.map(
+                        {infrastructure.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
                                 <div className={styles.cardWrapper} key={index}>
                                     <Link to={link}>
@@ -230,7 +230,7 @@ export default function Supporters() {
                         </h2>
                     </div>
                     <div className={styles.card}>
-                        {developer.map(
+                        {developer.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
                                 <div className={styles.cardWrapper} key={index}>
                                     <Link to={link}>
