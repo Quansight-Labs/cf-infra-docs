@@ -25,7 +25,7 @@ const infrastructure = [
     },
     {
         name: "Azure Pipelines",
-        link: "https://osuosl.org/",
+        link: "https://azure.microsoft.com/products/devops/",
         light: "img/supporters/azure.png",
         dark: "img/supporters/azure.png",
         width: 250,
