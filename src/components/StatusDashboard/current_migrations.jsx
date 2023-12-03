@@ -156,13 +156,12 @@ export default function CurrentMigrations() {
                   const url = urls.migrations.details.replace("<NAME>", name);
                   const response = await fetch(url);
                   const details = await response.json();
-                  const done = details["done"].length;
+                  const done = details["done"].length + details["in-pr"].length;
                   const total =
                     done +
                     details["awaiting-parents"].length +
                     details["awaiting-pr"].length +
                     details["bot-error"].length +
-                    details["in-pr"].length +
                     details["not-solvable"].length;
                   const percentage = (done / (total || 1)) * 100;
                   fetched[status][index].details = details;
