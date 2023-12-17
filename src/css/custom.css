@@ -27,6 +27,11 @@
   --ifm-color-primary-light: #c54b00;
   --ifm-color-primary-lighter: #ce4e00;
   --ifm-color-primary-lightest: #e95800;
+  --ifm-color-secondary: #ebeff0;
+  --ifm-color-success: #388e3c;
+  --ifm-color-info: #1976d2;
+  --ifm-color-warning: #ef6c00;
+  --ifm-color-danger: #d84315;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --gradient: linear-gradient(60deg, #ff3664 0%, #ff4b2b 100%);
@@ -44,6 +49,11 @@
   --ifm-color-primary-light: #ff661b;
   --ifm-color-primary-lighter: #ff6f27;
   --ifm-color-primary-lightest: #ff884e;
+  --ifm-color-secondary: #424247;
+  --ifm-color-success: #81c784;
+  --ifm-color-info: #64b5f6;
+  --ifm-color-warning: #ffb74d;
+  --ifm-color-danger: #ff8a65;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --theme-card: #3a3a3a;
 }
