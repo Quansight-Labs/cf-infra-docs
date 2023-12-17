@@ -20,13 +20,13 @@
   --ifm-font-heading-family: "Montserrat";
   --ifm-font-content-family: "Inter";
   transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-  --ifm-color-primary: #00bcd4;
-  --ifm-color-primary-dark: #0097a7;
-  --ifm-color-primary-darker: #00838f;
-  --ifm-color-primary-darkest: #006064;
-  --ifm-color-primary-light: #4dd0e1;
-  --ifm-color-primary-lighter: #80deea;
-  --ifm-color-primary-lightest: #b2ebf2;
+  --ifm-color-primary: #e91e63;
+  --ifm-color-primary-dark: #c2185b;
+  --ifm-color-primary-darker: #ad1457;
+  --ifm-color-primary-darkest: #880e4f;
+  --ifm-color-primary-light: #ec407a;
+  --ifm-color-primary-lighter: #f06292;
+  --ifm-color-primary-lightest: #f48fb1;
   --ifm-color-secondary: #ebedf0;
   --ifm-color-success: #388e3c;
   --ifm-color-info: #1976d2;
@@ -34,7 +34,7 @@
   --ifm-color-danger: #d84315;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --gradient: linear-gradient(60deg, var(--ifm-color-primary-darker) 0%, var(--ifm-color-primary) 100%);
+  --gradient: linear-gradient(60deg, var(--ifm-color-primary-dark) 0%, var(--ifm-color-primary-light) 100%);
   --theme-card: #f6f6f6;
   --dark-theme-bg-color: #1b1b1d;
   --light-theme-bg-color: #fff;
@@ -42,20 +42,20 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #26c6da;
-  --ifm-color-primary-dark: #00acc1;
-  --ifm-color-primary-darker: #0097a7;
-  --ifm-color-primary-darkest: #00838f;
-  --ifm-color-primary-light: #80deea;
-  --ifm-color-primary-lighter: #b2ebf2;
-  --ifm-color-primary-lightest: #e0f7fa;
+  --ifm-color-primary: #ec407a;
+  --ifm-color-primary-dark: #e91e63;
+  --ifm-color-primary-darker: #d81b60;
+  --ifm-color-primary-darkest: #c2185b;
+  --ifm-color-primary-light: #f06292;
+  --ifm-color-primary-lighter: #f48fb1;
+  --ifm-color-primary-lightest: #f8bbd0;
   --ifm-color-secondary: #ebedf0;
   --ifm-color-success: #81c784;
   --ifm-color-info: #64b5f6;
   --ifm-color-warning: #ffb74d;
   --ifm-color-danger: #ff8a65;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --gradient: linear-gradient(60deg, var(--ifm-color-primary-darkest) 0%, var(--ifm-color-primary) 100%);
+  --gradient: linear-gradient(60deg, var(--ifm-color-primary-dark) 0%, var(--ifm-color-primary-light) 100%);
   --theme-card: #3a3a3a;
 }
 
