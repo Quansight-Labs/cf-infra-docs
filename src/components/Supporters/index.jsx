@@ -190,20 +190,20 @@ export default function Supporters() {
                     <div className={styles.card}>
                         {financial.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
-                                <div className={styles.cardWrapper} key={index}>
-                                    <Link to={link}>
+                                <Link to={link}>
+                                    <div className={styles.cardWrapper} key={index}>
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
-                                            title={`Go to ${name} website`}
+                                            title={`Go to ${name}'s website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
                                             }}
                                             width={width}
                                         />
-                                    </Link>
-                                </div>
+                                    </div>
+                                </Link>
                             )
                         )}
                     </div>
@@ -220,20 +220,20 @@ export default function Supporters() {
                     <div className={styles.card}>
                         {infrastructure.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
-                                <div className={styles.cardWrapper} key={index}>
-                                    <Link to={link}>
+                                <Link to={link}>
+                                    <div className={styles.cardWrapper} key={index}>
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
-                                            title={`Go to ${name} website`}
+                                            title={`Go to ${name}'s website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
                                             }}
                                             width={width}
                                         />
-                                    </Link>
-                                </div>
+                                    </div>
+                                </Link>
                             )
                         )}
                     </div>
@@ -248,20 +248,20 @@ export default function Supporters() {
                     <div className={styles.card}>
                         {developer.sort((a, b) => 0.5 - Math.random()).map(
                             ({ name, link, light, dark, width }, index) => (
-                                <div className={styles.cardWrapper} key={index}>
-                                    <Link to={link}>
+                                <Link to={link}>
+                                    <div className={styles.cardWrapper} key={index}>
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
-                                            title={`Go to ${name} website`}
+                                            title={`Go to ${name}'s website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
                                             }}
                                             width={width}
                                         />
-                                    </Link>
-                                </div>
+                                    </div>
+                                </Link>
                             )
                         )}
                     </div>
