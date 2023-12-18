@@ -31,6 +31,13 @@ const infrastructure = [
         width: 250,
     },
     {
+        name: "Cirun",
+        link: "https://cirun.io",
+        light: "img/supporters/cirun_light.svg",
+        dark: "img/supporters/cirun_dark.svg",
+        width: 200,
+    },
+    {
         name: "Digital Ocean",
         link: "https://www.digitalocean.com/",
         light: "img/supporters/do_light.svg",
@@ -64,6 +71,13 @@ const infrastructure = [
         light: "img/supporters/ovh_light.svg",
         dark: "img/supporters/ovh_dark.svg",
         width: 220,
+    },
+    {
+        name: "Quansight",
+        link: "https://www.quansight.com/",
+        light: "img/supporters/quansight_light.svg",
+        dark: "img/supporters/quansight_dark.svg",
+        width: 80,
     },
     {
         name: "Travis CI",
@@ -106,8 +120,8 @@ const developer = [
     {
         name: "Quansight Labs",
         link: "https://labs.quansight.org/",
-        light: "img/supporters/quansight_light.svg",
-        dark: "img/supporters/quansight_dark.svg",
+        light: "img/supporters/quansightlabs_light.svg",
+        dark: "img/supporters/quansightlabs_dark.svg",
         width: 250,
     },
     {
@@ -181,6 +195,7 @@ export default function Supporters() {
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
+                                            title={`Go to ${name} website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
@@ -210,6 +225,7 @@ export default function Supporters() {
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
+                                            title={`Go to ${name} website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
@@ -237,6 +253,7 @@ export default function Supporters() {
                                         <ThemedImage
                                             className={styles.image}
                                             alt={`${name} logo`}
+                                            title={`Go to ${name} website`}
                                             sources={{
                                                 light: useBaseUrl(`${light}`),
                                                 dark: useBaseUrl(`${dark}`),
