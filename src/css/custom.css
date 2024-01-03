@@ -34,10 +34,13 @@
   --ifm-color-danger: #d84315;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --gradient: linear-gradient(60deg, #00695c 0%, #009688 100%);
+  --gradient: linear-gradient(60deg, var(--ifm-color-primary-darker) 0%, var(--ifm-color-primary-light) 100%);
   --theme-card: #f6f6f6;
   --dark-theme-bg-color: #1b1b1d;
   --light-theme-bg-color: #fff;
+  --pydata-link-underline-thickness: max(1px, .0625rem);
+  --pydata-link-underline-offset: 0.1578em;
+  --pydata-link-hover-decoration-thickness: max(3px, .1875rem, .12em);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -74,27 +77,50 @@ p {
 
 a {
   text-decoration: underline;
+  text-decoration-thickness: var(--pydata-link-underline-thickness);
+  text-underline-offset: var(--pydata-link-underline-offset);
 }
 
-a:hover {
+a:hover, a.navbar__link:hover, a.table-of-contents__link:hover, a[class^="sidebarItemLink"]:hover {
+  text-decoration: underline;
+  text-decoration-thickness: var(--pydata-link-hover-decoration-thickness);
+  text-decoration-skip-ink: none;
+  text-decoration-skip: none;
+}
+
+a:active, a.navbar__link:active, a.table-of-contents__link:active, a[class^="sidebarItemLink"]:active {
+  text-decoration-thickness: var(--pydata-link-decoration-thickness);
+}
+
+a[class^="sidebarItemLink"][aria-current="page"],
+a.navbar__link,
+.navbar-sidebar__item,
+.menu a,
+.navbar__items--right a,
+.pagination-nav__link,
+a.card, a.card:hover {
   text-decoration: none;
 }
 
-a:focus {
-  background: #ffff00;
-  border-radius: 5px;
+.pagination-nav__link:active,
+a.card:active,
+.menu a:active {
+  background-color: var(--ifm-color-primary-lightest);
   color: #000;
 }
-
-.navbar-sidebar__item,
-.menu a {
-  text-decoration: none;
+[data-theme="dark"] .pagination-nav__link:active,
+a.card:active,
+.menu a:active {
+  background-color: var(--ifm-color-primary-darkest);
+  color: #fff;
 }
 
-.navbar__items--right a {
-  text-decoration: none;
+.navbar__logo img:hover {
+  transform: scale(1.05);
 }
-
+.navbar__logo img:active {
+  transform: scale(1.0);
+}
 
 .gradient_text {
   background: var(--gradient);
@@ -116,7 +142,7 @@ a:focus {
     var(--gradient) border-box;
 }
 
-[data-theme="dark"] .button.button--secondary {
+[data-theme="dark"] .button.button--secondary:not([aria-label="Collapse sidebar"]) {
   background:
     linear-gradient(#3a3a3a, #3a3a3a) padding-box,
     var(--gradient) border-box;
@@ -124,7 +150,7 @@ a:focus {
   color: #ffffff;
 }
 
-[data-theme="dark"] .button.button--secondary:hover {
+[data-theme="dark"] .button.button--secondary:hover:not([aria-label="Collapse sidebar"]) {
   background:
     linear-gradient(#4c4c4c, #4c4c4c) padding-box,
     var(--gradient) border-box;
