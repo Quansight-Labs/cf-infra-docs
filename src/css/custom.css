@@ -152,10 +152,13 @@ a.menu__link:active {
   border: 2px solid transparent;
 }
 
-.homepage_button:hover {
+.homepage_button:hover, .homepage_button:focus, .homepage_button:focus:active {
   background:
     linear-gradient(#ebedf0, #ebedf0) padding-box,
     var(--gradient) border-box;
+}
+.homepage_button:active{
+  transform: translateY(1px)
 }
 
 [data-theme="dark"]
