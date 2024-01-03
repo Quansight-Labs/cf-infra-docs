@@ -120,14 +120,14 @@ a.card:hover {
 
 .pagination-nav__link:active,
 a.card:active,
-.menu a:active {
-  background-color: var(--ifm-color-primary-lightest);
+a.menu__link:active {
+  background: var(--ifm-color-primary-lightest);
   color: #000;
 }
 [data-theme="dark"] .pagination-nav__link:active,
-a.card:active,
-.menu a:active {
-  background-color: var(--ifm-color-primary-darkest);
+[data-theme="dark"] a.card:active,
+[data-theme="dark"] a.menu__link:active {
+  background: var(--ifm-color-primary-darkest);
   color: #fff;
 }
 
