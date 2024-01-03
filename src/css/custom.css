@@ -41,6 +41,7 @@
     var(--ifm-color-primary-light) 100%
   );
   --theme-card: #f6f6f6;
+  --theme-card-link-color: var(--ifm-color-primary-dark);
   --dark-theme-bg-color: #1b1b1d;
   --light-theme-bg-color: #fff;
   --pydata-link-underline-thickness: max(1px, 0.0625rem);
@@ -69,6 +70,7 @@
     var(--ifm-color-primary) 100%
   );
   --theme-card: #3a3a3a;
+  --theme-card-link-color: var(--ifm-color-primary-light);
 }
 
 h1,

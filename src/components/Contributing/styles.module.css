@@ -57,6 +57,9 @@ h3 {
   font-size: 16px;
   font-weight: 500;
 }
+.contributing_conda_forge_card a {
+  color: var(--theme-card-link-color);
+}
 
 @media screen and (max-width: 650px) {
   .contributing_conda_forge {
