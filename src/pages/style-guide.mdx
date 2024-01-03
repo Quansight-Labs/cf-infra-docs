@@ -6,7 +6,7 @@ import TabItem from "@theme/TabItem";
 
 # conda-forge Style guide
 
-We're excited to introduce the conda-forge brand guide – your go-to resource for all things conda-forge branding. This document sets the stage for how we want to showcase the conda-forge brand consistently and accurately.
+We're excited to introduce the conda-forge brand guide: your go-to resource for all things conda-forge branding. This document sets the stage for how we want to showcase the conda-forge brand consistently and accurately.
 
 Whether you're a part of our team, a collaborator, or an external partner, this guide is here to help you represent conda-forge in the best possible way. We believe that by following these guidelines, we can keep our brand's values at the forefront and maintain effective communication with everyone. Thanks for being a part of our journey!
 
@@ -360,9 +360,9 @@ env = Environment(loader=loader)
 ### Code block with a title
 
 ```python title="/src/conf.py"
-project = u'conda-forge'
-copyright = u'2016-%s, conda-forge' % datetime.datetime.now().strftime("%Y")
-author = u'conda-forge'
+project = 'conda-forge'
+copyright = '2016-%s, conda-forge' % datetime.datetime.now().strftime("%Y")
+author = 'conda-forge'
 ```
 
 ---
@@ -472,3 +472,9 @@ Additional Figma file for colors and components
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fc7CHCElI13imGMWzTct1ss%2FConda-forge-website-redesign%3Ftype%3Ddesign%26node-id%3D10%253A831%26mode%3Ddesign%26t%3Do71HVpua0grT8shW-1"
   allowfullscreen
 ></iframe>
+
+---
+
+## Sources
+
+Most CSS redefinitions are done in `src/css/custom.css`. Check for `--ifm-*` variables in the `:root` nodes.
