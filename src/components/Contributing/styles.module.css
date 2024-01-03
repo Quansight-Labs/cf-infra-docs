@@ -53,8 +53,9 @@ h3 {
   margin-bottom: 1em;
 }
 
-
-.linked_card, .linked_card:hover, .linked_card:active {
+.linked_card,
+.linked_card:hover,
+.linked_card:active {
   text-decoration: none;
   color: var(--ifm-font-color-base);
 }
