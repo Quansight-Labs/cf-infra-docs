@@ -6,28 +6,28 @@ export default function TOC() {
     <aside className={styles.status_dashboard_toc}>
       <ul>
         <li>
-          <a href="#incidents_anchor">Incidents</a>
+          <a href="#incidents">Incidents</a>
         </li>
         <li>
-          <a href="#repos_anchor">Repos and Bots</a>
+          <a href="#repos">Repos and Bots</a>
         </li>
         <li>
-          <a href="#cloud_anchor">Cloud Services</a>
+          <a href="#cloud">Cloud Services</a>
         </li>
         <li>
-          <a href="#migrations_anchor">Current Migrations</a>
+          <a href="#migrations">Current Migrations</a>
         </li>
         <li>
-          <a href="#version_anchor">Version Updates</a>
+          <a href="#version">Version Updates</a>
         </li>
         <li>
-          <a href="#azure_anchor">Azure Pipelines Usage</a>
+          <a href="#azure">Azure Pipelines Usage</a>
         </li>
         <li>
-          <a href="#github_anchor">GitHub Actions Usage</a>
+          <a href="#github">GitHub Actions Usage</a>
         </li>
         <li>
-          <a href="#travis_anchor">Travis CI Usage</a>
+          <a href="#travis">Travis CI Usage</a>
         </li>
       </ul>
     </aside>
