@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
+function parseHash(hash = "") {
+  if (hash === "" || hash.indexOf("#migrations" !== 0)) {
+    return;
+  }
+}
+
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
   return (
     <>
@@ -84,7 +90,8 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
   );
 }
 
-export default function CurrentMigrations() {
+export default function CurrentMigrations(props) {
+  const hash = props.hash || '';
   const [state, setState] = useState({
     closed: [],
     collapsed: { closed: true, longterm: true, regular: true },
@@ -139,12 +146,15 @@ export default function CurrentMigrations() {
     if (state.loaded) {
       return;
     }
+    setState(prev => ({ ...prev, loaded: true }));
     void (async () => {
+      console.log('loading...');
       const promises = [];
       const fetched = {};
       for (const status in urls.migrations.status) {
         let count = 0;
         try {
+          console.log('fetching', urls.migrations.status[status])
           const response = await fetch(urls.migrations.status[status]);
           fetched[status] = Object.entries(await response.json()).map(
             ([name, description]) => ({ name, description })
@@ -177,10 +187,11 @@ export default function CurrentMigrations() {
         }
       }
       await Promise.all(promises);
-      setState((prev) => ({ ...prev, ...fetched, loaded: true }));
+      setState((prev) => ({ ...prev, ...fetched }));
     })();
-  });
+  }, [state.loaded]);
 
+  console.log('hash is', hash);
   return (
     <div id="current_migrations" className="card margin--xs padding--xs">
       <div className="card__header">
