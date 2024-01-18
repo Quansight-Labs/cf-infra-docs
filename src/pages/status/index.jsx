@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Layout
       title={siteConfig.title}
-      description="Documentation for conda-forge infrastructure"
+      description="Status dashboard for conda-forge"
     >
       <StatusDashboard />
     </Layout>

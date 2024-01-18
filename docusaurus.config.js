@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require("path");
+
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
@@ -65,6 +67,18 @@ const config = {
     ],
   ],
   plugins: [
+    [
+      path.resolve(__dirname, "plugin-migration-urls"),
+      ({
+        routes: [
+            {
+                path: "/status/migration",
+                exact: false,
+                component: "@site/src/pages/status/migration"
+            }
+        ]
+      }),
+    ],
     [
       "content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */

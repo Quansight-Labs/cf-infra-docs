@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
-function parseHash(hash = "") {
-  if (hash === "" || hash.indexOf("#migrations" !== 0)) {
-    return;
-  }
-}
-
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
   return (
     <>
@@ -91,7 +85,6 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
 }
 
 export default function CurrentMigrations(props) {
-  const hash = props.hash || '';
   const [state, setState] = useState({
     closed: [],
     collapsed: { closed: true, longterm: true, regular: true },
@@ -148,7 +141,6 @@ export default function CurrentMigrations(props) {
     }
     setState(prev => ({ ...prev, loaded: true }));
     void (async () => {
-      console.log('loading...');
       const promises = [];
       const fetched = {};
       for (const status in urls.migrations.status) {
@@ -191,7 +183,6 @@ export default function CurrentMigrations(props) {
     })();
   }, [state.loaded]);
 
-  console.log('hash is', hash);
   return (
     <div id="current_migrations" className="card margin--xs padding--xs">
       <div className="card__header">

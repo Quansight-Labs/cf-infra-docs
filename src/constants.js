@@ -1,3 +1,4 @@
+// The chart.js configuration defaults for the status dashboard.
 export const charts = {
   usage: {
     options: {
@@ -19,6 +20,7 @@ export const charts = {
   },
 };
 
+// All of the JSON contents services that populate the page are stored here.
 export const urls = {
   azure: {
     pipelines:

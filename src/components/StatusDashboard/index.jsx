@@ -9,7 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import "chartjs-adapter-moment";
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import AzurePipelineUsage from "./azure_pipelines_usage";
 import CloudServices from "./cloud_services";
 import CurrentMigrations from "./current_migrations";
@@ -32,19 +32,6 @@ ChartJS.register(
 );
 
 export default function StatusDashboard() {
-  const [hash, setHash] = useState(window.location.hash);
-  const listener = event => {
-    if (window.location.hash !== hash) {
-      setHash(window.location.hash);
-    }
-  };
-  useEffect(() => {
-    if (window.location.hash !== hash) {
-      setHash(window.location.hash);
-    }
-    window.addEventListener('hashchange', listener);
-    return () => window.removeEventListener('hashchange', listener);
-  }, [window.location.hash]);
   return (
     <main className={["container", styles.dashboard].join(" ")}>
       <div className="row">
@@ -59,7 +46,7 @@ export default function StatusDashboard() {
           <div id="cloud" className={styles.toc_anchor}></div>
           <CloudServices />
           <div id="migrations" className={styles.toc_anchor}></div>
-          <CurrentMigrations hash={hash} />
+          <CurrentMigrations />
           <div id="version" className={styles.toc_anchor}></div>
           <VersionUpdates />
           <div id="azure" className={styles.toc_anchor}></div>
