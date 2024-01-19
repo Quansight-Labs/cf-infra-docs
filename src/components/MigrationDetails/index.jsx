@@ -5,11 +5,13 @@ import Layout from "@theme/Layout";
 import { urls } from "@site/src/constants";
 
 export default function Home() {
+  const location = useLocation();
   const { siteConfig } = useDocusaurusContext();
   const [state, setState] = useState({
-    name: useLocation().pathname.split("/").pop() || "",
+    name: location.pathname.replace("/status/migration", "").split("/").pop(),
     details: null
   });
+  console.log('location', location);
   useEffect(() => {
     if (!state.name || state.details) {
       return;

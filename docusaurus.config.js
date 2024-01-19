@@ -74,7 +74,7 @@ const config = {
             {
                 path: "/status/migration/",
                 exact: false,
-                component: "@site/src/pages/status/migration",
+                component: "@site/src/components/MigrationDetails/",
                 onDuplicateRoutes: "log"
             }
         ]
