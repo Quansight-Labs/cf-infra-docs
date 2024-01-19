@@ -72,9 +72,10 @@ const config = {
       ({
         routes: [
             {
-                path: "/status/migration",
+                path: "/status/migration/",
                 exact: false,
-                component: "@site/src/pages/status/migration"
+                component: "@site/src/pages/status/migration",
+                onDuplicateRoutes: "log"
             }
         ]
       }),

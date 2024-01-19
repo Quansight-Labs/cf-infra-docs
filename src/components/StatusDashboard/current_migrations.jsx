@@ -60,7 +60,9 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           const { progress } = row;
           return (
             <tr key={row.name}>
-              <td onClick={() => console.log(row.name)}>{row.name}</td>
+              <td>
+                <a href={`/status/migration/${row.name}`}>{row.name}</a>
+              </td>
               <td>
                 <label className="progress_bar">
                   <progress value={progress.done} max={progress.total}>
@@ -91,15 +93,8 @@ export default function CurrentMigrations(props) {
     loaded: false,
     longterm: [],
     regular: [],
-    sort: { by: "name", order: "ascending" },
-    view: "summary", // or "full" or "details"
+    sort: { by: "name", order: "ascending" }
   });
-  const toggle = (event) => {
-    const view = event.target?.dataset?.view;
-    if (view) {
-      setState((prev) => ({ ...prev, view }));
-    }
-  };
   const compare = (field, order) => {
     switch (field) {
       case "name":
@@ -132,8 +127,7 @@ export default function CurrentMigrations(props) {
   const select = (status) =>
     setState(({ collapsed, ...prev }) => ({
       ...prev,
-      collapsed: { ...collapsed, [status]: !collapsed[status] },
-      view: "full",
+      collapsed: { ...collapsed, [status]: !collapsed[status] }
     }));
   useEffect(() => {
     if (state.loaded) {
@@ -146,7 +140,6 @@ export default function CurrentMigrations(props) {
       for (const status in urls.migrations.status) {
         let count = 0;
         try {
-          console.log('fetching', urls.migrations.status[status])
           const response = await fetch(urls.migrations.status[status]);
           fetched[status] = Object.entries(await response.json()).map(
             ([name, description]) => ({ name, description })
@@ -186,47 +179,9 @@ export default function CurrentMigrations(props) {
   return (
     <div id="current_migrations" className="card margin--xs padding--xs">
       <div className="card__header">
-        <h3>
-          Current Migrations
-          <span className="button-group">
-            <button data-view="summary" onClick={toggle}>
-              Summary
-            </button>
-            <button data-view="full" onClick={toggle}>
-              Full
-            </button>
-            <button data-view="details" onClick={toggle}>
-              Details
-            </button>
-          </span>
-        </h3>
+        <h3>Current Migrations</h3>
       </div>
-      <div
-        className="card__body"
-        style={state.view === "summary" ? undefined : { display: "none" }}
-      >
-        <div className="row">
-          <div className="col col--4">
-            <div className="migration" onClick={() => select("longterm")}>
-              Long-running migrations ({state.longterm.length || "…"})
-            </div>
-          </div>
-          <div className="col col--4">
-            <div className="migration" onClick={() => select("regular")}>
-              Regular migrations ({state.regular.length || "…"})
-            </div>
-          </div>
-          <div className="col col--4">
-            <div className="migration" onClick={() => select("closed")}>
-              Closed migrations ({state.closed.length || "…"})
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="card__body"
-        style={state.view === "full" ? undefined : { display: "none" }}
-      >
+      <div className="card__body">
         <table>
           <TableContent
             collapsed={state.collapsed.longterm}

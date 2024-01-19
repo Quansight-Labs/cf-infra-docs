@@ -1,3 +1,4 @@
+import { useLocation } from "@docusaurus/router";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import "chartjs-adapter-moment";
-import { React } from "react";
+import { React, useEffect } from "react";
 import AzurePipelineUsage from "./azure_pipelines_usage";
 import CloudServices from "./cloud_services";
 import CurrentMigrations from "./current_migrations";
@@ -32,6 +33,13 @@ ChartJS.register(
 );
 
 export default function StatusDashboard() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    const id = hash.length > 1 ? hash.substring(1) : "";
+    if (id) {
+      document.getElementById(id)?.scrollIntoView();
+    }
+  }, [hash]);
   return (
     <main className={["container", styles.dashboard].join(" ")}>
       <div className="row">

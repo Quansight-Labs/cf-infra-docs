@@ -1,19 +1,37 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
+import { urls } from "@site/src/constants";
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
-  const location = useLocation();
-  console.log('location', location);
+  const [state, setState] = useState({
+    name: useLocation().pathname.split("/").pop() || "",
+    details: null
+  });
+  useEffect(() => {
+    if (!state.name || state.details) {
+      return;
+    }
+    const url = urls.migrations.details.replace("<NAME>", state.name);
+    void (async () => {
+      try {
+        const fetched = await (await fetch(url)).json();
+        setState((prev) => ({ ...prev, details: fetched }));
+      } catch (error) {
+        console.warn(`error loading migration: ${state.name}`, error);
+      }
+    })();
+  });
+  console.log('state.details', state.details);
   return (
     <Layout
       title={siteConfig.title}
       description="Status dashboard for conda-forge"
     >
       <main>
-        <div>Migration details</div>
+        <div>Migration details: {state.name}</div>
       </main>
     </Layout>
   );
