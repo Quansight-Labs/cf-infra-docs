@@ -93,7 +93,7 @@ export default function CurrentMigrations(props) {
     loaded: false,
     longterm: [],
     regular: [],
-    sort: { by: "name", order: "ascending" }
+    sort: { by: "name", order: "ascending" },
   });
   const compare = (field, order) => {
     switch (field) {
@@ -127,13 +127,13 @@ export default function CurrentMigrations(props) {
   const select = (status) =>
     setState(({ collapsed, ...prev }) => ({
       ...prev,
-      collapsed: { ...collapsed, [status]: !collapsed[status] }
+      collapsed: { ...collapsed, [status]: !collapsed[status] },
     }));
   useEffect(() => {
     if (state.loaded) {
       return;
     }
-    setState(prev => ({ ...prev, loaded: true }));
+    setState((prev) => ({ ...prev, loaded: true }));
     void (async () => {
       const promises = [];
       const fetched = {};

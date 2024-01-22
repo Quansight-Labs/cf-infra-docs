@@ -69,16 +69,16 @@ const config = {
   plugins: [
     [
       path.resolve(__dirname, "plugin-migration-urls"),
-      ({
+      {
         routes: [
-            {
-                path: "/status/migration/",
-                exact: false,
-                component: "@site/src/components/MigrationDetails/",
-                onDuplicateRoutes: "log"
-            }
-        ]
-      }),
+          {
+            path: "/status/migration/",
+            exact: false,
+            component: "@site/src/components/MigrationDetails/",
+            onDuplicateRoutes: "log",
+          },
+        ],
+      },
     ],
     [
       "content-docs",

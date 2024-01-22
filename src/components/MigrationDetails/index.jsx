@@ -9,9 +9,9 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   const [state, setState] = useState({
     name: location.pathname.replace("/status/migration", "").split("/").pop(),
-    details: null
+    details: null,
   });
-  console.log('location', location);
+  console.log("location", location);
   useEffect(() => {
     if (!state.name || state.details) {
       return;
@@ -26,7 +26,7 @@ export default function Home() {
       }
     })();
   });
-  console.log('state.details', state.details);
+  console.log("state.details", state.details);
   return (
     <Layout
       title={siteConfig.title}
