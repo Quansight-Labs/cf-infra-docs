@@ -125,15 +125,33 @@ export default function CurrentMigrations(props) {
     });
   };
   const select = (status) =>
-    setState(({ collapsed, ...prev }) => ({
-      ...prev,
-      collapsed: { ...collapsed, [status]: !collapsed[status] },
-    }));
+    setState(({ collapsed, ...prev }) => {
+      const updated = { ...collapsed, [status]: !collapsed[status] };
+      if (window && window.localStorage) {
+        try {
+          const serialized = JSON.stringify(updated);
+          window.localStorage.setItem("migration-collapsed", serialized);
+        } catch (error) {
+          // Ignore state restoration errors.
+        }
+      }
+      return { ...prev, collapsed: updated };
+    });
   useEffect(() => {
     if (state.loaded) {
       return;
     }
     setState((prev) => ({ ...prev, loaded: true }));
+    if (window && window.localStorage) {
+      try {
+        const stored = window.localStorage.getItem("migration-collapsed");
+        if (stored) {
+          setState((prev) => ({ ...prev, collapsed: JSON.parse(stored) }));
+        }
+      } catch (error) {
+        // Ignore state restoration errors.
+      }
+    }
     void (async () => {
       const promises = [];
       const fetched = {};

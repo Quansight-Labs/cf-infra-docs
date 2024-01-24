@@ -11,25 +11,30 @@ export default function Home() {
     name: location.pathname.replace("/status/migration", "").split("/").pop(),
     details: null,
     loaded: false,
+    redirect: false,
   });
   console.log("location", location);
   useEffect(() => {
     if (state.loaded) {
       return;
     }
+    setState((prev) => ({ ...prev, loaded: true }));
     const url = urls.migrations.details.replace("<NAME>", state.name);
     void (async () => {
       try {
         const fetched = await (await fetch(url)).json();
-        setState((prev) => ({ ...prev, details: fetched, loaded: true }));
+        setState((prev) => ({ ...prev, details: fetched }));
       } catch (error) {
+        setState((prev) => ({ ...prev, redirect: true }));
         console.warn(`error loading migration: ${state.name}`, error);
       }
     })();
   });
   console.log("state.details", state.details);
   if (!state.loaded) return <main>loading...</main>;
-  if (!state.name || !state.details) return <Redirect to="/status" />;
+  if (!state.name || state.redirect) {
+    return <Redirect to="/status" />;
+  }
   return (
     <Layout
       title={siteConfig.title}

@@ -75,7 +75,7 @@ const config = {
             path: "/status/migration/",
             exact: false,
             component: "@site/src/components/MigrationDetails/",
-          }
+          },
         ],
       },
     ],
