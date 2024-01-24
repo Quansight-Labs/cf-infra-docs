@@ -95,8 +95,8 @@ export default function CurrentMigrations(props) {
     regular: [],
     sort: { by: "name", order: "ascending" },
   });
-  const compare = (field, order) => {
-    switch (field) {
+  const compare = ({ by, order }) => {
+    switch (by) {
       case "name":
         return order === "ascending"
           ? (a, b) => a.name.localeCompare(b.name)
@@ -107,19 +107,27 @@ export default function CurrentMigrations(props) {
           : (a, b) => b.progress.percentage - a.progress.percentage;
       default:
         return order === "ascending"
-          ? (a, b) => a.details[field].length - b.details[field].length
-          : (a, b) => b.details[field].length - a.details[field].length;
+          ? (a, b) => a.details[by].length - b.details[by].length
+          : (a, b) => b.details[by].length - a.details[by].length;
     }
   };
   const resort = (by) => {
     setState(({ closed, longterm, regular, sort, ...prev }) => {
       let order = "ascending";
       order = by === sort.by && order === sort.order ? "descending" : order;
+      if (window && window.localStorage) {
+        try {
+          const serialized = JSON.stringify({ by, order });
+          window.localStorage.setItem("migration-sort", serialized);
+        } catch (error) {
+          // Ignore state restoration errors.
+        }
+      }
       return {
         ...prev,
-        closed: closed.sort(compare(by, order)),
-        longterm: longterm.sort(compare(by, order)),
-        regular: regular.sort(compare(by, order)),
+        closed: closed.sort(compare({ by, order })),
+        longterm: longterm.sort(compare({ by, order })),
+        regular: regular.sort(compare({ by, order })),
         sort: { by, order },
       };
     });
@@ -141,17 +149,23 @@ export default function CurrentMigrations(props) {
     if (state.loaded) {
       return;
     }
-    setState((prev) => ({ ...prev, loaded: true }));
+    let patch = null;
     if (window && window.localStorage) {
       try {
-        const stored = window.localStorage.getItem("migration-collapsed");
-        if (stored) {
-          setState((prev) => ({ ...prev, collapsed: JSON.parse(stored) }));
+        const collapsed = window.localStorage.getItem("migration-collapsed");
+        const sort = window.localStorage.getItem("migration-sort");
+        if (collapsed) {
+          patch = { collapsed: JSON.parse(collapsed) };
+        }
+        if (sort) {
+          patch = { ...(patch || {}), sort: JSON.parse(sort) };
         }
       } catch (error) {
         // Ignore state restoration errors.
       }
     }
+    // Restore state from local storage if available and set loaded flag.
+    setState((prev) => ({ ...prev, ...(patch || {}), loaded: true }));
     void (async () => {
       const promises = [];
       const fetched = {};
@@ -190,7 +204,14 @@ export default function CurrentMigrations(props) {
         }
       }
       await Promise.all(promises);
-      setState((prev) => ({ ...prev, ...fetched }));
+      setState((prev) => {
+        return {
+          ...prev,
+          closed: fetched.closed.sort(compare(prev.sort)),
+          longterm: fetched.longterm.sort(compare(prev.sort)),
+          regular: fetched.regular.sort(compare(prev.sort)),
+        };
+      });
     })();
   }, [state.loaded]);
 
