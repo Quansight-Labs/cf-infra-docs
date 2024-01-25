@@ -90,7 +90,6 @@ export default function CurrentMigrations(props) {
   const [state, setState] = useState({
     closed: [],
     collapsed: { closed: true, longterm: true, regular: true },
-    loaded: false,
     longterm: [],
     regular: [],
     sort: { by: "name", order: "ascending" },
@@ -146,27 +145,22 @@ export default function CurrentMigrations(props) {
       return { ...prev, collapsed: updated };
     });
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
-    let patch = null;
+    const local = {};
     if (window && window.localStorage) {
       try {
         const collapsed = window.localStorage.getItem("migration-collapsed");
         const sort = window.localStorage.getItem("migration-sort");
         if (collapsed) {
-          patch = { collapsed: JSON.parse(collapsed) };
+          local.collapsed = JSON.parse(collapsed);
         }
         if (sort) {
-          patch = { ...(patch || {}), sort: JSON.parse(sort) };
+          local.sort = JSON.parse(sort);
         }
       } catch (error) {
         // Ignore state restoration errors.
       }
     }
-    // Restore state from local storage if available and set loaded flag.
-    setState((prev) => ({ ...prev, ...(patch || {}), loaded: true }));
-    void (async () => {
+    void (async (patch) => {
       const promises = [];
       const fetched = {};
       for (const status in urls.migrations.status) {
@@ -205,15 +199,16 @@ export default function CurrentMigrations(props) {
       }
       await Promise.all(promises);
       setState((prev) => {
+        const { sort } = (patch || prev);
         return {
-          ...prev,
-          closed: fetched.closed.sort(compare(prev.sort)),
-          longterm: fetched.longterm.sort(compare(prev.sort)),
-          regular: fetched.regular.sort(compare(prev.sort)),
+          ...prev, ...patch,
+          closed: fetched.closed.sort(compare(sort)),
+          longterm: fetched.longterm.sort(compare(sort)),
+          regular: fetched.regular.sort(compare(sort)),
         };
       });
-    })();
-  }, [state.loaded]);
+    })(local);
+  }, []);
 
   return (
     <div id="current_migrations" className="card margin--xs padding--xs">
