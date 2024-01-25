@@ -36,6 +36,8 @@ export const urls = {
   migrations: {
     details:
       "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/migration_json/<NAME>.json",
+    graph:
+      "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/migration_svg/<NAME>.svg?sanitize=true",
     status: {
       closed:
         "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/closed_status.json",

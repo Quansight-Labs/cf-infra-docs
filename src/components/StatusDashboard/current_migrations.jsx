@@ -19,8 +19,7 @@ export default function CurrentMigrations({ onLoad }) {
       order = by === sort.by && order === sort.order ? "descending" : order;
       if (window && window.localStorage) {
         try {
-          const serialized = JSON.stringify({ by, order });
-          window.localStorage.setItem(SORT_KEY, serialized);
+          window.localStorage.setItem(SORT_KEY, JSON.stringify({ by, order }));
         } catch (error) {
           console.warn(`error writing to local storage`, error);
         }
@@ -49,7 +48,6 @@ export default function CurrentMigrations({ onLoad }) {
     });
   useEffect(fetchContent(onLoad, setState), []);
   const { closed, longterm, regular } = state;
-  const empty = 0 === closed.length + longterm.length + regular.length;
   return (
     <>
       <div id="migrations" className={styles.toc_anchor}></div>
@@ -58,36 +56,32 @@ export default function CurrentMigrations({ onLoad }) {
           <h3>Current Migrations</h3>
         </div>
         <div className="card__body">
-          {empty ? (
-            "..."
-          ) : (
-            <table>
-              <TableContent
-                collapsed={state.collapsed.longterm}
-                name="Long-running migrations"
-                resort={resort}
-                rows={longterm}
-                select={() => select("longterm")}
-                sort={state.sort}
-              />
-              <TableContent
-                collapsed={state.collapsed.regular}
-                name="Regular migrations"
-                resort={resort}
-                rows={regular}
-                select={() => select("regular")}
-                sort={state.sort}
-              />
-              <TableContent
-                collapsed={state.collapsed.closed}
-                name="Closed migrations"
-                resort={resort}
-                rows={closed}
-                select={() => select("closed")}
-                sort={state.sort}
-              />
-            </table>
-          )}
+          <table>
+            <TableContent
+              collapsed={state.collapsed.longterm}
+              name="Long-running migrations"
+              resort={resort}
+              rows={longterm}
+              select={() => select("longterm")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.regular}
+              name="Regular migrations"
+              resort={resort}
+              rows={regular}
+              select={() => select("regular")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.closed}
+              name="Closed migrations"
+              resort={resort}
+              rows={closed}
+              select={() => select("closed")}
+              sort={state.sort}
+            />
+          </table>
         </div>
       </div>
     </>
@@ -101,6 +95,7 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
         <tr onClick={select}>
           <th colSpan="7" className={collapsed ? "collapsed" : undefined}>
             {name}
+            {rows.length ? "" : "..."}
           </th>
         </tr>
         <tr className={collapsed ? "collapsed" : undefined}>
