@@ -55,8 +55,8 @@ export default function MigrationDetails() {
       title={siteConfig.title}
       description="Status dashboard for conda-forge"
     >
-      <main>
-        <div className={`${styles.migration_details} card margin-top--xs`}>
+      <main className={`container ${styles.migration_details}`}>
+        <div className={`card margin-top--xs`}>
           <div className="card__header">
             <div className={styles.migration_details_toggle}>
               <button onClick={() => toggle("table")}>Table View</button>{" "}

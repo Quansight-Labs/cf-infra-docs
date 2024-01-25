@@ -46,7 +46,7 @@ export default function StatusDashboard() {
   const onLoad = () =>
     setState((prev) => ({ ...prev, loaded: prev.loaded + 1 }));
   return (
-    <main className={["container", styles.dashboard].join(" ")}>
+    <main className={["container", styles.status_dashboard].join(" ")}>
       <div className="row">
         <div className="col col--2">
           <TOC />
