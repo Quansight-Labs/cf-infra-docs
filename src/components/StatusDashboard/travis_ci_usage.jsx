@@ -4,25 +4,17 @@ import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 
 export default function TravisCIUsage() {
-  const [state, setState] = useState({
-    rates: {},
-    repos: {},
-    total: 0,
-    loaded: false,
-  });
+  const [state, setState] = useState({ rates: {}, repos: {}, total: 0 });
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
     void (async () => {
       try {
         const fetched = await (await fetch(urls.travis.usage)).json();
-        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
+        setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
         console.warn("error loading travis ci usage", error);
       }
     })();
-  });
+  }, []);
   const data = [];
   const options = charts.usage.options;
   const labels = Object.keys(state.rates).map((rate) => {

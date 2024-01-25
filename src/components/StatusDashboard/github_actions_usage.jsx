@@ -4,25 +4,17 @@ import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 
 export default function GitHubActionsUsage() {
-  const [state, setState] = useState({
-    loaded: false,
-    total: 0,
-    rates: {},
-    repos: {},
-  });
+  const [state, setState] = useState({ total: 0, rates: {}, repos: {} });
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
     void (async () => {
       try {
         const fetched = await (await fetch(urls.github.actions)).json();
-        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
+        setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
         console.log("error loading github actions", error);
       }
     })();
-  });
+  }, []);
   const data = [];
   const options = charts.usage.options;
   const labels = Object.keys(state.rates).map((rate) => {

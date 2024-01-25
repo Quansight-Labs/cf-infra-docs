@@ -10,15 +10,9 @@ export default function Home() {
   const [state, setState] = useState({
     name: location.pathname.replace("/status/migration", "").split("/").pop(),
     details: null,
-    loaded: false,
     redirect: false,
   });
-  console.log("location", location);
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
-    setState((prev) => ({ ...prev, loaded: true }));
     const url = urls.migrations.details.replace("<NAME>", state.name);
     void (async () => {
       try {
@@ -29,9 +23,8 @@ export default function Home() {
         console.warn(`error loading migration: ${state.name}`, error);
       }
     })();
-  });
+  }, []);
   console.log("state.details", state.details);
-  if (!state.loaded) return <main>loading...</main>;
   if (!state.name || state.redirect) {
     return <Redirect to="/status" />;
   }

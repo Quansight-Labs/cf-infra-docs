@@ -4,25 +4,17 @@ import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 
 export default function AzurePipelinesUsage() {
-  const [state, setState] = useState({
-    loaded: false,
-    rates: {},
-    repos: {},
-    total: 0,
-  });
+  const [state, setState] = useState({ rates: {}, repos: {}, total: 0 });
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
     void (async () => {
       try {
         const fetched = await (await fetch(urls.azure.pipelines)).json();
-        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
+        setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
         console.log("error loading azure pipelines", error);
       }
     })();
-  });
+  }, []);
   const data = [];
   const options = charts.usage.options;
   const labels = Object.keys(state.rates).map((rate) => {

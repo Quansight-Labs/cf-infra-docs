@@ -2,26 +2,17 @@ import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 
 export default function VersionUpdates() {
-  const [state, setState] = useState({
-    errored: [],
-    errors: {},
-    queued: [],
-    loaded: false,
-  });
+  const [state, setState] = useState({ errored: [], errors: {}, queued: [] });
   useEffect(() => {
-    if (state.loaded) {
-      return;
-    }
     void (async () => {
       try {
         const fetched = await (await fetch(urls.versions)).json();
-        setState((prev) => ({ ...prev, ...fetched, loaded: true }));
+        setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
         console.log("error loading version updates", error);
       }
     })();
-  });
-
+  }, []);
   return (
     <div id="version_updates" className="card margin-top--xs">
       <div className="card__header">
