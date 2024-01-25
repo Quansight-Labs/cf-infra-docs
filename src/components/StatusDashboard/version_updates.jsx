@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
+import styles from "./styles.module.css";
 
 export default function VersionUpdates() {
   const [state, setState] = useState({ errored: [], errors: {}, queued: [] });
@@ -14,14 +15,17 @@ export default function VersionUpdates() {
     })();
   }, []);
   return (
-    <div id="version_updates" className="card margin-top--xs">
-      <div className="card__header">
-        <h3>Version Updates</h3>
+    <>
+      <div id="version" className={styles.toc_anchor}></div>
+      <div id="version_updates" className="card margin-top--xs">
+        <div className="card__header">
+          <h3>Version Updates</h3>
+        </div>
+        <div className="card__body">
+          There are currently {state.queued.length} queued and{" "}
+          {state.errored.length} errored version updates.
+        </div>
       </div>
-      <div className="card__body">
-        There are currently {state.queued.length} queued and{" "}
-        {state.errored.length} errored version updates.
-      </div>
-    </div>
+    </>
   );
 }

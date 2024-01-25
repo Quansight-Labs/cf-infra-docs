@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
+import styles from "./styles.module.css";
 
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
   return (
@@ -208,38 +209,41 @@ export default function CurrentMigrations(props) {
   }, []);
 
   return (
-    <div id="current_migrations" className="card margin--xs padding--xs">
-      <div className="card__header">
-        <h3>Current Migrations</h3>
+    <>
+      <div id="migrations" className={styles.toc_anchor}></div>
+      <div id="current_migrations" className="card margin--xs padding--xs">
+        <div className="card__header">
+          <h3>Current Migrations</h3>
+        </div>
+        <div className="card__body">
+          <table>
+            <TableContent
+              collapsed={state.collapsed.longterm}
+              name="Long-running migrations"
+              resort={resort}
+              rows={state.longterm}
+              select={() => select("longterm")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.regular}
+              name="Regular migrations"
+              resort={resort}
+              rows={state.regular}
+              select={() => select("regular")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.closed}
+              name="Closed migrations"
+              resort={resort}
+              rows={state.closed}
+              select={() => select("closed")}
+              sort={state.sort}
+            />
+          </table>
+        </div>
       </div>
-      <div className="card__body">
-        <table>
-          <TableContent
-            collapsed={state.collapsed.longterm}
-            name="Long-running migrations"
-            resort={resort}
-            rows={state.longterm}
-            select={() => select("longterm")}
-            sort={state.sort}
-          />
-          <TableContent
-            collapsed={state.collapsed.regular}
-            name="Regular migrations"
-            resort={resort}
-            rows={state.regular}
-            select={() => select("regular")}
-            sort={state.sort}
-          />
-          <TableContent
-            collapsed={state.collapsed.closed}
-            name="Closed migrations"
-            resort={resort}
-            rows={state.closed}
-            select={() => select("closed")}
-            sort={state.sort}
-          />
-        </table>
-      </div>
-    </div>
+    </>
   );
 }

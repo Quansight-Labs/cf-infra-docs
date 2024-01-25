@@ -47,21 +47,13 @@ export default function StatusDashboard() {
           <TOC />
         </div>
         <div className="col col--10">
-          <div id="incidents" className={styles.toc_anchor}></div>
           <Incidents />
-          <div id="repos" className={styles.toc_anchor}></div>
           <ReposAndBots />
-          <div id="cloud" className={styles.toc_anchor}></div>
           <CloudServices />
-          <div id="migrations" className={styles.toc_anchor}></div>
           <CurrentMigrations />
-          <div id="version" className={styles.toc_anchor}></div>
           <VersionUpdates />
-          <div id="azure" className={styles.toc_anchor}></div>
           <AzurePipelineUsage />
-          <div id="github" className={styles.toc_anchor}></div>
           <GitHubActionsUsage />
-          <div id="travis" className={styles.toc_anchor}></div>
           <TravisCIUsage />
         </div>
       </div>
