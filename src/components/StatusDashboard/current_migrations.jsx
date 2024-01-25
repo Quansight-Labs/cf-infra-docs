@@ -2,6 +2,92 @@ import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 import styles from "./styles.module.css";
 
+const COLLAPSED_KEY = "migration-collapsed";
+const SORT_KEY = "migration-sort";
+
+export default function CurrentMigrations() {
+  const [state, setState] = useState({
+    closed: [],
+    collapsed: { closed: true, longterm: true, regular: true },
+    longterm: [],
+    regular: [],
+    sort: { by: "name", order: "ascending" },
+  });
+  const resort = (by) => {
+    setState(({ closed, longterm, regular, sort, ...prev }) => {
+      let order = "ascending";
+      order = by === sort.by && order === sort.order ? "descending" : order;
+      if (window && window.localStorage) {
+        try {
+          const serialized = JSON.stringify({ by, order });
+          window.localStorage.setItem(SORT_KEY, serialized);
+        } catch (error) {
+          // Ignore state restoration errors.
+        }
+      }
+      return {
+        ...prev,
+        closed: closed.sort(compare(by, order)),
+        longterm: longterm.sort(compare(by, order)),
+        regular: regular.sort(compare(by, order)),
+        sort: { by, order },
+      };
+    });
+  };
+  const select = (status) =>
+    setState(({ collapsed, ...prev }) => {
+      const updated = { ...collapsed, [status]: !collapsed[status] };
+      if (window && window.localStorage) {
+        try {
+          const serialized = JSON.stringify(updated);
+          window.localStorage.setItem(COLLAPSED_KEY, serialized);
+        } catch (error) {
+          // Ignore state restoration errors.
+        }
+      }
+      return { ...prev, collapsed: updated };
+    });
+  useEffect(fetchContent(setState), []);
+  return (
+    <>
+      <div id="migrations" className={styles.toc_anchor}></div>
+      <div id="current_migrations" className="card margin--xs padding--xs">
+        <div className="card__header">
+          <h3>Current Migrations</h3>
+        </div>
+        <div className="card__body">
+          <table>
+            <TableContent
+              collapsed={state.collapsed.longterm}
+              name="Long-running migrations"
+              resort={resort}
+              rows={state.longterm}
+              select={() => select("longterm")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.regular}
+              name="Regular migrations"
+              resort={resort}
+              rows={state.regular}
+              select={() => select("regular")}
+              sort={state.sort}
+            />
+            <TableContent
+              collapsed={state.collapsed.closed}
+              name="Closed migrations"
+              resort={resort}
+              rows={state.closed}
+              select={() => select("closed")}
+              sort={state.sort}
+            />
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
   return (
     <>
@@ -87,70 +173,32 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
   );
 }
 
-export default function CurrentMigrations(props) {
-  const [state, setState] = useState({
-    closed: [],
-    collapsed: { closed: true, longterm: true, regular: true },
-    longterm: [],
-    regular: [],
-    sort: { by: "name", order: "ascending" },
-  });
-  const compare = (by, order) => {
-    switch (by) {
-      case "name":
-        return order === "ascending"
-          ? (a, b) => a.name.localeCompare(b.name)
-          : (a, b) => b.name.localeCompare(a.name);
-      case "status":
-        return order === "ascending"
-          ? (a, b) => a.progress.percentage - b.progress.percentage
-          : (a, b) => b.progress.percentage - a.progress.percentage;
-      default:
-        return order === "ascending"
-          ? (a, b) => a.details[by].length - b.details[by].length
-          : (a, b) => b.details[by].length - a.details[by].length;
-    }
-  };
-  const resort = (by) => {
-    setState(({ closed, longterm, regular, sort, ...prev }) => {
-      let order = "ascending";
-      order = by === sort.by && order === sort.order ? "descending" : order;
-      if (window && window.localStorage) {
-        try {
-          const serialized = JSON.stringify({ by, order });
-          window.localStorage.setItem("migration-sort", serialized);
-        } catch (error) {
-          // Ignore state restoration errors.
-        }
-      }
-      return {
-        ...prev,
-        closed: closed.sort(compare(by, order)),
-        longterm: longterm.sort(compare(by, order)),
-        regular: regular.sort(compare(by, order)),
-        sort: { by, order },
-      };
-    });
-  };
-  const select = (status) =>
-    setState(({ collapsed, ...prev }) => {
-      const updated = { ...collapsed, [status]: !collapsed[status] };
-      if (window && window.localStorage) {
-        try {
-          const serialized = JSON.stringify(updated);
-          window.localStorage.setItem("migration-collapsed", serialized);
-        } catch (error) {
-          // Ignore state restoration errors.
-        }
-      }
-      return { ...prev, collapsed: updated };
-    });
-  useEffect(() => {
+// Returns a comparator function for sorting table columns.
+function compare(by, order) {
+  switch (by) {
+    case "name":
+      return order === "ascending"
+        ? (a, b) => a.name.localeCompare(b.name)
+        : (a, b) => b.name.localeCompare(a.name);
+    case "status":
+      return order === "ascending"
+        ? (a, b) => a.progress.percentage - b.progress.percentage
+        : (a, b) => b.progress.percentage - a.progress.percentage;
+    default:
+      return order === "ascending"
+        ? (a, b) => a.details[by].length - b.details[by].length
+        : (a, b) => b.details[by].length - a.details[by].length;
+  }
+};
+
+// Returns a function that fetches local and remote content then sets state.
+function fetchContent(setState) {
+  return () => {
     const local = {};
     if (window && window.localStorage) {
       try {
-        const collapsed = window.localStorage.getItem("migration-collapsed");
-        const sort = window.localStorage.getItem("migration-sort");
+        const collapsed = window.localStorage.getItem(COLLAPSED_KEY);
+        const sort = window.localStorage.getItem(SORT_KEY);
         if (collapsed) local.collapsed = JSON.parse(collapsed);
         if (sort) local.sort = JSON.parse(sort);
       } catch (error) {
@@ -206,44 +254,5 @@ export default function CurrentMigrations(props) {
         };
       });
     })(local);
-  }, []);
-
-  return (
-    <>
-      <div id="migrations" className={styles.toc_anchor}></div>
-      <div id="current_migrations" className="card margin--xs padding--xs">
-        <div className="card__header">
-          <h3>Current Migrations</h3>
-        </div>
-        <div className="card__body">
-          <table>
-            <TableContent
-              collapsed={state.collapsed.longterm}
-              name="Long-running migrations"
-              resort={resort}
-              rows={state.longterm}
-              select={() => select("longterm")}
-              sort={state.sort}
-            />
-            <TableContent
-              collapsed={state.collapsed.regular}
-              name="Regular migrations"
-              resort={resort}
-              rows={state.regular}
-              select={() => select("regular")}
-              sort={state.sort}
-            />
-            <TableContent
-              collapsed={state.collapsed.closed}
-              name="Closed migrations"
-              resort={resort}
-              rows={state.closed}
-              select={() => select("closed")}
-              sort={state.sort}
-            />
-          </table>
-        </div>
-      </div>
-    </>
-  );
+  };
 }
