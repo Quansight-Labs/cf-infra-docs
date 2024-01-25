@@ -94,7 +94,7 @@ export default function CurrentMigrations(props) {
     regular: [],
     sort: { by: "name", order: "ascending" },
   });
-  const compare = ({ by, order }) => {
+  const compare = (by, order) => {
     switch (by) {
       case "name":
         return order === "ascending"
@@ -124,9 +124,9 @@ export default function CurrentMigrations(props) {
       }
       return {
         ...prev,
-        closed: closed.sort(compare({ by, order })),
-        longterm: longterm.sort(compare({ by, order })),
-        regular: regular.sort(compare({ by, order })),
+        closed: closed.sort(compare(by, order)),
+        longterm: longterm.sort(compare(by, order)),
+        regular: regular.sort(compare(by, order)),
         sort: { by, order },
       };
     });
@@ -150,12 +150,8 @@ export default function CurrentMigrations(props) {
       try {
         const collapsed = window.localStorage.getItem("migration-collapsed");
         const sort = window.localStorage.getItem("migration-sort");
-        if (collapsed) {
-          local.collapsed = JSON.parse(collapsed);
-        }
-        if (sort) {
-          local.sort = JSON.parse(sort);
-        }
+        if (collapsed) local.collapsed = JSON.parse(collapsed);
+        if (sort) local.sort = JSON.parse(sort);
       } catch (error) {
         // Ignore state restoration errors.
       }
@@ -199,12 +195,13 @@ export default function CurrentMigrations(props) {
       }
       await Promise.all(promises);
       setState((prev) => {
-        const { sort } = (patch || prev);
+        const { sort: { by, order } } = patch || prev;
         return {
-          ...prev, ...patch,
-          closed: fetched.closed.sort(compare(sort)),
-          longterm: fetched.longterm.sort(compare(sort)),
-          regular: fetched.regular.sort(compare(sort)),
+          ...prev,
+          ...patch,
+          closed: fetched.closed.sort(compare(by, order)),
+          longterm: fetched.longterm.sort(compare(by, order)),
+          regular: fetched.regular.sort(compare(by, order)),
         };
       });
     })(local);

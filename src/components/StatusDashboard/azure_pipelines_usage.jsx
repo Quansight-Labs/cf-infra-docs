@@ -15,11 +15,11 @@ export default function AzurePipelinesUsage() {
       }
     })();
   }, []);
-  const data = [];
-  const options = charts.usage.options;
-  const labels = Object.keys(state.rates).map((rate) => {
-    data.push(state.rates[rate]);
-    return moment(rate).local();
+  const datasets = [{ data: [] }];
+  const labels = [];
+  Object.keys(state.rates).forEach((rate) => {
+    datasets[0].data.push(state.rates[rate]);
+    labels.push(moment(rate).local());
   });
   return (
     <div id="azure_pipelines_usage" className="card margin-top--xs">
@@ -28,7 +28,7 @@ export default function AzurePipelinesUsage() {
       </div>
       <div className="card__body">
         <p>Azure Pipelines ran {state.total} jobs in the past eight hours.</p>
-        <Bar data={{ labels, datasets: [{ data }] }} options={options} />
+        <Bar data={{ labels, datasets }} options={charts.usage.options} />
       </div>
     </div>
   );
