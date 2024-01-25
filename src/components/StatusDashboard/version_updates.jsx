@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 import styles from "./styles.module.css";
 
-export default function VersionUpdates() {
+export default function VersionUpdates({ onLoad }) {
   const [state, setState] = useState({ errored: [], errors: {}, queued: [] });
   useEffect(() => {
     void (async () => {
@@ -10,8 +10,9 @@ export default function VersionUpdates() {
         const fetched = await (await fetch(urls.versions)).json();
         setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
-        console.log("error loading version updates", error);
+        console.warn("error loading version updates", error);
       }
+      onLoad();
     })();
   }, []);
   return (

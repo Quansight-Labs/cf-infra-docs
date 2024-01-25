@@ -13,21 +13,20 @@ export default function Home() {
     redirect: false,
   });
   useEffect(() => {
-    const url = urls.migrations.details.replace("<NAME>", state.name);
+    if (!state.name) return setState((prev) => ({ ...prev, redirect: true }));
     void (async () => {
       try {
+        const url = urls.migrations.details.replace("<NAME>", state.name);
         const fetched = await (await fetch(url)).json();
         setState((prev) => ({ ...prev, details: fetched }));
       } catch (error) {
-        setState((prev) => ({ ...prev, redirect: true }));
         console.warn(`error loading migration: ${state.name}`, error);
+        setState((prev) => ({ ...prev, redirect: true }));
       }
     })();
   }, []);
   console.log("state.details", state.details);
-  if (!state.name || state.redirect) {
-    return <Redirect to="/status" />;
-  }
+  if (state.redirect) return <Redirect to="/status" />;
   return (
     <Layout
       title={siteConfig.title}
@@ -50,22 +49,28 @@ function Breadcrumbs(props) {
   const migrations = "/status#migrations";
   return (
     <nav aria-label="breadcrumbs">
-    <ul className="breadcrumbs">
-      <li className="breadcrumbs__item">
-        <a className="breadcrumbs__link" href="/">
-          conda-forge
-        </a>
-      </li>
-      <li className="breadcrumbs__item">
-        <a className="breadcrumbs__link" href={status}>Status</a>
-      </li>
-      <li className="breadcrumbs__item">
-        <a className="breadcrumbs__link" href={migrations}>Migrations</a>
-      </li>
-      <li className="breadcrumbs__item breadcrumbs__item--active">
-        <a className="breadcrumbs__link" href="">{props.children}</a>
-      </li>
-    </ul>
-  </nav>
+      <ul className="breadcrumbs">
+        <li className="breadcrumbs__item">
+          <a className="breadcrumbs__link" href="/">
+            conda-forge
+          </a>
+        </li>
+        <li className="breadcrumbs__item">
+          <a className="breadcrumbs__link" href={status}>
+            Status
+          </a>
+        </li>
+        <li className="breadcrumbs__item">
+          <a className="breadcrumbs__link" href={migrations}>
+            Migrations
+          </a>
+        </li>
+        <li className="breadcrumbs__item breadcrumbs__item--active">
+          <a className="breadcrumbs__link" href="">
+            {props.children}
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 }

@@ -5,19 +5,16 @@ import { urls } from "../../constants";
 
 export default function Stats() {
   const [stats, setStats] = useState(null);
-
   useEffect(() => {
-    const fetchData = async () => {
+    void (async () => {
       try {
         const response = await fetch(urls.stats);
         const data = await response.json();
         setStats(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.warn(`error loading about page stats`, error);
       }
-    };
-
-    fetchData();
+    })();
   }, []);
 
   const stats1 = [

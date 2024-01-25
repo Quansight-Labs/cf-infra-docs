@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import "chartjs-adapter-moment";
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import AzurePipelineUsage from "./azure_pipelines_usage";
 import CloudServices from "./cloud_services";
 import CurrentMigrations from "./current_migrations";
@@ -33,13 +33,18 @@ ChartJS.register(
 );
 
 export default function StatusDashboard() {
+  const total = 8; // Total number of dashboard components.
+  const [state, setState] = useState({ loaded: 0, jumped: false });
   const { hash } = useLocation();
   useEffect(() => {
+    // When all components finish loading, scroll if necessary.
+    if (state.jumped || state.loaded !== total) return;
+    setState((prev) => ({ ...prev, jumped: true }));
     const id = hash.length > 1 ? hash.substring(1) : "";
-    if (id) {
-      document.getElementById(id)?.scrollIntoView();
-    }
-  }, [hash]);
+    if (id) document.getElementById(id)?.scrollIntoView();
+  });
+  const onLoad = () =>
+    setState((prev) => ({ ...prev, loaded: prev.loaded + 1 }));
   return (
     <main className={["container", styles.dashboard].join(" ")}>
       <div className="row">
@@ -47,14 +52,14 @@ export default function StatusDashboard() {
           <TOC />
         </div>
         <div className="col col--10">
-          <Incidents />
-          <ReposAndBots />
-          <CloudServices />
-          <CurrentMigrations />
-          <VersionUpdates />
-          <AzurePipelineUsage />
-          <GitHubActionsUsage />
-          <TravisCIUsage />
+          <Incidents onLoad={onLoad} />
+          <ReposAndBots onLoad={onLoad} />
+          <CloudServices onLoad={onLoad} />
+          <CurrentMigrations onLoad={onLoad} />
+          <VersionUpdates onLoad={onLoad} />
+          <AzurePipelineUsage onLoad={onLoad} />
+          <GitHubActionsUsage onLoad={onLoad} />
+          <TravisCIUsage onLoad={onLoad} />
         </div>
       </div>
     </main>

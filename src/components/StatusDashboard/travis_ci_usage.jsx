@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 import styles from "./styles.module.css";
 
-export default function TravisCIUsage() {
+export default function TravisCIUsage({ onLoad }) {
   const [state, setState] = useState({ rates: {}, repos: {}, total: 0 });
   useEffect(() => {
     void (async () => {
@@ -14,6 +14,7 @@ export default function TravisCIUsage() {
       } catch (error) {
         console.warn("error loading travis ci usage", error);
       }
+      onLoad();
     })();
   }, []);
   const data = [];
@@ -25,7 +26,10 @@ export default function TravisCIUsage() {
   return (
     <>
       <div id="travis" className={styles.toc_anchor}></div>
-      <div id="travis_ci_usage" className="card margin-top--xs margin-bottom--xs">
+      <div
+        id="travis_ci_usage"
+        className="card margin-top--xs margin-bottom--xs"
+      >
         <div className="card__header">
           <h3>Travis CI Usage</h3>
         </div>

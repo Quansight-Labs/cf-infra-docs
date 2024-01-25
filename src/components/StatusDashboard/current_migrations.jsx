@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 const COLLAPSED_KEY = "migration-collapsed";
 const SORT_KEY = "migration-sort";
 
-export default function CurrentMigrations() {
+export default function CurrentMigrations({ onLoad }) {
   const [state, setState] = useState({
     closed: [],
     collapsed: { closed: true, longterm: true, regular: true },
@@ -22,7 +22,7 @@ export default function CurrentMigrations() {
           const serialized = JSON.stringify({ by, order });
           window.localStorage.setItem(SORT_KEY, serialized);
         } catch (error) {
-          // Ignore state restoration errors.
+          console.warn(`error writing to local storage`, error);
         }
       }
       return {
@@ -42,12 +42,12 @@ export default function CurrentMigrations() {
           const serialized = JSON.stringify(updated);
           window.localStorage.setItem(COLLAPSED_KEY, serialized);
         } catch (error) {
-          // Ignore state restoration errors.
+          console.warn(`error writing to local storage`, error);
         }
       }
       return { ...prev, collapsed: updated };
     });
-  useEffect(fetchContent(setState), []);
+  useEffect(fetchContent(onLoad, setState), []);
   const { closed, longterm, regular } = state;
   const empty = 0 === closed.length + longterm.length + regular.length;
   return (
@@ -58,32 +58,36 @@ export default function CurrentMigrations() {
           <h3>Current Migrations</h3>
         </div>
         <div className="card__body">
-          {empty ? "..." : <table>
-            <TableContent
-              collapsed={state.collapsed.longterm}
-              name="Long-running migrations"
-              resort={resort}
-              rows={longterm}
-              select={() => select("longterm")}
-              sort={state.sort}
-            />
-            <TableContent
-              collapsed={state.collapsed.regular}
-              name="Regular migrations"
-              resort={resort}
-              rows={regular}
-              select={() => select("regular")}
-              sort={state.sort}
-            />
-            <TableContent
-              collapsed={state.collapsed.closed}
-              name="Closed migrations"
-              resort={resort}
-              rows={closed}
-              select={() => select("closed")}
-              sort={state.sort}
-            />
-          </table>}
+          {empty ? (
+            "..."
+          ) : (
+            <table>
+              <TableContent
+                collapsed={state.collapsed.longterm}
+                name="Long-running migrations"
+                resort={resort}
+                rows={longterm}
+                select={() => select("longterm")}
+                sort={state.sort}
+              />
+              <TableContent
+                collapsed={state.collapsed.regular}
+                name="Regular migrations"
+                resort={resort}
+                rows={regular}
+                select={() => select("regular")}
+                sort={state.sort}
+              />
+              <TableContent
+                collapsed={state.collapsed.closed}
+                name="Closed migrations"
+                resort={resort}
+                rows={closed}
+                select={() => select("closed")}
+                sort={state.sort}
+              />
+            </table>
+          )}
         </div>
       </div>
     </>
@@ -191,10 +195,10 @@ function compare(by, order) {
         ? (a, b) => a.details[by].length - b.details[by].length
         : (a, b) => b.details[by].length - a.details[by].length;
   }
-};
+}
 
 // Returns a function that fetches local and remote content then sets state.
-function fetchContent(setState) {
+function fetchContent(onLoad, setState) {
   return () => {
     const local = {};
     if (window && window.localStorage) {
@@ -204,7 +208,7 @@ function fetchContent(setState) {
         if (collapsed) local.collapsed = JSON.parse(collapsed);
         if (sort) local.sort = JSON.parse(sort);
       } catch (error) {
-        // Ignore state restoration errors.
+        console.warn(`error reading from local storage`, error);
       }
     }
     void (async (patch) => {
@@ -246,7 +250,9 @@ function fetchContent(setState) {
       }
       await Promise.all(promises);
       setState((prev) => {
-        const { sort: { by, order } } = patch || prev;
+        const {
+          sort: { by, order },
+        } = patch || prev;
         return {
           ...prev,
           ...patch,
@@ -255,6 +261,7 @@ function fetchContent(setState) {
           regular: fetched.regular.sort(compare(by, order)),
         };
       });
+      onLoad();
     })(local);
   };
 }

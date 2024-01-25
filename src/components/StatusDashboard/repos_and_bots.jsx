@@ -1,7 +1,8 @@
-import React from "react";
+import { React, useEffect } from "react";
 import styles from "./styles.module.css";
 
-export default function ReposAndBots() {
+export default function ReposAndBots({ onLoad }) {
+  useEffect(() => void onLoad(), []);
   return (
     <>
       <div id="repos" className={styles.toc_anchor}></div>

@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 import { charts, urls } from "../../constants";
 import styles from "./styles.module.css";
 
-export default function GitHubActionsUsage() {
+export default function GitHubActionsUsage({ onLoad }) {
   const [state, setState] = useState({ total: 0, rates: {}, repos: {} });
   useEffect(() => {
     void (async () => {
@@ -12,8 +12,9 @@ export default function GitHubActionsUsage() {
         const fetched = await (await fetch(urls.github.actions)).json();
         setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
-        console.log("error loading github actions", error);
+        console.warn("error loading github actions", error);
       }
+      onLoad();
     })();
   }, []);
   const data = [];
@@ -30,7 +31,9 @@ export default function GitHubActionsUsage() {
           <h3>GitHub Actions Usage</h3>
         </div>
         <div className="card__body">
-          <p>GitHub Actions ran {state.total} actions in the past eight hours.</p>
+          <p>
+            GitHub Actions ran {state.total} actions in the past eight hours.
+          </p>
           <Bar data={{ labels, datasets: [{ data }] }} options={options} />
         </div>
       </div>
