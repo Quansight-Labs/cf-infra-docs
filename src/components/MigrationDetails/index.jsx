@@ -48,12 +48,8 @@ export default function MigrationDetails() {
       }
     })();
   }, []);
-  console.log("state.details", state.details);
   if (state.redirect) return <Redirect to="/status" />;
-  if (!state.details) return <></>;
-  const { details, name } = state;
-  const { progress } = details;
-  console.log('details', details);
+  const { details, name, view } = state;
   return (
     <Layout
       title={siteConfig.title}
@@ -66,12 +62,11 @@ export default function MigrationDetails() {
               <button onClick={() => toggle("table")}>Table View</button>{" "}
               <button onClick={() => toggle("graph")}>Graph View</button>
             </div>
-            <Breadcrumbs>{state.name}</Breadcrumbs>
+            <Breadcrumbs>{name}</Breadcrumbs>
             <div style={{ clear: "both" }}></div>
           </div>
           <div className="card__body">
-            <h4>Completion rate: {progress.percentage.toFixed(0)}%</h4>
-            {state.view === "graph" ? <Graph>{name}</Graph> : <Table />}
+            <DetailsBody details={details} view={view} name={name} />
           </div>
         </div>
       </main>
@@ -110,11 +105,21 @@ function Breadcrumbs({ children }) {
   );
 }
 
+function DetailsBody({ details, name, view }) {
+  if (!details) return <>{name}...</>;
+  const { progress } = details;
+  return (
+    <>
+      <h4>Completion rate: {progress.percentage.toFixed(0)}%</h4>
+      {view === "graph" ? <Graph>{name}</Graph> : <Table />}
+    </>
+  );
+}
+
 function Graph(props) {
   const [error, setState] = useState("");
   const url = urls.migrations.graph.replace("<NAME>", props.children);
   const onError = (error) => setState(error);
-  console.log(url);
   return (
     <div>
       {error ? `Graph is unavailable.` : <img onError={onError} src={url} />}
