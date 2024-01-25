@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
+import { measureProgress } from "../MigrationDetails";
 import styles from "./styles.module.css";
 
 const COLLAPSED_KEY = "migration-collapsed";
@@ -223,16 +224,8 @@ function fetchContent(onLoad, setState) {
                   const url = urls.migrations.details.replace("<NAME>", name);
                   const response = await fetch(url);
                   const details = await response.json();
-                  const done = details["done"].length + details["in-pr"].length;
-                  const total =
-                    done +
-                    details["awaiting-parents"].length +
-                    details["awaiting-pr"].length +
-                    details["bot-error"].length +
-                    details["not-solvable"].length;
-                  const percentage = (done / (total || 1)) * 100;
                   fetched[status][index].details = details;
-                  fetched[status][index].progress = { done, percentage, total };
+                  fetched[status][index].progress = measureProgress(details);
                 } catch (error) {
                   console.warn(`error loading migration: ${name}`, error);
                 }

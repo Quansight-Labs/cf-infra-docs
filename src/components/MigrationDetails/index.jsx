@@ -40,6 +40,7 @@ export default function MigrationDetails() {
       try {
         const url = urls.migrations.details.replace("<NAME>", state.name);
         const details = await (await fetch(url)).json();
+        details.progress = measureProgress(details);
         setState((prev) => ({ ...prev, details, view: view || prev.view }));
       } catch (error) {
         console.warn(`error loading migration: ${state.name}`, error);
@@ -49,7 +50,10 @@ export default function MigrationDetails() {
   }, []);
   console.log("state.details", state.details);
   if (state.redirect) return <Redirect to="/status" />;
-  const { name } = state;
+  if (!state.details) return <></>;
+  const { details, name } = state;
+  const { progress } = details;
+  console.log('details', details);
   return (
     <Layout
       title={siteConfig.title}
@@ -66,7 +70,7 @@ export default function MigrationDetails() {
             <div style={{ clear: "both" }}></div>
           </div>
           <div className="card__body">
-            Migration details: {name}
+            <h4>Completion rate: {progress.percentage.toFixed(0)}%</h4>
             {state.view === "graph" ? <Graph>{name}</Graph> : <Table />}
           </div>
         </div>
@@ -75,7 +79,7 @@ export default function MigrationDetails() {
   );
 }
 
-function Breadcrumbs(props) {
+function Breadcrumbs({ children }) {
   const status = "/status";
   const migrations = "/status#migrations";
   return (
@@ -98,7 +102,7 @@ function Breadcrumbs(props) {
         </li>
         <li className="breadcrumbs__item breadcrumbs__item--active">
           <a className="breadcrumbs__link" href="">
-            {props.children}
+            {children}
           </a>
         </li>
       </ul>
@@ -120,4 +124,16 @@ function Graph(props) {
 
 function Table() {
   return <table></table>;
+}
+
+export function measureProgress(details) {
+  const done = details["done"].length + details["in-pr"].length;
+  const total =
+    done +
+    details["awaiting-parents"].length +
+    details["awaiting-pr"].length +
+    details["bot-error"].length +
+    details["not-solvable"].length;
+  const percentage = (done / (total || 1)) * 100;
+  return { done, percentage, total };
 }
