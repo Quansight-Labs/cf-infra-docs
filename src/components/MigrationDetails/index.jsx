@@ -36,34 +36,36 @@ export default function Home() {
       <main>
         <div className="card margin-top--xs">
           <div className="card__header">
-            <nav aria-label="breadcrumbs">
-              <ul className="breadcrumbs">
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="/">
-                    conda-forge
-                  </a>
-                </li>
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="/status">
-                    Status
-                  </a>
-                </li>
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="/status#migrations">
-                    Migrations
-                  </a>
-                </li>
-                <li className="breadcrumbs__item breadcrumbs__item--active">
-                  <a className="breadcrumbs__link" href="#url">
-                    {state.name}
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <Breadcrumbs>{state.name}</Breadcrumbs>
           </div>
           <div className="card__body">Migration details: {state.name}</div>
         </div>
       </main>
     </Layout>
+  );
+}
+
+function Breadcrumbs(props) {
+  const status = "/status";
+  const migrations = "/status#migrations";
+  return (
+    <nav aria-label="breadcrumbs">
+    <ul className="breadcrumbs">
+      <li className="breadcrumbs__item">
+        <a className="breadcrumbs__link" href="/">
+          conda-forge
+        </a>
+      </li>
+      <li className="breadcrumbs__item">
+        <a className="breadcrumbs__link" href={status}>Status</a>
+      </li>
+      <li className="breadcrumbs__item">
+        <a className="breadcrumbs__link" href={migrations}>Migrations</a>
+      </li>
+      <li className="breadcrumbs__item breadcrumbs__item--active">
+        <a className="breadcrumbs__link" href="">{props.children}</a>
+      </li>
+    </ul>
+  </nav>
   );
 }

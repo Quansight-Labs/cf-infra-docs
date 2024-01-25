@@ -48,6 +48,8 @@ export default function CurrentMigrations() {
       return { ...prev, collapsed: updated };
     });
   useEffect(fetchContent(setState), []);
+  const { closed, longterm, regular } = state;
+  const empty = 0 === closed.length + longterm.length + regular.length;
   return (
     <>
       <div id="migrations" className={styles.toc_anchor}></div>
@@ -56,12 +58,12 @@ export default function CurrentMigrations() {
           <h3>Current Migrations</h3>
         </div>
         <div className="card__body">
-          <table>
+          {empty ? "..." : <table>
             <TableContent
               collapsed={state.collapsed.longterm}
               name="Long-running migrations"
               resort={resort}
-              rows={state.longterm}
+              rows={longterm}
               select={() => select("longterm")}
               sort={state.sort}
             />
@@ -69,7 +71,7 @@ export default function CurrentMigrations() {
               collapsed={state.collapsed.regular}
               name="Regular migrations"
               resort={resort}
-              rows={state.regular}
+              rows={regular}
               select={() => select("regular")}
               sort={state.sort}
             />
@@ -77,11 +79,11 @@ export default function CurrentMigrations() {
               collapsed={state.collapsed.closed}
               name="Closed migrations"
               resort={resort}
-              rows={state.closed}
+              rows={closed}
               select={() => select("closed")}
               sort={state.sort}
             />
-          </table>
+          </table>}
         </div>
       </div>
     </>
