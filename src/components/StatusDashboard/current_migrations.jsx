@@ -250,9 +250,7 @@ function fetchContent(onLoad, setState) {
       }
       await Promise.all(promises);
       setState((prev) => {
-        const {
-          sort: { by, order },
-        } = patch || prev;
+        const { by, order } = patch.sort || prev.sort;
         return {
           ...prev,
           ...patch,
