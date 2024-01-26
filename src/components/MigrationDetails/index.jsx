@@ -75,8 +75,6 @@ export default function MigrationDetails() {
 }
 
 function Breadcrumbs({ children }) {
-  const status = "/status";
-  const migrations = "/status#migrations";
   return (
     <nav aria-label="breadcrumbs">
       <ul className="breadcrumbs">
@@ -86,12 +84,12 @@ function Breadcrumbs({ children }) {
           </a>
         </li>
         <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link" href={status}>
+          <a className="breadcrumbs__link" href="/status">
             Status
           </a>
         </li>
         <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link" href={migrations}>
+          <a className="breadcrumbs__link" href="/status#migrations">
             Migrations
           </a>
         </li>
