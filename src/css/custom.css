@@ -160,14 +160,16 @@ a.menu__link:active {
 
 /* The homepage button is used only under the hero text */
 .homepage_button {
-  background: linear-gradient(#fff, #fff) padding-box,
+  background:
+    linear-gradient(#fff, #fff) padding-box,
     var(--gradient) border-box;
   border: 2px solid transparent;
 }
 .homepage_button:hover,
 .homepage_button:focus,
 .homepage_button:focus:active {
-  background: linear-gradient(#ebedf0, #ebedf0) padding-box,
+  background:
+    linear-gradient(#ebedf0, #ebedf0) padding-box,
     var(--gradient) border-box;
 }
 .homepage_button:active {
@@ -179,7 +181,8 @@ see how we avoid the "Collapse sidebar" button of the docs sidebar via the aria-
 not pretty but it's the best we can do so far */
 [data-theme="dark"]
   .button.button--secondary:not([aria-label="Collapse sidebar"]) {
-  background: linear-gradient(#3a3a3a, #3a3a3a) padding-box,
+  background:
+    linear-gradient(#3a3a3a, #3a3a3a) padding-box,
     var(--gradient) border-box;
   border: 2px solid transparent;
   color: #ffffff;
@@ -187,7 +190,8 @@ not pretty but it's the best we can do so far */
 
 [data-theme="dark"]
   .button.button--secondary:hover:not([aria-label="Collapse sidebar"]) {
-  background: linear-gradient(#4c4c4c, #4c4c4c) padding-box,
+  background:
+    linear-gradient(#4c4c4c, #4c4c4c) padding-box,
     var(--gradient) border-box;
   border: 2px solid transparent;
   color: #ffffff;
