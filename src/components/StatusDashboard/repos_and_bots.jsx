@@ -6,7 +6,7 @@ export default function ReposAndBots({ onLoad }) {
   return (
     <>
       <div id="repos" className={styles.toc_anchor}></div>
-      <div id="repos_and_bots" className="card margin-top--xs">
+      <div className="card margin-top--xs">
         <div className="card__header">
           <h3>Repos and Bots</h3>
         </div>
