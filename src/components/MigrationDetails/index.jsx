@@ -7,6 +7,18 @@ import styles from "./styles.module.css";
 
 const VIEW_KEY = "migration-toggle";
 
+export function measureProgress(details) {
+  const done = details["done"].length + details["in-pr"].length;
+  const total =
+    done +
+    details["awaiting-parents"].length +
+    details["awaiting-pr"].length +
+    details["bot-error"].length +
+    details["not-solvable"].length;
+  const percentage = (done / (total || 1)) * 100;
+  return { done, percentage, total };
+}
+
 export default function MigrationDetails() {
   const location = useLocation();
   const { siteConfig } = useDocusaurusContext();
@@ -74,6 +86,10 @@ export default function MigrationDetails() {
   );
 }
 
+function Bar({ details: {progress} }) {
+  return (<h4>Completion rate {progress.percentage.toFixed(0)}%</h4>);
+}
+
 function Breadcrumbs({ children }) {
   return (
     <nav aria-label="breadcrumbs">
@@ -105,13 +121,16 @@ function Breadcrumbs({ children }) {
 
 function DetailsBody({ details, name, view }) {
   if (!details) return <>{name}...</>;
-  const { progress } = details;
   return (
     <>
-      <h4>Completion rate: {progress.percentage.toFixed(0)}%</h4>
-      {view === "graph" ? <Graph>{name}</Graph> : <Table />}
+      <Bar details={details} />
+      {view === "graph" ? <Graph>{name}</Graph> : <Table details={details} />}
     </>
   );
+}
+
+function Filters() {
+  return (<h4>Filters</h4>)
 }
 
 function Graph(props) {
@@ -125,18 +144,20 @@ function Graph(props) {
   );
 }
 
-function Table() {
-  return <table></table>;
-}
-
-export function measureProgress(details) {
-  const done = details["done"].length + details["in-pr"].length;
-  const total =
-    done +
-    details["awaiting-parents"].length +
-    details["awaiting-pr"].length +
-    details["bot-error"].length +
-    details["not-solvable"].length;
-  const percentage = (done / (total || 1)) * 100;
-  return { done, percentage, total };
+function Table({ details }) {
+  console.log('details', details);
+  return (
+    <>
+      <Filters />
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Immediate Children</th>
+          </tr>
+        </thead>
+      </table>
+    </>
+  );
 }
