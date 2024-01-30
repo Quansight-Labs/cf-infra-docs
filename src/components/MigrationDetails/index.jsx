@@ -156,6 +156,34 @@ function Table({ details }) {
             <th>Status</th>
             <th>Immediate Children</th>
           </tr>
+          {details["awaiting-parents"].map((item, index) => (
+            <tr key={`${index}-awaiting-parents`}>
+              <td>{item}</td>
+              <td>Awaiting parents</td>
+              <td>...</td>
+            </tr>
+          ))}
+          {details["bot-error"].map((item, index) => (
+            <tr key={`${index}-bot-error`}>
+              <td>{item}</td>
+              <td>Bot error</td>
+              <td>...</td>
+            </tr>
+          ))}
+          {details["in-pr"].map((item, index) => (
+            <tr key={`${index}-in-pr`}>
+              <td>{item}</td>
+              <td>In PR</td>
+              <td>...</td>
+            </tr>
+          ))}
+          {details["not-solvable"].map((item, index) => (
+            <tr key={`${index}-not-solvable`}>
+              <td>{item}</td>
+              <td>Not solvable</td>
+              <td>...</td>
+            </tr>
+          ))}
         </thead>
       </table>
     </>
