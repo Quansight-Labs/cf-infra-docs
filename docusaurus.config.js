@@ -191,6 +191,11 @@ const config = {
             position: "left",
           },
           {
+            href: "/download",
+            label: "Download",
+            position: "left",
+          },
+          {
             to: "/news",
             label: "News",
             position: "left",

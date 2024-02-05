@@ -30,6 +30,13 @@ export default function Header() {
                     >
                         Explore conda-forge
                     </Link>
+                    <p>&nbsp;</p>
+                    <Link
+                        to="/download"
+                        className="button button--secondary button--lg homepage_button"
+                    >
+                        Download conda-forge
+                    </Link>
                 </div>
             </div>
         </div>
