@@ -11,6 +11,7 @@ export default function Home() {
             description="Download page for conda-forge infrastructure"
         >
             <main>
+                <h1 style={{ margin: 20 }}>Miniforge3 Downloads</h1>
                 <Download />
             </main>
         </Layout>

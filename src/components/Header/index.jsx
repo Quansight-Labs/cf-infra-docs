@@ -35,7 +35,7 @@ export default function Header() {
                         to="/download"
                         className="button button--secondary button--lg homepage_button"
                     >
-                        Download conda-forge
+                        Download installer
                     </Link>
                 </div>
             </div>
