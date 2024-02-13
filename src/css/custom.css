@@ -164,6 +164,7 @@ a.menu__link:active {
     linear-gradient(#fff, #fff) padding-box,
     var(--gradient) border-box;
   border: 2px solid transparent;
+  width: 300px;
 }
 .homepage_button:hover,
 .homepage_button:focus,

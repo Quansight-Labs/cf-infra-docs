@@ -71,9 +71,9 @@ export default function Download() {
                         height={100}
                     />
                     <div style={{
-                        display: 'block',
-                        width: '100%'
-                    }}><p>{os}</p><code>{arch}</code></div>
+                        fontSize: '1.3em',
+                        fontWeight: 'bold',
+                        width: '100%'}}><p>{os}</p><code>{arch}</code></div>
                     </div>
                 </Link>
                 ))}
