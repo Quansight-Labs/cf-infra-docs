@@ -8,14 +8,47 @@
   float: right;
 }
 
+.migration_details_filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.migration_details_filter_item {
+  border: 1px solid;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+}
+
+.migration_details_filter_item_on {
+  background-color: var(--ifm-color-primary-lighter);
+}
+
+.migration_details_filter_item:active {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.migration_details_filter_item:hover {
+  background-color: var(--ifm-color-primary-lightest);
+}
+
 .migration_details table {
   font-size: small;
   display: table;
   margin-left: auto;
   margin-right: auto;
+  table-layout: fixed;
   width: 100%;
 }
 
-thead {
+.migration_details table thead {
   text-wrap: nowrap;
+}
+
+.migration_details table td {
+  vertical-align: top;
 }

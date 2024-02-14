@@ -4,17 +4,9 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { urls } from "@site/src/constants";
 import styles from "./styles.module.css";
-import Link from "@docusaurus/Link";
+import { Table } from "./table";
 
 const VIEW_KEY = "migration-toggle";
-
-const STATUS = {
-  "awaiting-parents": "Awaiting parents",
-  "bot-error": "Bot error",
-  "done": "Done",
-  "in-pr": "In PR",
-  "not-solvable": "Not solvable",
-}
 
 export function measureProgress(details) {
   const done = details["done"].length + details["in-pr"].length;
@@ -87,7 +79,10 @@ export default function MigrationDetails() {
             <div style={{ clear: "both" }}></div>
           </div>
           <div className="card__body">
-            <DetailsBody details={details} view={view} name={name} />
+            {details && <Bar details={details} />}
+            {view === "graph" ?
+              <Graph>{name}</Graph> :
+              (details && <Table details={details} />)}
           </div>
         </div>
       </main>
@@ -128,20 +123,6 @@ function Breadcrumbs({ children }) {
   );
 }
 
-function DetailsBody({ details, name, view }) {
-  if (!details) return <>{name}...</>;
-  return (
-    <>
-      <Bar details={details} />
-      {view === "graph" ? <Graph>{name}</Graph> : <Table details={details} />}
-    </>
-  );
-}
-
-function Filters() {
-  return (<h4>Filters</h4>)
-}
-
 function Graph(props) {
   const [error, setState] = useState("");
   const url = urls.migrations.graph.replace("<NAME>", props.children);
@@ -151,57 +132,4 @@ function Graph(props) {
       {error ? `Graph is unavailable.` : <img onError={onError} src={url} />}
     </div>
   );
-}
-
-function Table({ details, filters }) {
-  const feedstock = details._feedstock_status;
-  console.log('details', details);
-  console.log('filters', filters);
-  console.log('feedstock', feedstock);
-  const items = [
-    ...details["done"].map(name => ([name, "done"])),
-    ...details["awaiting-parents"].map(name => ([name, "awaiting-parents"])),
-    ...details["bot-error"].map(name => ([name, "bot-error"])),
-    ...details["in-pr"].map(name => ([name, "in-pr"])),
-    ...details["not-solvable"].map(name => ([name, "not-solvable"])),
-  ];
-  return (
-    <>
-      <Filters />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Immediate Children</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map(([name, status], i) =>
-              <Row key={i}>{{ feedstock: feedstock[name], name, status }}</Row>
-            )}
-        </tbody>
-      </table>
-    </>
-  );
-}
-
-function Row({ children }) {
-  const { feedstock, name, status } = children;
-  const url = feedstock["pr_url"];
-  return (
-  <tr>
-    <td>{url ? <Link to={url}>{name}</Link> : name}</td>
-    <td>{STATUS[status]}</td>
-    <td>
-      <ImmediateChildren>{feedstock["immediate_children"]}</ImmediateChildren>
-    </td>
-  </tr>
-  );
-}
-
-function ImmediateChildren({ children }) {
-  return (<>
-    {(children || []).join(', ')}
-  </>);
 }
