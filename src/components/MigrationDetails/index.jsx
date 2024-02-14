@@ -4,8 +4,17 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { urls } from "@site/src/constants";
 import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
 
 const VIEW_KEY = "migration-toggle";
+
+const STATUS = {
+  "awaiting-parents": "Awaiting parents",
+  "bot-error": "Bot error",
+  "done": "Done",
+  "in-pr": "In PR",
+  "not-solvable": "Not solvable",
+}
 
 export function measureProgress(details) {
   const done = details["done"].length + details["in-pr"].length;
@@ -144,8 +153,18 @@ function Graph(props) {
   );
 }
 
-function Table({ details }) {
+function Table({ details, filters }) {
+  const feedstock = details._feedstock_status;
   console.log('details', details);
+  console.log('filters', filters);
+  console.log('feedstock', feedstock);
+  const items = [
+    ...details["done"].map(name => ([name, "done"])),
+    ...details["awaiting-parents"].map(name => ([name, "awaiting-parents"])),
+    ...details["bot-error"].map(name => ([name, "bot-error"])),
+    ...details["in-pr"].map(name => ([name, "in-pr"])),
+    ...details["not-solvable"].map(name => ([name, "not-solvable"])),
+  ];
   return (
     <>
       <Filters />
@@ -156,36 +175,33 @@ function Table({ details }) {
             <th>Status</th>
             <th>Immediate Children</th>
           </tr>
-          {details["awaiting-parents"].map((item, index) => (
-            <tr key={`${index}-awaiting-parents`}>
-              <td>{item}</td>
-              <td>Awaiting parents</td>
-              <td>...</td>
-            </tr>
-          ))}
-          {details["bot-error"].map((item, index) => (
-            <tr key={`${index}-bot-error`}>
-              <td>{item}</td>
-              <td>Bot error</td>
-              <td>...</td>
-            </tr>
-          ))}
-          {details["in-pr"].map((item, index) => (
-            <tr key={`${index}-in-pr`}>
-              <td>{item}</td>
-              <td>In PR</td>
-              <td>...</td>
-            </tr>
-          ))}
-          {details["not-solvable"].map((item, index) => (
-            <tr key={`${index}-not-solvable`}>
-              <td>{item}</td>
-              <td>Not solvable</td>
-              <td>...</td>
-            </tr>
-          ))}
         </thead>
+        <tbody>
+          {items.map(([name, status], i) =>
+              <Row key={i}>{{ feedstock: feedstock[name], name, status }}</Row>
+            )}
+        </tbody>
       </table>
     </>
   );
+}
+
+function Row({ children }) {
+  const { feedstock, name, status } = children;
+  const url = feedstock["pr_url"];
+  return (
+  <tr>
+    <td>{url ? <Link to={url}>{name}</Link> : name}</td>
+    <td>{STATUS[status]}</td>
+    <td>
+      <ImmediateChildren>{feedstock["immediate_children"]}</ImmediateChildren>
+    </td>
+  </tr>
+  );
+}
+
+function ImmediateChildren({ children }) {
+  return (<>
+    {(children || []).join(', ')}
+  </>);
 }
