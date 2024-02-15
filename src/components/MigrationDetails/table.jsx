@@ -34,6 +34,8 @@ export function Table({ details }) {
   return (
     <>
       <Filters
+        counts={Object.keys(STATUS).reduce((acc, key) =>
+          ({ ...acc, [key]: details[key].length }), {})}
         filters={{ ...filters }}
         onFilter={key => setState(prev => ({ ...prev, [key]: !prev[key] }))} />
       {items.length > 0 && <table>
@@ -54,7 +56,7 @@ export function Table({ details }) {
   );
 }
 
-function Filters({ filters, onFilter }) {
+function Filters({ counts, filters, onFilter }) {
   const itemClass = styles.migration_details_filter_item;
   const filteredClass = styles.migration_details_filter_item_on;
   return (
@@ -64,7 +66,7 @@ function Filters({ filters, onFilter }) {
           className={itemClass + (filters[key] ? "": ` ${filteredClass}`)}
           key={index}
           onClick={() => onFilter(key)}>
-          {STATUS[key]}
+          {STATUS[key]} ({counts[key]})
         </div>
       )}
     </div>
