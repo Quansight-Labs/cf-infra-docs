@@ -2,6 +2,7 @@ import Link from "@docusaurus/Link";
 import moment from "moment";
 import { Octokit } from "octokit";
 import { React, useEffect, useState } from "react";
+import Markdown from "react-markdown";
 import styles from "./styles.module.css";
 
 // Date format string.
@@ -43,7 +44,7 @@ export default function Incidents({ onLoad }) {
           const severity = incident.keys().next().value;
           if (issue.state === "open") {
             open.push({ ...issue, severity });
-            current = union(current, incident);
+            current = new Set([...current, ...incident]);
           } else if (era < new Date(issue.closed_at).getTime()) {
             closed.push({ ...issue, severity });
           }
@@ -92,9 +93,11 @@ function Incident({ children }) {
     <div className={styles.incident}>
       <div>{status} – {date.format(DATE)}</div>
       <hr style={{ margin: 5, padding: 0 }} />
-      <Link className={styles.incident_link} to={issue.html_url}>{issue.title}</Link>
+      <Link className={styles.incident_link} to={issue.html_url}>
+        {issue.title}
+      </Link>
       <div className={styles.incident_body}>
-        {issue.body.split('\n').map((p, i) => (<p key={i}>{p}</p>))}
+        <Markdown>{issue.body}</Markdown>
       </div>
     </div>
   );
@@ -102,13 +105,7 @@ function Incident({ children }) {
 
 const intersection = (one, two) => {
   const intersection = new Set();
-  one.forEach(item => { if (two.has(item)) intersection.add(item); });
+  for (const item of one) if (two.has(item)) intersection.add(item);
   return intersection;
 }
 
-const union = (one, two) => {
-  const union = new Set();
-  one.forEach(item => union.add(item));
-  two.forEach(item => union.add(item));
-  return union;
-}
