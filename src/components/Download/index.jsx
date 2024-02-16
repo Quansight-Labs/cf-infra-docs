@@ -7,6 +7,18 @@ import styles from "./styles.module.css";
 export default function Download() {
     const downloads = [
         {
+            os: "macOS",
+            arch: "arm64 (Apple Silicon)",
+            href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh",
+            image: "img/download/apple.svg",
+        },
+        {
+            os: "macOS",
+            arch: "x86_64 (Intel)",
+            href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh",
+            image: "img/download/apple.svg",
+        },
+        {
             os: "Linux",
             arch: "x86_64 (amd64)",
             href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh",
@@ -23,18 +35,6 @@ export default function Download() {
             arch: "ppc64le (POWER8/9)",
             href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-ppc64le.sh",
             image: "img/download/linux.svg",
-        },
-        {
-            os: "macOS",
-            arch: "arm64 (Apple Silicon)",
-            href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh",
-            image: "img/download/apple.svg",
-        },
-        {
-            os: "macOS",
-            arch: "x86_64 (Intel)",
-            href: "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh",
-            image: "img/download/apple.svg",
         },
         {
             os: "Windows",

@@ -6,11 +6,8 @@
   display: flex;
 }
 
-.section_padding {
-  padding: 4rem 6rem;
-}
-
 .header_image {
+  padding: 0 30px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -19,10 +16,8 @@
 .header_content {
   flex: 4;
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  margin-left: 5rem;
 }
 
 .header_content h1 {
