@@ -1,3 +1,4 @@
+import Link from "@docusaurus/Link";
 import moment from "moment";
 import { Octokit } from "octokit";
 import { React, useEffect, useState } from "react";
@@ -57,14 +58,14 @@ export default function Incidents({ onLoad }) {
   return (
     <>
       <div id="incidents" className={styles.toc_anchor}></div>
-      <div className="card margin-top--xs">
+      <div className={`card margin-top--xs`}>
         <div className="card__header">
           <h3>
             Incidents
             <Status>{current}</Status>
           </h3>
         </div>
-        <div className="card__body">
+        <div className={`card__body ${styles.incidents}`}>
           {open.map((issue, i) => <Incident key={i}>{issue}</Incident>)}
           {closed.map((issue, i) => <Incident key={i}>{issue}</Incident>)}
         </div>
@@ -75,21 +76,27 @@ export default function Incidents({ onLoad }) {
 
 function Status({ children }) {
   const current = Array.from(children).join(', ')
+  if (!current) return <></>;
   return (
-    <>
-      {current && `(${current})`}
-    </>
+    <div className={styles.current_status}>
+      {current}
+    </div>
   );
 }
 
 function Incident({ children }) {
   const issue = children;
+  const date = moment(issue.open ? issue.updated_at : issue.closed_at);
+  const status = issue.open ? 'Ongoing' : 'Resolved';
   return (
-    <pre>
-      {moment(issue.open ? issue.updated_at : issue.closed_at).format(DATE)}
-      {"\n"}
-      ({issue.state}) {issue.severity}
-    </pre>
+    <div className={styles.incident}>
+      <div>{status} – {date.format(DATE)}</div>
+      <hr style={{ margin: 5, padding: 0 }} />
+      <Link className={styles.incident_link} to={issue.html_url}>{issue.title}</Link>
+      <div className={styles.incident_body}>
+        {issue.body.split('\n').map((p, i) => (<p key={i}>{p}</p>))}
+      </div>
+    </div>
   );
 }
 
