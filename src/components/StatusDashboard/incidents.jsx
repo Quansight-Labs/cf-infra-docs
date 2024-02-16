@@ -1,6 +1,10 @@
-import { React, useEffect, useState } from "react";
+import moment from "moment";
 import { Octokit } from "octokit";
+import { React, useEffect, useState } from "react";
 import styles from "./styles.module.css";
+
+// Date format string.
+const DATE = "YYYY/M/D HH:mm:ss";
 
 // The GitHub repository with relevant issues.
 const REPO = { owner: "conda-forge", repo: "status" };
@@ -21,29 +25,24 @@ export default function Incidents({ onLoad }) {
     { closed: [], current: new Set(), open: [] }
   );
   useEffect(() => {
-    (async () => {
-      const octokit = new Octokit({});
+    const octokit = new Octokit({});
+    const era = Date.now() - PERIOD;
+    const open = [];
+    const closed = [];
+    let current = new Set();
+    void (async () => {
       try {
         const issues = await octokit.rest.issues.listForRepo({
-          ...REPO,
-          per_page: 100,
-          state: "all"
+          ...REPO, per_page: 100, state: "all"
         });
-        const era = Date.now() - PERIOD;
-        const open = [];
-        const closed = [];
-        let current = new Set();
         for (const issue of issues.data) {
           const labels = new Set(issue.labels.map(({ name }) => name));
-
-          // If the issue is not an incident, bail.
           const incident = intersection(labels, BAD_LABELS);
-          if (!incident.size) continue;
-
+          if (!incident.size) continue; // Bail if the issue is not an incident.
           const severity = incident.keys().next().value;
           if (issue.state === "open") {
-            current = union(current, incident);
             open.push({ ...issue, severity });
+            current = union(current, incident);
           } else if (era < new Date(issue.closed_at).getTime()) {
             closed.push({ ...issue, severity });
           }
@@ -55,13 +54,15 @@ export default function Incidents({ onLoad }) {
       onLoad();
     })();
   }, []);
-  const status = Array.from(current).join(', ')
   return (
     <>
       <div id="incidents" className={styles.toc_anchor}></div>
       <div className="card margin-top--xs">
         <div className="card__header">
-          <h3>Incidents {status && `(${status})`}</h3>
+          <h3>
+            Incidents
+            <Status>{current}</Status>
+          </h3>
         </div>
         <div className="card__body">
           {open.map((issue, i) => <Incident key={i}>{issue}</Incident>)}
@@ -72,11 +73,23 @@ export default function Incidents({ onLoad }) {
   );
 }
 
+function Status({ children }) {
+  const current = Array.from(children).join(', ')
+  return (
+    <>
+      {current && `(${current})`}
+    </>
+  );
+}
+
 function Incident({ children }) {
   const issue = children;
-  console.log('issue', issue);
   return (
-    <pre>({issue.state}) {issue.severity}</pre>
+    <pre>
+      {moment(issue.open ? issue.updated_at : issue.closed_at).format(DATE)}
+      {"\n"}
+      ({issue.state}) {issue.severity}
+    </pre>
   );
 }
 
