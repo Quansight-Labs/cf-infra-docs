@@ -297,13 +297,13 @@ not pretty but it's the best we can do so far */
 
 #current_migrations .card__body th[colspan]::after {
   position: inherit;
-  content: " ⏷";
+  content: " ▿";
   right: auto;
   top: auto;
 }
 
 #current_migrations .card__body th[colspan].collapsed::after {
-  content: " ⏵";
+  content: " ▹";
 }
 
 #current_migrations .card__body th:not(colspan)::after {

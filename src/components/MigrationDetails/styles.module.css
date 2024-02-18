@@ -16,24 +16,28 @@
 }
 
 .migration_details_filter_item {
-  border: 1px solid;
+  border: 1px solid var(--ifm-color-primary-lighter);
   border-radius: 25px;
+  color: var(--ifm-color-primary-dark);
   cursor: pointer;
   padding: 10px;
   margin: 10px;
   width: 200px;
+  user-select: none;
 }
 
 .migration_details_filter_item_on {
   background-color: var(--ifm-color-primary-lighter);
+  color: var(--ifm-color-primary-darker);
 }
 
-.migration_details_filter_item:active {
-  background-color: var(--ifm-color-primary-dark);
+.migration_details_filter_item:hover:active {
+  background-color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
 }
 
 .migration_details_filter_item:hover {
-  background-color: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary-darker);
 }
 
 .migration_details table {
