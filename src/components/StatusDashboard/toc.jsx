@@ -6,9 +6,6 @@ export default function TOC() {
     <aside className={styles.status_dashboard_toc}>
       <ul>
         <li>
-          <a href="#incidents">Incidents</a>
-        </li>
-        <li>
           <a href="#repos">Repos and Bots</a>
         </li>
         <li>
@@ -28,6 +25,9 @@ export default function TOC() {
         </li>
         <li>
           <a href="#travis">Travis CI Usage</a>
+        </li>
+        <li>
+          <a href="#incidents">Incidents</a>
         </li>
       </ul>
     </aside>

@@ -20,9 +20,15 @@
   text-decoration: none;
 }
 
+.incident_status {
+  border: 0.5px solid var(--ifm-color-secondary);
+  border-radius: 5px;
+  color: var(--ifm-color-secondary);
+  padding: 5px;
+}
+
 .incidents {
-  max-height: 300px;
-  overflow-y: scroll;
+  background-color: transparent;
 }
 
 .status_dashboard {

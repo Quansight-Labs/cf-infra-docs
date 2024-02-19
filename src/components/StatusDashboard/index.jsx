@@ -52,7 +52,6 @@ export default function StatusDashboard() {
           <TOC />
         </div>
         <div className="col col--10">
-          <Incidents onLoad={onLoad} />
           <ReposAndBots onLoad={onLoad} />
           <CloudServices onLoad={onLoad} />
           <CurrentMigrations onLoad={onLoad} />
@@ -60,6 +59,7 @@ export default function StatusDashboard() {
           <AzurePipelineUsage onLoad={onLoad} />
           <GitHubActionsUsage onLoad={onLoad} />
           <TravisCIUsage onLoad={onLoad} />
+          <Incidents onLoad={onLoad} />
         </div>
       </div>
     </main>

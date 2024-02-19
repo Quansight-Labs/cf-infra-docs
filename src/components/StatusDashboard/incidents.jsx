@@ -88,10 +88,19 @@ function Status({ children }) {
 function Incident({ children }) {
   const issue = children;
   const date = moment(issue.open ? issue.updated_at : issue.closed_at);
-  const status = issue.open ? 'Ongoing' : 'Resolved';
+  const status = issue.open ? "Ongoing" : "Resolved";
   return (
     <div className={styles.incident}>
-      <div>{status} – {date.format(DATE)}</div>
+      <div>
+        <span
+          className={styles.incident_status}
+          style={{
+            backgroundColor: status === 'Ongoing' ?
+              "var(--ifm-color-warning)" :
+              "var(--ifm-color-success)"
+          }}>{status}</span>
+        – {date.format(DATE)}
+      </div>
       <hr style={{ margin: 5, padding: 0 }} />
       <Link className={styles.incident_link} to={issue.html_url}>
         {issue.title}
