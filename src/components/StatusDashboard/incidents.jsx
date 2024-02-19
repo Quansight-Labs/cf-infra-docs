@@ -99,11 +99,10 @@ function Incident({ children }) {
               "var(--ifm-color-warning)" :
               "var(--ifm-color-success)"
           }}>{status}</span>
-        – {date.format(DATE)}
+        <em>{date.format(DATE)}</em>
       </div>
-      <hr style={{ margin: 5, padding: 0 }} />
       <Link className={styles.incident_link} to={issue.html_url}>
-        {issue.title}
+        {issue.title} (#{issue.number})
       </Link>
       <div className={styles.incident_body}>
         <Markdown>{issue.body}</Markdown>

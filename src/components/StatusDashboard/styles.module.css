@@ -10,13 +10,18 @@
 }
 
 .incident_body {
-  margin: 10px 0;
+  margin-bottom: 10px;
   padding: 10px;
   border: 0.5px solid var(--ifm-color-secondary);
-  border-radius: 5px;
+  border-top: 0;
 }
 
 .incident_link {
+  background-color: var(--ifm-color-primary-lightest);
+  display: block;
+  font-weight: 500;
+  margin-top: 5px;
+  padding: 2px 5px;
   text-decoration: none;
 }
 
@@ -24,6 +29,8 @@
   border: 0.5px solid var(--ifm-color-secondary);
   border-radius: 5px;
   color: var(--ifm-color-secondary);
+  font-weight: 500;
+  margin-right: 20px;
   padding: 5px;
 }
 
