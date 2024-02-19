@@ -116,4 +116,3 @@ const intersection = (one, two) => {
   for (const item of one) if (two.has(item)) intersection.add(item);
   return intersection;
 }
-
