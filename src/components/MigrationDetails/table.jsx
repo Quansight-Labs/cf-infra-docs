@@ -2,13 +2,23 @@ import Link from "@docusaurus/Link";
 import { useState } from "react";
 import styles from "./styles.module.css";
 
-const STATUS = {
+export const STATUS = {
   "awaiting-parents": "Awaiting parents",
+  "awaiting-pr": "Awaiting PR",
   "bot-error": "Bot error",
   "done": "Done",
   "in-pr": "In PR",
   "not-solvable": "Not solvable",
 }
+
+export const ORDERED_STATUS = [
+  ["done", styles.migration_details_filter_done],
+  ["awaiting-parents", styles.migration_details_filter_awaiting_parents],
+  ["awaiting-pr", styles.migration_details_filter_awaiting_pr],
+  ["bot-error", styles.migration_details_filter_bot_error],
+  ["in-pr", styles.migration_details_filter_in_pr],
+  ["not-solvable", styles.migration_details_filter_not_solvable]
+];
 
 export function Table({ details }) {
   const [filters, setState] = useState({
@@ -24,6 +34,8 @@ export function Table({ details }) {
       : details["done"]).map(name => ([name, "done"])),
     ...(filters["awaiting-parents"] ? []
       : details["awaiting-parents"]).map(name => ([name, "awaiting-parents"])),
+    ...(filters["awaiting-pr"] ? []
+      : details["awaiting-pr"]).map(name => ([name, "awaiting-pr"])),
     ...(filters["bot-error"] ? []
       : details["bot-error"]).map(name => ([name, "bot-error"])),
     ...(filters["in-pr"] ? []
@@ -61,12 +73,19 @@ function Filters({ counts, filters, onFilter }) {
   const filteredClass = styles.migration_details_filter_item_on;
   return (
     <div className={styles.migration_details_filter}>
-      {Object.keys(STATUS).map((key, index) =>
+      {ORDERED_STATUS.map(([key, className], index) =>
         <div
-          className={itemClass + (filters[key] ? "": ` ${filteredClass}`)}
+          className={
+            itemClass + ` ${className}` +
+            (filters[key] ? "": ` ${filteredClass}`)
+          }
           key={index}
           onClick={() => onFilter(key)}>
-          {STATUS[key]} ({counts[key]})
+          {filters[key] ?
+            <i style={{ width: 16, float: "left", marginTop: 4, marginLeft: 2 }}
+              className="fa-solid fa-filter-circle-xmark"></i> :
+            <i style={{ width: 16, float: "left", marginTop: 4, marginLeft: 2 }}
+              className="fa-solid fa-filter"></i>} {STATUS[key]} ({counts[key]})
         </div>
       )}
     </div>

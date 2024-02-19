@@ -4,7 +4,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { urls } from "@site/src/constants";
 import styles from "./styles.module.css";
-import { Table } from "./table";
+import { Table, ORDERED_STATUS, STATUS } from "./table";
 
 const VIEW_KEY = "migration-toggle";
 
@@ -90,8 +90,22 @@ export default function MigrationDetails() {
   );
 }
 
-function Bar({ details: {progress} }) {
-  return (<h4>Completion rate {progress.percentage.toFixed(0)}%</h4>);
+function Bar({ details }) {
+  return (
+    <>
+      <h4>Completion rate {details.progress.percentage.toFixed(0)}%</h4>
+      <div className={styles.migration_details_bar}>
+        {ORDERED_STATUS
+          .filter(([key]) => details[key]?.length)
+          .map(([key, className], index) => (
+            <div
+              title={STATUS[key]}
+              className={className}
+              style={{ flex: details[key].length }} key={index}></div>
+          ))}
+      </div>
+    </>
+  );
 }
 
 function Breadcrumbs({ children }) {

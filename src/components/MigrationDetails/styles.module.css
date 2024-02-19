@@ -4,6 +4,14 @@
   min-height: 500px;
 }
 
+.migration_details_bar {
+  border: 2px solid var(--ifm-color-primary-darkest);
+  cursor: pointer;
+  height: 30px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
 .migration_details_toggle {
   float: right;
 }
@@ -16,19 +24,48 @@
 }
 
 .migration_details_filter_item {
-  border: 1px solid var(--ifm-color-primary-lighter);
+  border: 3px solid var(--ifm-color-secondary);
   border-radius: 25px;
-  color: var(--ifm-color-primary-dark);
+  color: var(--ifm-color-secondary);
   cursor: pointer;
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
+  font-size: small;
+  padding: 3px;
+  margin: 3px;
+  margin-bottom: 10px;
+  width: 180px;
   user-select: none;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.migration_details_filter_done {
+  background-color: rgb(60, 1, 74);
+}
+
+.migration_details_filter_awaiting_parents {
+  background-color: rgb(253, 227, 33);
+  color: var(--ifm-color-primary-darker)
+}
+
+.migration_details_filter_awaiting_pr {
+  background-color: rgb(47, 174, 110);
+}
+
+.migration_details_filter_bot_error {
+  background-color: rgb(242, 59, 47);
+}
+
+.migration_details_filter_in_pr {
+  background-color: rgb(43, 93, 131);
+}
+
+.migration_details_filter_not_solvable {
+  background-color: rgb(255, 129, 0);
+  color: var(--ifm-color-primary-dark)
 }
 
 .migration_details_filter_item_on {
-  background-color: var(--ifm-color-primary-lighter);
-  color: var(--ifm-color-primary-darker);
+  border: 3px solid var(--ifm-color-success);
 }
 
 .migration_details_filter_item:hover:active {
