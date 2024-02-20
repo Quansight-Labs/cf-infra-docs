@@ -97,10 +97,10 @@ function Bar({ details }) {
       <div className={styles.migration_details_bar}>
         {ORDERED_STATUS
           .filter(([key]) => details[key]?.length)
-          .map(([key, className], index) => (
+          .map(([key, _, filteredClass], index) => (
             <div
               title={STATUS[key]}
-              className={className}
+              className={filteredClass}
               style={{ flex: details[key].length }} key={index}></div>
           ))}
       </div>

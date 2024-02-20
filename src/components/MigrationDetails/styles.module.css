@@ -5,7 +5,7 @@
 }
 
 .migration_details_bar {
-  border: 2px solid var(--ifm-color-primary-darkest);
+  border: 1px solid var(--ifm-color-primary-darkest);
   cursor: pointer;
   height: 30px;
   margin-bottom: 10px;
@@ -24,57 +24,101 @@
 }
 
 .migration_details_filter_item {
-  border: 3px solid var(--ifm-color-secondary);
   border-radius: 25px;
   color: var(--ifm-color-secondary);
   cursor: pointer;
-  font-size: small;
-  padding: 3px;
+  font-size: smaller;
+  font-weight: 600;
+  padding: 2px;
   margin: 3px;
   margin-bottom: 10px;
-  width: 180px;
+  width: 190px;
   user-select: none;
   text-align: right;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 .migration_details_filter_done {
+  background-color: rgb(60, 1, 74, 0.4);
+  border: 3px solid rgb(60, 1, 74);
+  color: var(--ifm-color-primary-darkest);
+
+}
+
+.migration_details_filter_done_on {
   background-color: rgb(60, 1, 74);
+  border: 3px solid rgb(60, 1, 74, 0.4);
+  color: var(--ifm-color-secondary);
 }
 
 .migration_details_filter_awaiting_parents {
+  background-color: rgb(253, 227, 33, 0.4);
+  border: 3px solid rgb(253, 227, 33);
+  color: var(--ifm-color-primary-darker);
+}
+
+.migration_details_filter_awaiting_parents_on {
   background-color: rgb(253, 227, 33);
+  border: 3px solid rgb(253, 227, 33, 0.9);
   color: var(--ifm-color-primary-darker);
 }
 
 .migration_details_filter_awaiting_pr {
   background-color: rgb(47, 174, 110);
+  border: 3px solid rgb(47, 174, 110, 0.4);
+  color: var(--ifm-color-secondary);
 }
 
-.migration_details_filter_bot_error {
-  background-color: rgb(242, 59, 47);
-}
-
-.migration_details_filter_in_pr {
-  background-color: rgb(43, 93, 131);
-}
-
-.migration_details_filter_not_solvable {
-  background-color: rgb(255, 129, 0);
+.migration_details_filter_awaiting_pr_on {
+  background-color: rgb(47, 174, 110, 0.4);
+  border: 3px solid rgb(47, 174, 110);
   color: var(--ifm-color-primary-dark);
 }
 
-.migration_details_filter_item_on {
-  border: 3px solid var(--ifm-color-success);
+.migration_details_filter_bot_error {
+  background-color: rgb(242, 59, 47, 0.4);
+  border: 3px solid rgb(242, 59, 47);
+  color: var(--ifm-color-primary-dark);
+}
+
+.migration_details_filter_bot_error_on {
+  background-color: rgb(242, 59, 47);
+  border: 3px solid rgb(242, 59, 47, 0.4);
+  color: var(--ifm-color-secondary);
+}
+
+.migration_details_filter_in_pr {
+  background-color: rgb(43, 93, 131, 0.4);
+  border: 3px solid rgb(43, 93, 131);
+  color: var(--ifm-color-primary-dark);
+}
+
+.migration_details_filter_in_pr_on {
+  background-color: rgb(43, 93, 131);
+  border: 3px solid rgb(43, 93, 131, 0.4);
+  color: var(--ifm-color-secondary);
+}
+
+.migration_details_filter_not_solvable {
+  background-color: rgb(255, 129, 0, 0.4);
+  border: 3px solid rgb(255, 129, 0);
+  color: var(--ifm-color-primary-dark);
+}
+
+.migration_details_filter_not_solvable_on {
+  background-color: rgb(255, 129, 0);
+  border: 3px solid rgb(255, 129, 0, 0.4);
+  color: var(--ifm-color-secondary);
 }
 
 .migration_details_filter_item:hover:active {
   background-color: var(--ifm-color-primary-darkest);
+  border-color: var(--ifm-color-primary-darkest);
   color: var(--ifm-color-primary-lightest);
 }
 
 .migration_details_filter_item:hover {
-  border-color: var(--ifm-color-primary-darker);
+  text-decoration: underline;
 }
 
 .migration_details table {

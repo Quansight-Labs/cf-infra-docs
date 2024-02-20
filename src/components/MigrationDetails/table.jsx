@@ -12,12 +12,24 @@ export const STATUS = {
 }
 
 export const ORDERED_STATUS = [
-  ["done", styles.migration_details_filter_done],
-  ["awaiting-parents", styles.migration_details_filter_awaiting_parents],
-  ["awaiting-pr", styles.migration_details_filter_awaiting_pr],
-  ["bot-error", styles.migration_details_filter_bot_error],
-  ["in-pr", styles.migration_details_filter_in_pr],
-  ["not-solvable", styles.migration_details_filter_not_solvable]
+  ["done",
+    styles.migration_details_filter_done,
+    styles.migration_details_filter_done_on],
+  ["awaiting-parents",
+    styles.migration_details_filter_awaiting_parents,
+    styles.migration_details_filter_awaiting_parents_on],
+  ["awaiting-pr",
+    styles.migration_details_filter_awaiting_pr,
+    styles.migration_details_filter_awaiting_pr_on],
+  ["bot-error",
+    styles.migration_details_filter_bot_error,
+    styles.migration_details_filter_bot_error_on],
+  ["in-pr",
+    styles.migration_details_filter_in_pr,
+    styles.migration_details_filter_in_pr_on],
+  ["not-solvable",
+    styles.migration_details_filter_not_solvable,
+    styles.migration_details_filter_not_solvable_on]
 ];
 
 export function Table({ details }) {
@@ -70,21 +82,19 @@ export function Table({ details }) {
 
 function Filters({ counts, filters, onFilter }) {
   const itemClass = styles.migration_details_filter_item;
-  const filteredClass = styles.migration_details_filter_item_on;
   return (
     <div className={styles.migration_details_filter}>
-      {ORDERED_STATUS.map(([key, className], index) =>
+      {ORDERED_STATUS.map(([key, className, filteredClass], index) =>
         <div
           className={
-            itemClass + ` ${className}` +
-            (filters[key] ? "": ` ${filteredClass}`)
+            `${itemClass} ${className} ${filters[key] ? "": filteredClass}`
           }
           key={index}
           onClick={() => onFilter(key)}>
           {filters[key] ?
-            <i style={{ width: 16, float: "left", marginTop: 4, marginLeft: 2 }}
+            <i style={{ width: 16, float: "left", marginTop: 5, marginLeft: 3 }}
               className="fa-solid fa-filter-circle-xmark"></i> :
-            <i style={{ width: 16, float: "left", marginTop: 4, marginLeft: 2 }}
+            <i style={{ width: 16, float: "left", marginTop: 5, marginLeft: 3 }}
               className="fa-solid fa-filter"></i>} {STATUS[key]} ({counts[key]})
         </div>
       )}
