@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { urls } from "../../constants";
 import { measureProgress } from "../MigrationDetails";
 import styles from "./styles.module.css";
+import { Redirect } from "@docusaurus/router";
 
 const COLLAPSED_KEY = "migration-collapsed";
 const SORT_KEY = "migration-sort";
@@ -150,7 +151,9 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           return (
             <tr key={row.name}>
               <td>
-                <a href={`/status/migration/${row.name}`}>{row.name}</a>
+                <a
+                  onClick={() => (<Redirect to={`/status/migration/${row.name}`} />)}
+                  href={`/status/migration/${row.name}`}>{row.name}</a>
               </td>
               <td>
                 <label className="progress_bar">

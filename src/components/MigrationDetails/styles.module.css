@@ -73,15 +73,15 @@
 }
 
 .migration_details_filter_awaiting_pr {
-  background-color: rgb(47, 174, 110);
-  border: 3px solid rgb(47, 174, 110, 0.4);
-  color: var(--ifm-color-secondary);
-}
-
-.migration_details_filter_awaiting_pr_on {
   background-color: rgb(47, 174, 110, 0.4);
   border: 3px solid rgb(47, 174, 110);
   color: var(--ifm-color-primary-dark);
+}
+
+.migration_details_filter_awaiting_pr_on {
+  background-color: rgb(47, 174, 110);
+  border: 3px solid rgb(47, 174, 110, 0.4);
+  color: var(--ifm-color-secondary);
 }
 
 .migration_details_filter_bot_error {
