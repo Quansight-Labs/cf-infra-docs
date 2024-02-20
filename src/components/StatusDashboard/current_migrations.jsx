@@ -13,7 +13,7 @@ export default function CurrentMigrations({ onLoad }) {
     collapsed: { closed: true, longterm: true, regular: true },
     longterm: [],
     regular: [],
-    sort: { by: "name", order: "ascending" },
+    sort: { by: "name", order: "ascending" }
   });
   const resort = (by) => {
     setState(({ closed, longterm, regular, sort, ...prev }) => {
@@ -91,6 +91,8 @@ export default function CurrentMigrations({ onLoad }) {
 }
 
 function TableContent({ collapsed, name, resort, rows, select, sort }) {
+  const [redirect, setState] = useState('');
+  if (redirect) return (<Redirect to={redirect} />);
   return (
     <>
       <thead>
@@ -148,12 +150,16 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
       <tbody className={collapsed ? "collapsed" : undefined}>
         {rows.map((row) => {
           const { progress } = row;
+          const href = `/status/migration/${row.name}`;
           return (
             <tr key={row.name}>
               <td>
                 <a
-                  onClick={() => (<Redirect to={`/status/migration/${row.name}`} />)}
-                  href={`/status/migration/${row.name}`}>{row.name}</a>
+                  onClick={event => {
+                    event.preventDefault();
+                    setState(href);
+                  }}
+                  href={href}>{row.name}</a>
               </td>
               <td>
                 <label className="progress_bar">
