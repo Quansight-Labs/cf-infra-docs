@@ -113,7 +113,7 @@ function Bar({ details }) {
           .map(([key], index) => (
             <div
               title={TITLES[key]}
-              className={styles[`${prefix}${key.replace("-", "_")}_on`]}
+              className={styles[`${prefix}${key.replace("-", "_")}`]}
               style={{ flex: details[key].length }} key={index}></div>
           ))}
       </div>
