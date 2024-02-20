@@ -1,10 +1,23 @@
 import { React, useEffect, useState } from "react";
+import Link from "@docusaurus/Link";
 import { Redirect, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import { urls } from "@site/src/constants";
 import styles from "./styles.module.css";
-import { Table, ORDERED_STATUS, STATUS } from "./table";
+
+
+const ORDERED = [
+  ["done", "Done"],
+  ["awaiting-parents", "Awaiting parents"],
+  ["awaiting-pr", "Awaiting PR"],
+  ["bot-error", "Bot error"],
+  ["in-pr", "In PR"],
+  ["not-solvable", "Not solvable"]
+];
+
+const TITLES = ORDERED.reduce((titles, [key, title]) =>
+  ({ ...titles, [key]: title }), {});
 
 const VIEW_KEY = "migration-toggle";
 
@@ -91,16 +104,16 @@ export default function MigrationDetails() {
 }
 
 function Bar({ details }) {
+  const prefix = "migration_details_filter_";
   return (
     <>
       <h4>Completion rate {details.progress.percentage.toFixed(0)}%</h4>
       <div className={styles.migration_details_bar}>
-        {ORDERED_STATUS
-          .filter(([key]) => details[key]?.length)
-          .map(([key, _, filteredClass], index) => (
+        {ORDERED.filter(([key]) => details[key]?.length)
+          .map(([key], index) => (
             <div
-              title={STATUS[key]}
-              className={filteredClass}
+              title={TITLES[key]}
+              className={styles[`${prefix}${key.replace("-", "_")}_on`]}
               style={{ flex: details[key].length }} key={index}></div>
           ))}
       </div>
@@ -113,14 +126,10 @@ function Breadcrumbs({ children }) {
     <nav aria-label="breadcrumbs">
       <ul className="breadcrumbs">
         <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link" href="/">
-            conda-forge
-          </a>
+          <a className="breadcrumbs__link" href="/">conda-forge</a>
         </li>
         <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link" href="/status">
-            Status
-          </a>
+          <a className="breadcrumbs__link" href="/status">Status</a>
         </li>
         <li className="breadcrumbs__item">
           <a className="breadcrumbs__link" href="/status#migrations">
@@ -128,12 +137,36 @@ function Breadcrumbs({ children }) {
           </a>
         </li>
         <li className="breadcrumbs__item breadcrumbs__item--active">
-          <a className="breadcrumbs__link" href="">
-            {children}
-          </a>
+          <a className="breadcrumbs__link" href="">{children}</a>
         </li>
       </ul>
     </nav>
+  );
+}
+
+function Filters({ counts, filters, onFilter }) {
+  const icon = styles.migration_details_filter_icon;
+  return (
+    <div className={styles.migration_details_filter}>
+      {ORDERED.map(([key, title], index) => {
+        const prefix = "migration_details_filter_";
+        const base = `${prefix}${key.replace("-", "_")}`;
+        return (
+        <div
+          className={[
+            styles.migration_details_filter_button,
+            styles[base],
+            filters[key] && styles[`${base}_on`]
+          ].join(" ")}
+          key={index}
+          onClick={() => onFilter(key)}>
+          {filters[key] ?
+            <i className={`${icon} fa-solid fa-filter-circle-xmark`}></i> :
+            <i className={`${icon} fa-solid fa-filter`}></i>
+          } {title} ({counts[key]})
+        </div>);
+      })}
+    </div>
   );
 }
 
@@ -145,5 +178,51 @@ function Graph(props) {
     <div>
       {error ? `Graph is unavailable.` : <img onError={onError} src={url} />}
     </div>
+  );
+}
+
+function Table({ details }) {
+  const [filters, setState] = useState(ORDERED
+      .reduce((filters, [key]) => ({ ...filters, [key]: 0 })));
+  const feedstock = details._feedstock_status;
+  const rows = ORDERED.reduce((rows, [status]) => (
+    filters[status] ? rows :
+      rows.concat((details[status]).map(name => ([name, status])))
+  ), []);
+  return (
+    <>
+      <Filters
+        counts={ORDERED.reduce((counts, [key]) =>
+          ({ ...counts, [key]: 0 || details[key]?.length }), {})}
+        filters={{ ...filters }}
+        onFilter={key => setState(prev => ({ ...prev, [key]: !prev[key] }))} />
+      {rows.length > 0 && <table>
+        <thead>
+          <tr>
+            <th style={{ width: 150 }}>Name</th>
+            <th style={{ width: 150 }}>Status</th>
+            <th style={{ flex: 1 }}>Immediate Children</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([name, status], i) =>
+            <Row key={i}>{{ feedstock: feedstock[name], name, status }}</Row>
+          )}
+        </tbody>
+      </table>}
+    </>
+  );
+}
+
+function Row({ children }) {
+  const { feedstock, name, status } = children;
+  const url = feedstock["pr_url"];
+  const immediate = feedstock["immediate_children"];
+  return (
+  <tr>
+    <td>{url ? <Link to={feedstock["pr_url"]}>{name}</Link> : name}</td>
+    <td>{TITLES[status]}</td>
+    <td>{(immediate || []).join(", ")}</td>
+  </tr>
   );
 }

@@ -23,9 +23,9 @@
   text-align: center;
 }
 
-.migration_details_filter_item {
+.migration_details_filter_button {
+  background-color: inherit;
   border-radius: 25px;
-  color: var(--ifm-color-secondary);
   cursor: pointer;
   font-size: smaller;
   font-weight: 600;
@@ -36,6 +36,16 @@
   user-select: none;
   text-align: right;
   padding-right: 10px;
+}
+
+.migration_details_filter_button:hover:active {
+  background-color: var(--ifm-color-primary-darkest);
+  border-color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
+}
+
+.migration_details_filter_button:hover {
+  text-decoration: underline;
 }
 
 .migration_details_filter_done {
@@ -110,14 +120,11 @@
   color: var(--ifm-color-secondary);
 }
 
-.migration_details_filter_item:hover:active {
-  background-color: var(--ifm-color-primary-darkest);
-  border-color: var(--ifm-color-primary-darkest);
-  color: var(--ifm-color-primary-lightest);
-}
-
-.migration_details_filter_item:hover {
-  text-decoration: underline;
+.migration_details_filter_icon {
+  width: 16px;
+  float: left;
+  margin-top: 5px;
+  margin-left: 3px;
 }
 
 .migration_details table {
