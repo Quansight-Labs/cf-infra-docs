@@ -52,41 +52,49 @@ export const urls = {
       {
         name: "conda-forge documentation",
         link: "https://github.com/conda-forge/conda-forge.github.io",
-        badge: "https://github.com/conda-forge/conda-forge.github.io/workflows/deploy/badge.svg",
-        badgeLink: "https://github.com/conda-forge/conda-forge.github.io/actions?query=workflow%3Adeploy"
+        badge:
+          "https://github.com/conda-forge/conda-forge.github.io/workflows/deploy/badge.svg",
+        badgeLink:
+          "https://github.com/conda-forge/conda-forge.github.io/actions?query=workflow%3Adeploy",
       },
       {
         name: "autotick bot",
         link: "https://github.com/regro/cf-scripts",
-        badge: "https://github.com/regro/cf-scripts/actions/workflows/bot-bot.yml/badge.svg",
-        badgeLink: "https://github.com/regro/cf-scripts/actions"
+        badge:
+          "https://github.com/regro/cf-scripts/actions/workflows/bot-bot.yml/badge.svg",
+        badgeLink: "https://github.com/regro/cf-scripts/actions",
       },
       {
         name: "staged-recipes migrations",
         link: "https://github.com/conda-forge/staged-recipes",
-        badge: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg",
-        badgeLink: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml"
+        badge:
+          "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg",
+        badgeLink:
+          "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml",
       },
       {
         name: "admin migrations",
         link: "https://github.com/regro/libcfgraph",
-        badge: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml/badge.svg",
-        badgeLink: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml"
+        badge:
+          "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml/badge.svg",
+        badgeLink:
+          "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml",
       },
       {
         name: "libcfgraph",
         link: "https://github.com/regro/libcfgraph",
-        badge: "https://dl.circleci.com/status-badge/img/gh/regro/libcfgraph/tree/master.svg?style=svg",
-        badgeLink: "https://circleci.com/gh/regro/libcfgraph"
-      }
+        badge:
+          "https://dl.circleci.com/status-badge/img/gh/regro/libcfgraph/tree/master.svg?style=svg",
+        badgeLink: "https://circleci.com/gh/regro/libcfgraph",
+      },
     ],
     cdn: {
       api: "https://s3.amazonaws.com/conda-static.anaconda.org/conda-forge/last-updated",
-      link: "https://conda-static.anaconda.org/conda-forge/rss.xml"
+      link: "https://conda-static.anaconda.org/conda-forge/rss.xml",
     },
     services: {
       api: "https://conda-forge.herokuapp.com/alive",
-      link: ""
+      link: "",
     },
   },
   travis: {

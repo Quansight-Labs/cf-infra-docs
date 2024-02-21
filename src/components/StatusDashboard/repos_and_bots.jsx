@@ -2,12 +2,10 @@ import { urls } from "@site/src/constants";
 import { React, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
-// If the CDN status is updated within this window (20 minutes),
-// the status is operational.
+// If CDN status is updated in this window (20 minutes), status is operational.
 const OPERATIONAL_WINDOW = 20 * 60 * 1000;
 
-// If the CDN status is updated within this window (40 minutes),
-// the status is degraded.
+// If CDN status is updated in this window (40 minutes), status is degraded.
 const DEGRADED_WINDOW = 40 * 60 * 1000;
 
 export default function ReposAndBots({ onLoad }) {
@@ -24,7 +22,8 @@ export default function ReposAndBots({ onLoad }) {
             <CDNStatus />
             <WebServices />
             {urls.repos.badges.map(({ name, ...badge }, index) =>
-              <Badge key={index} {...badge}>{name}</Badge>)}
+              <Badge key={index} {...badge}>{name}</Badge>
+            )}
           </tbody>
         </table>
       </div>
