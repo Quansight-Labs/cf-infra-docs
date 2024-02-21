@@ -1,3 +1,7 @@
+.badge {
+  vertical-align: bottom;
+}
+
 .current_status {
   background-color: var(--ifm-color-danger);
   color: var(--ifm-color-secondary);

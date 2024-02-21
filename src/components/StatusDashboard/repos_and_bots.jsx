@@ -10,39 +10,6 @@ const OPERATIONAL_WINDOW = 20 * 60 * 1000;
 // the status is degraded.
 const DEGRADED_WINDOW = 40 * 60 * 1000;
 
-const BADGES = [
-  {
-    name: "conda-forge documentation",
-    link: "https://github.com/conda-forge/conda-forge.github.io",
-    badge: "https://github.com/conda-forge/conda-forge.github.io/workflows/deploy/badge.svg",
-    badgeLink: "https://github.com/conda-forge/conda-forge.github.io/actions?query=workflow%3Adeploy"
-  },
-  {
-    name: "autotick bot",
-    link: "https://github.com/regro/cf-scripts",
-    badge: "https://github.com/regro/cf-scripts/actions/workflows/bot-bot.yml/badge.svg",
-    badgeLink: "https://github.com/regro/cf-scripts/actions"
-  },
-  {
-    name: "staged-recipes migrations",
-    link: "https://github.com/conda-forge/staged-recipes",
-    badge: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg",
-    badgeLink: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml"
-  },
-  {
-    name: "admin migrations",
-    link: "https://github.com/regro/libcfgraph",
-    badge: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml/badge.svg",
-    badgeLink: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml"
-  },
-  {
-    name: "libcfgraph",
-    link: "https://github.com/regro/libcfgraph",
-    badge: "https://dl.circleci.com/status-badge/img/gh/regro/libcfgraph/tree/master.svg?style=svg",
-    badgeLink: "https://circleci.com/gh/regro/libcfgraph"
-  }
-];
-
 export default function ReposAndBots({ onLoad }) {
   useEffect(() => void onLoad(), []);
   return (
@@ -54,13 +21,10 @@ export default function ReposAndBots({ onLoad }) {
         </div>
         <table style={{ fontSize: "small", margin: 20 }}>
           <tbody>
-            <Badge {...BADGES[0]}>{BADGES[0].name}</Badge>
-            <Badge {...BADGES[1]}>{BADGES[1].name}</Badge>
-            <Badge {...BADGES[2]}>{BADGES[2].name}</Badge>
-            <WebServices />
-            <Badge {...BADGES[3]}>{BADGES[3].name}</Badge>
-            <Badge {...BADGES[4]}>{BADGES[4].name}</Badge>
             <CDNStatus />
+            <WebServices />
+            {urls.repos.badges.map(({ name, ...badge }, index) =>
+              <Badge key={index} {...badge}>{name}</Badge>)}
           </tbody>
         </table>
       </div>
@@ -81,13 +45,10 @@ function Badge({ children, link, badge, badgeLink }) {
 
 function Image({ alt, link, children }) {
   const [error, setState] = useState(false);
+  const onError = () => setState(true);
   if (error) return (<>No status available</>);
   const image = (
-    <img
-      alt={alt}
-      onError={() => setState(true)}
-      src={children}
-      style={{ verticalAlign: "bottom" }} />
+    <img alt={alt} className={styles.badge} onError={onError} src={children} />
   );
   return link ? <a href={link}>{image}</a> : image;
 }
@@ -97,15 +58,11 @@ function CDNStatus() {
   useEffect(() => {
     void (async () => {
       try {
-        const url = urls.repos.cdn;
-        const response = (await (await fetch(url)).text()).trim();
-        const updated = new Date(response).getTime();
+        const response = await (await fetch(urls.repos.cdn.api)).text();
+        const updated = new Date(response.trim()).getTime();
         const delta = (new Date()).getTime() - updated;
-        const status = delta < OPERATIONAL_WINDOW ?
-          'operational' :
-          delta < DEGRADED_WINDOW ?
-          'degraded' :
-          'major outage';
+        const status = delta < OPERATIONAL_WINDOW ? 'operational' :
+          delta < DEGRADED_WINDOW ? 'degraded' : 'major outage';
         setState({ minutes: Math.round(delta / 1000 / 60), status });
       } catch (error) {
         console.warn(`error loading cdn cloning status`, error);
@@ -114,11 +71,7 @@ function CDNStatus() {
   }, []);
   return (
     <tr>
-      <td>
-      <a href="https://conda-static.anaconda.org/conda-forge/rss.xml">
-        CDN cloning
-      </a>
-      </td>
+      <td><a href={urls.repos.cdn.link}>CDN cloning</a></td>
       <td>{state.status} (last updated {state.minutes} min ago)</td>
     </tr>
   );
@@ -129,8 +82,7 @@ function WebServices() {
   useEffect(() => {
     void (async () => {
       try {
-        const url = urls.repos.services;
-        const { status } = await (await fetch(url)).json();
+        const { status } = await (await fetch(urls.repos.services.api)).json();
         setState(status);
       } catch (error) {
         console.warn(`error loading web services status`, error);
@@ -139,12 +91,8 @@ function WebServices() {
   }, []);
   return (
     <tr>
-      <td>
-        <a href="https://github.com/conda-forge/conda-forge-webservices">
-          admin web services
-        </a>
-      </td>
+      <td><a href={urls.repos.services.link}>admin web services</a></td>
       <td>{status}</td>
-  </tr>
+    </tr>
   );
 }
