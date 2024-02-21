@@ -1,5 +1,5 @@
+import { urls } from "@site/src/constants";
 import React, { useEffect, useState } from "react";
-import { urls } from "../../constants";
 import { measureProgress } from "../MigrationDetails";
 import styles from "./styles.module.css";
 import { Redirect } from "@docusaurus/router";

@@ -47,6 +47,10 @@ export const urls = {
         "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/regular_status.json",
     },
   },
+  repos: {
+    cdn: "https://s3.amazonaws.com/conda-static.anaconda.org/conda-forge/last-updated",
+    services: "https://conda-forge.herokuapp.com/alive"
+  },
   travis: {
     usage: "https://conda-forge.herokuapp.com/status-monitor/report/travis-ci",
   },
