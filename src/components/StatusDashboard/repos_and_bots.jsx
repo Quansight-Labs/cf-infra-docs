@@ -10,6 +10,39 @@ const OPERATIONAL_WINDOW = 20 * 60 * 1000;
 // the status is degraded.
 const DEGRADED_WINDOW = 40 * 60 * 1000;
 
+const BADGES = [
+  {
+    name: "conda-forge documentation",
+    link: "https://github.com/conda-forge/conda-forge.github.io",
+    badge: "https://github.com/conda-forge/conda-forge.github.io/workflows/deploy/badge.svg",
+    badgeLink: "https://github.com/conda-forge/conda-forge.github.io/actions?query=workflow%3Adeploy"
+  },
+  {
+    name: "autotick bot",
+    link: "https://github.com/regro/cf-scripts",
+    badge: "https://github.com/regro/cf-scripts/actions/workflows/bot-bot.yml/badge.svg",
+    badgeLink: "https://github.com/regro/cf-scripts/actions"
+  },
+  {
+    name: "staged-recipes migrations",
+    link: "https://github.com/conda-forge/staged-recipes",
+    badge: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg",
+    badgeLink: "https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml"
+  },
+  {
+    name: "admin migrations",
+    link: "https://github.com/regro/libcfgraph",
+    badge: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml/badge.svg",
+    badgeLink: "https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml"
+  },
+  {
+    name: "libcfgraph",
+    link: "https://github.com/regro/libcfgraph",
+    badge: "https://dl.circleci.com/status-badge/img/gh/regro/libcfgraph/tree/master.svg?style=svg",
+    badgeLink: "https://circleci.com/gh/regro/libcfgraph"
+  }
+];
+
 export default function ReposAndBots({ onLoad }) {
   useEffect(() => void onLoad(), []);
   return (
@@ -21,37 +54,12 @@ export default function ReposAndBots({ onLoad }) {
         </div>
         <table style={{ fontSize: "small", margin: 20 }}>
           <tbody>
-            <Badge
-              badge="https://github.com/conda-forge/conda-forge.github.io/workflows/deploy/badge.svg"
-              badgeLink="https://github.com/conda-forge/conda-forge.github.io/actions?query=workflow%3Adeploy"
-              link="https://github.com/conda-forge/conda-forge.github.io">
-              conda-forge documentation
-            </Badge>
-            <Badge
-              badge="https://github.com/regro/cf-scripts/actions/workflows/bot-bot.yml/badge.svg"
-              badgeLink="https://github.com/regro/cf-scripts/actions"
-              link="https://github.com/regro/cf-scripts">
-              autotick bot
-            </Badge>
-            <Badge
-              badge="https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml/badge.svg"
-              badgeLink="https://github.com/conda-forge/admin-requests/actions/workflows/create_feedstocks.yml"
-              link="https://github.com/conda-forge/staged-recipes">
-              staged-recipes migrations
-            </Badge>
+            <Badge {...BADGES[0]}>{BADGES[0].name}</Badge>
+            <Badge {...BADGES[1]}>{BADGES[1].name}</Badge>
+            <Badge {...BADGES[2]}>{BADGES[2].name}</Badge>
             <WebServices />
-            <Badge
-              badge="https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml/badge.svg"
-              badgeLink="https://github.com/conda-forge/admin-migrations/actions/workflows/migrate.yml"
-              link="https://github.com/regro/libcfgraph">
-              admin migrations
-            </Badge>
-            <Badge
-              badge="https://dl.circleci.com/status-badge/img/gh/regro/libcfgraph/tree/master.svg?style=svg"
-              badgeLink="https://circleci.com/gh/regro/libcfgraph"
-              link="https://github.com/regro/libcfgraph">
-              libcfgraph
-            </Badge>
+            <Badge {...BADGES[3]}>{BADGES[3].name}</Badge>
+            <Badge {...BADGES[4]}>{BADGES[4].name}</Badge>
             <CDNStatus />
           </tbody>
         </table>
@@ -132,7 +140,9 @@ function WebServices() {
   return (
     <tr>
       <td>
-        <a href="https://github.com/conda-forge/conda-forge-webservices">admin web services</a>
+        <a href="https://github.com/conda-forge/conda-forge-webservices">
+          admin web services
+        </a>
       </td>
       <td>{status}</td>
   </tr>
