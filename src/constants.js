@@ -49,7 +49,7 @@ export const urls = {
   },
   repos: {
     cdn: "https://s3.amazonaws.com/conda-static.anaconda.org/conda-forge/last-updated",
-    services: "https://conda-forge.herokuapp.com/alive"
+    services: "https://conda-forge.herokuapp.com/alive",
   },
   travis: {
     usage: "https://conda-forge.herokuapp.com/status-monitor/report/travis-ci",
