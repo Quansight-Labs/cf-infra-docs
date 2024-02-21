@@ -1,8 +1,8 @@
+import { Redirect } from "@docusaurus/router";
 import { urls } from "@site/src/constants";
 import React, { useEffect, useState } from "react";
 import { measureProgress } from "../MigrationDetails";
 import styles from "./styles.module.css";
-import { Redirect } from "@docusaurus/router";
 
 const COLLAPSED_KEY = "migration-collapsed";
 const SORT_KEY = "migration-sort";
@@ -53,12 +53,12 @@ export default function CurrentMigrations({ onLoad }) {
   return (
     <>
       <div id="migrations" className={styles.toc_anchor}></div>
-      <div id="current_migrations" className="card margin--xs padding--xs">
+      <div className={`card margin--xs padding--xs`} style={{ overflow: 'auto' }}>
         <div className="card__header">
           <h3>Current Migrations</h3>
         </div>
         <div className="card__body">
-          <table>
+          <table className={styles.migrations_table}>
             <TableContent
               collapsed={state.collapsed.longterm}
               name="Long-running migrations"
@@ -97,12 +97,12 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
     <>
       <thead>
         <tr onClick={select}>
-          <th colSpan="7" className={collapsed ? "collapsed" : undefined}>
+          <th colSpan="7" className={collapsed ? styles.collapsed : undefined}>
             {name}
             {rows.length ? "" : "..."}
           </th>
         </tr>
-        <tr className={collapsed ? "collapsed" : undefined}>
+        <tr className={collapsed ? styles.collapsed : undefined}>
           <th
             onClick={() => resort("name")}
             className={sort.by === "name" ? sort.order : undefined}
@@ -147,7 +147,7 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           </th>
         </tr>
       </thead>
-      <tbody className={collapsed ? "collapsed" : undefined}>
+      <tbody className={collapsed ? styles.collapsed  : undefined}>
         {rows.map((row) => {
           const { progress } = row;
           const href = `/status/migration/${row.name}`;

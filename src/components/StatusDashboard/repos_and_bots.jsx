@@ -71,7 +71,7 @@ function CDNStatus() {
   return (
     <tr>
       <td><a href={urls.repos.cdn.link}>CDN cloning</a></td>
-      <td>{state.status} (last updated {state.minutes} min ago)</td>
+      <td>{state.status}<br />(last updated {state.minutes} min ago)</td>
     </tr>
   );
 }
