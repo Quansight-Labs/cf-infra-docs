@@ -24,45 +24,45 @@ export const charts = {
 export const urls = {
   cloud: {
     anaconda: {
-      api: "https://anaconda.statuspage.io/",
+      api: "https://sqvvxmkr4r26.statuspage.io/api/v2/status.json",
       link: "https://anaconda.statuspage.io/",
-      title: "Anaconda"
+      title: "Anaconda",
     },
     appveyor: {
-      api: "https://status.appveyor.com/",
+      api: "https://status.appveyor.com/api/v2/status.json",
       link: "https://status.appveyor.com/",
-      title: "AppVeyor"
+      title: "AppVeyor",
     },
     azure: {
       api: "https://conda-forge.herokuapp.com/status-monitor/azure",
       link: "https://status.dev.azure.com/",
-      title: "Azure DevOps"
+      title: "Azure DevOps",
     },
     circle: {
-      api: "https://status.circleci.com",
+      api: "https://status.circleci.com/api/v2/status.json",
       link: "https://status.circleci.com",
-      title: "Circle CI"
+      title: "Circle CI",
     },
     github: {
-      api: "https://www.githubstatus.com/",
+      api: "https://www.githubstatus.com/api/v2/status.json",
       link: "https://www.githubstatus.com/",
-      title: "GitHub"
+      title: "GitHub",
     },
     open_gpu_server: {
       api: "https://conda-forge.herokuapp.com/status-monitor/open-gpu-server",
       link: "https://ci-status.quansight.dev/",
-      title: "Open GPU Server"
+      title: "Open GPU Server",
     },
     quay: {
-      api: "https://status.redhat.com/",
+      api: "https://status.redhat.com/api/v2/status.json",
       link: "https://status.redhat.com/",
-      title: "Quay.io"
+      title: "Quay.io",
     },
     travis: {
-      api: "https://www.traviscistatus.com/",
+      api: "https://www.traviscistatus.com/api/v2/status.json",
       link: "https://www.traviscistatus.com/",
-      title: "Travis CI"
-    }
+      title: "Travis CI",
+    },
   },
   azure: {
     pipelines:

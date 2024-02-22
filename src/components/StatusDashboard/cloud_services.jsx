@@ -2,6 +2,8 @@ import { urls } from "@site/src/constants";
 import { React, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
+const OPERATIONAL = "All Systems Operational";
+
 export default function CloudServices({ onLoad }) {
   useEffect(() => {
     void onLoad();
@@ -29,32 +31,28 @@ export default function CloudServices({ onLoad }) {
 
 function Status({ api, link, title }) {
   const [state, setState] = useState({ status: "..." });
+  const status = ({
+    OPERATIONAL,
+    "Everything is looking good": OPERATIONAL,
+    "operational": OPERATIONAL
+  })[state.status] || state.status;
+  const className = styles.status_pill + " " +
+    styles[status === OPERATIONAL ? "operational" : "degraded"]
   useEffect(() => {
     void (async () => {
-      try { // to fetch the api URL.
-        const text = await (await fetch(api)).text();
-        try { // to parse as JSON.
-          setState({ status: JSON.parse(text).status });
-        } catch (error) {
-          if (error instanceof SyntaxError) try { // to parse as HTML.
-            const doc = (new DOMParser()).parseFromString(text, "text/html");
-            const status = doc.querySelector(".status .font-large").textContent;
-            setState({ status: status.trim() });
-          } catch (error) {
-            console.warn(`error parsing HTML for ${title} – ${api}`, error);
-          } else {
-            console.warn(`error parsing JSON for ${title} – ${api}`, error);
-          }
-        }
+      try {
+        const parsed = (await (await fetch(api)).json()).status;
+        const status = typeof parsed === "object" ? parsed.description : parsed;
+        setState({ status });
       } catch (error) {
-        console.warn(`error fetching ${title} – ${api}`, error);
+        console.warn(`error fetching data for ${title} – ${api}`, error);
       }
     })();
   }, []);
   return (
     <tr>
       <td><a href={link}>{title}</a></td>
-      <td>{state.status}</td>
+      <td><span className={className}>{status}</span></td>
     </tr>
   );
 }

@@ -42,7 +42,6 @@
   background-color: transparent;
 }
 
-
 .migrations_table {
   font-size: small;
   display: table;
@@ -155,4 +154,21 @@
   position: relative;
   top: -50px;
   visibility: hidden;
+}
+
+.status_pill {
+  display: inline-block;
+  border-radius: 8px;
+  color: var(--ifm-color-secondary);
+  min-width: 195px;
+  padding: 2px;
+  text-align: center;
+}
+
+.operational {
+  background-color: var(--ifm-color-success);
+}
+
+.degraded {
+  background-color: var(--ifm-color-warning);
 }
