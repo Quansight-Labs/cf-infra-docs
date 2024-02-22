@@ -17,15 +17,17 @@ export default function ReposAndBots({ onLoad }) {
         <div className="card__header">
           <h3>Repos and Bots</h3>
         </div>
-        <table style={{ fontSize: "small", margin: 20 }}>
-          <tbody>
-            <CDNStatus />
-            <WebServices />
-            {urls.repos.badges.map(({ name, ...badge }, index) =>
-              <Badge key={index} {...badge}>{name}</Badge>
-            )}
-          </tbody>
-        </table>
+        <div className="card__body">
+          <table style={{ fontSize: "small" }}>
+            <tbody>
+              <CDNStatus />
+              <WebServices />
+              {urls.repos.badges.map(({ name, ...badge }, index) =>
+                <Badge key={index} {...badge}>{name}</Badge>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
@@ -53,15 +55,15 @@ function Image({ alt, link, children }) {
 }
 
 function CDNStatus() {
-  const [state, setState] = useState({ minutes: 0, status: '...' });
+  const [state, setState] = useState({ minutes: 0, status: "..." });
   useEffect(() => {
     void (async () => {
       try {
         const response = await (await fetch(urls.repos.cdn.api)).text();
         const updated = new Date(response.trim()).getTime();
         const delta = (new Date()).getTime() - updated;
-        const status = delta < OPERATIONAL_WINDOW ? 'operational' :
-          delta < DEGRADED_WINDOW ? 'degraded' : 'major outage';
+        const status = delta < OPERATIONAL_WINDOW ? "operational" :
+          delta < DEGRADED_WINDOW ? "degraded" : "major outage";
         setState({ minutes: Math.round(delta / 1000 / 60), status });
       } catch (error) {
         console.warn(`error loading cdn cloning status`, error);
@@ -77,7 +79,7 @@ function CDNStatus() {
 }
 
 function WebServices() {
-  const [status, setState] = useState('');
+  const [status, setState] = useState("");
   useEffect(() => {
     void (async () => {
       try {

@@ -22,6 +22,48 @@ export const charts = {
 
 // All of the JSON contents services that populate the page are stored here.
 export const urls = {
+  cloud: {
+    anaconda: {
+      api: "https://anaconda.statuspage.io/",
+      link: "https://anaconda.statuspage.io/",
+      title: "Anaconda"
+    },
+    appveyor: {
+      api: "https://status.appveyor.com/",
+      link: "https://status.appveyor.com/",
+      title: "AppVeyor"
+    },
+    azure: {
+      api: "https://conda-forge.herokuapp.com/status-monitor/azure",
+      link: "https://status.dev.azure.com/",
+      title: "Azure DevOps"
+    },
+    circle: {
+      api: "https://status.circleci.com",
+      link: "https://status.circleci.com",
+      title: "Circle CI"
+    },
+    github: {
+      api: "https://www.githubstatus.com/",
+      link: "https://www.githubstatus.com/",
+      title: "GitHub"
+    },
+    open_gpu_server: {
+      api: "https://conda-forge.herokuapp.com/status-monitor/open-gpu-server",
+      link: "https://ci-status.quansight.dev/",
+      title: "Open GPU Server"
+    },
+    quay: {
+      api: "https://status.redhat.com/",
+      link: "https://status.redhat.com/",
+      title: "Quay.io"
+    },
+    travis: {
+      api: "https://www.traviscistatus.com/",
+      link: "https://www.traviscistatus.com/",
+      title: "Travis CI"
+    }
+  },
   azure: {
     pipelines:
       "https://conda-forge.herokuapp.com/status-monitor/report/azure-pipelines",
