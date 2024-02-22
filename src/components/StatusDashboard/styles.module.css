@@ -157,9 +157,10 @@
 }
 
 .status_pill {
-  display: inline-block;
   border-radius: 8px;
-  color: var(--ifm-color-secondary);
+  display: inline-block;
+  font-size: smaller;
+  font-weight: 600;
   min-width: 195px;
   padding: 2px;
   text-align: center;
@@ -167,8 +168,15 @@
 
 .operational {
   background-color: var(--ifm-color-success);
+  color: var(--ifm-color-secondary);
 }
 
 .degraded {
   background-color: var(--ifm-color-warning);
+  color: var(--ifm-color-secondary);
+}
+
+.outage {
+  background-color: var(--ifm-color-danger);
+  color: var(--ifm-color-secondary);
 }

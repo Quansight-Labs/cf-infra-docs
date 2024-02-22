@@ -55,7 +55,7 @@ function Image({ alt, link, children }) {
 }
 
 function CDNStatus() {
-  const [state, setState] = useState({ minutes: 0, status: "..." });
+  const [{ minutes, status }, setState] = useState({ minutes: 0, status: "…" });
   useEffect(() => {
     void (async () => {
       try {
@@ -73,7 +73,15 @@ function CDNStatus() {
   return (
     <tr>
       <td><a href={urls.repos.cdn.link}>CDN cloning</a></td>
-      <td>{state.status}<br />(last updated {state.minutes} min ago)</td>
+      <td>
+        <div style={{ display: "block" }} className={
+          styles.status_pill +
+          (status === "operational" ? " " + styles.operational : "") +
+          (status === "degraded" ? " " + styles.degraded : "") +
+          (status === "major outage" ? " " + styles.outage : "")
+        }>{status}</div>
+        (last updated {minutes} min ago)
+      </td>
     </tr>
   );
 }
@@ -93,7 +101,14 @@ function WebServices() {
   return (
     <tr>
       <td><a href={urls.repos.services.link}>admin web services</a></td>
-      <td>{status}</td>
+      <td>
+        <div style={{ display: "block" }} className={
+          styles.status_pill +
+          (status === "operational" ? " " + styles.operational : "") +
+          (status === "degraded" ? " " + styles.degraded : "") +
+          (status === "major outage" ? " " + styles.outage : "")
+        }>{status}</div>
+      </td>
     </tr>
   );
 }
