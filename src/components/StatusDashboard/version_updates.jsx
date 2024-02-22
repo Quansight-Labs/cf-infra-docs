@@ -3,7 +3,15 @@ import { urls } from "../../constants";
 import styles from "./styles.module.css";
 
 export default function VersionUpdates({ onLoad }) {
-  const [state, setState] = useState({ errored: [], errors: {}, queued: [] });
+  const [{ collapsed, errored, errors, queued }, setState] = useState({
+    collapsed: { queued: true, errored: false },
+    errored: [],
+    errors: {},
+    queued: []
+  });
+  const toggle = key => () => setState(prev => (
+    { ...prev, collapsed: { ...prev.collapsed, [key]: !prev.collapsed[key] } }
+  ));
   useEffect(() => {
     void (async () => {
       try {
@@ -18,13 +26,30 @@ export default function VersionUpdates({ onLoad }) {
   return (
     <>
       <div id="version" className={styles.toc_anchor}></div>
-      <div id="version_updates" className="card margin-top--xs">
+      <div className={`card margin-top--xs ${styles.version_updates}`}>
         <div className="card__header">
           <h3>Version Updates</h3>
         </div>
         <div className="card__body">
-          There are currently {state.queued.length} queued and{" "}
-          {state.errored.length} errored version updates.
+          There are currently {queued.length} queued and{" "}
+          {errored.length} errored version updates.
+          <div
+            onClick={toggle('queued')}
+            className={collapsed.queued ? styles.collapsed : styles.expanded}>
+            queued
+          </div>
+          <div
+            style={collapsed.queued ? { display: "none" } : { display: "flex" }}>
+            queued contents
+          </div>
+          <div
+            onClick={toggle('errored')}
+            className={collapsed.errored ? styles.collapsed : styles.expanded}>
+            errored
+          </div>
+          <div style={collapsed.errored ? { display: "none" } : { display: "block" }}>
+            errored contents
+          </div>
         </div>
       </div>
     </>

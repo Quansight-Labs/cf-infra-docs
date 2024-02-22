@@ -52,8 +52,14 @@ export default function StatusDashboard() {
           <TOC />
         </div>
         <div className="col col--10">
-          <ReposAndBots onLoad={onLoad} />
-          <CloudServices onLoad={onLoad} />
+          <div className="row">
+            <div className="col" style={{ flex: 1 }}>
+              <ReposAndBots onLoad={onLoad} style={{ height: "100%" }} />
+            </div>
+            <div className="col" style={{ flex: 1 }}>
+              <CloudServices onLoad={onLoad} style={{ height: "100%" }} />
+            </div>
+          </div>
           <CurrentMigrations onLoad={onLoad} />
           <VersionUpdates onLoad={onLoad} />
           <AzurePipelineUsage onLoad={onLoad} />

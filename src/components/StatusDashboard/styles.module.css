@@ -180,3 +180,11 @@
   background-color: var(--ifm-color-danger);
   color: var(--ifm-color-secondary);
 }
+
+.version_updates .collapsed::after {
+  content: " ▹";
+}
+
+.version_updates .expanded::after {
+  content: " ▿";
+}

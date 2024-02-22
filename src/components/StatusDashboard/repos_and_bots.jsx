@@ -8,12 +8,12 @@ const OPERATIONAL_WINDOW = 20 * 60 * 1000;
 // If CDN status is updated in this window (40 minutes), status is degraded.
 const DEGRADED_WINDOW = 40 * 60 * 1000;
 
-export default function ReposAndBots({ onLoad }) {
+export default function ReposAndBots({ onLoad, style }) {
   useEffect(() => void onLoad(), []);
   return (
     <>
       <div id="repos" className={styles.toc_anchor}></div>
-      <div className="card margin-top--xs">
+      <div className="card margin-top--xs" style={style}>
         <div className="card__header">
           <h3>Repos and Bots</h3>
         </div>
@@ -80,7 +80,9 @@ function CDNStatus() {
           (status === "degraded" ? " " + styles.degraded : "") +
           (status === "major outage" ? " " + styles.outage : "")
         }>{status}</div>
-        (last updated {minutes} min ago)
+        <div style={{ fontStyle: "italic", textAlign: "right" }}>
+          (last updated {minutes} min ago)
+        </div>
       </td>
     </tr>
   );
