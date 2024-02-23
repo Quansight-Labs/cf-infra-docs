@@ -144,6 +144,6 @@ export const urls = {
   },
   versions: {
     api: "https://raw.githubusercontent.com/regro/cf-graph-countyfair/master/status/version_status.json",
-    pr: "https://github.com/conda-forge/<NAME>-feedstock/blob/master/recipe/meta.yaml"
-  }
+    pr: "https://github.com/conda-forge/<NAME>-feedstock/blob/master/recipe/meta.yaml",
+  },
 };
