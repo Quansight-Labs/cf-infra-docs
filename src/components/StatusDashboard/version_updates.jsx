@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 export default function VersionUpdates({ onLoad }) {
   const [{ collapsed, errored, errors, queued }, setState] = useState({
-    collapsed: { queued: false, errored: false },
+    collapsed: { queued: true, errored: true },
     errored: [],
     errors: {},
     queued: []
@@ -15,7 +15,7 @@ export default function VersionUpdates({ onLoad }) {
   useEffect(() => {
     void (async () => {
       try {
-        const fetched = await (await fetch(urls.versions)).json();
+        const fetched = await (await fetch(urls.versions.api)).json();
         setState((prev) => ({ ...prev, ...fetched }));
       } catch (error) {
         console.warn("error loading version updates", error);
@@ -45,7 +45,9 @@ export default function VersionUpdates({ onLoad }) {
             className={styles.version_updates_content}
             style={collapsed.queued ? { display: "none" } : { display: "flex" }}>
             {queued.map((item, index) => (
-              <div key={index} className={styles.queued_item}>{item}</div>
+              <div key={index} className={styles.queued_item}>
+                <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
+              </div>
             ))}
           </div>
           <div
