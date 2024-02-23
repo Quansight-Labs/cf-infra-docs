@@ -38,16 +38,14 @@ export default function VersionUpdates({ onLoad }) {
         <div className="card__body">
           There are currently {queued.length} queued and{" "}
           {errored.length} errored version updates.
-          <div
-            onClick={toggleTitle('queued')}
+          <div onClick={toggleTitle('queued')}
             className={
               styles.version_updates_title + " " +
               (collapsed.queued ? styles.collapsed : styles.expanded)
             }>
             Queued Version Updates
           </div>
-          <div
-            className={styles.version_updates_content}
+          <div className={styles.version_updates_content}
             style={collapsed.queued ?
               { display: "none" } :
               { display: "flex", flexDirection: "row" }
@@ -58,33 +56,27 @@ export default function VersionUpdates({ onLoad }) {
               </div>
             ))}
           </div>
-          <div
-            onClick={toggleTitle('errored')}
+          <div onClick={toggleTitle('errored')}
             className={
               styles.version_updates_title + " " +
               (collapsed.errored ? styles.collapsed : styles.expanded)
             }>
             Errored Version Updates
           </div>
-          <div
-            className={styles.version_updates_content}
+          <div className={styles.version_updates_content}
             style={collapsed.errored ?
               { display: "none" } :
               { display: "flex", flexDirection: "column" }}>
             {errored.map((item, index) => (
               <React.Fragment key={index}>
-              <div
-                className={
-                  styles.errored_item + " " +
-                  (expanded[item] ? styles.expanded : styles.collapsed)}
+              <div className={
+                styles.errored_item + " " +
+                (expanded[item] ? styles.expanded : styles.collapsed)}
                 onClick={toggleItem(item)}>
                 <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
               </div>
-              <div
-                className={styles.errored_item_content}
-                style={{
-                  display: !expanded[item] && "none"
-                }}>
+              <div className={styles.errored_item_content}
+                style={{ display: !expanded[item] && "none" }}>
                 <pre>{errors[item]}</pre>
               </div>
               </React.Fragment>

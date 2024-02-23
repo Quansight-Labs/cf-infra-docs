@@ -182,10 +182,12 @@
 }
 
 .version_updates .collapsed::after {
+  font-size: smaller;
   content: " ▹";
 }
 
 .version_updates .expanded::after {
+  font-size: smaller;
   content: " ▿";
 }
 
@@ -228,15 +230,17 @@
   cursor: pointer;
   font-size: smaller;
   font-weight: 600;
-  margin: 0 10px;
+  margin-left: 20px;
+  max-width: calc(100% - 20px);
   padding: 2px 8px;
 }
 
 .errored_item_content {
   border: 1px solid var(--ifm-color-secondary);
   border-top: 0px;
+  overflow: auto;
   padding: 10px;
-  margin: -5px 10px 0 10px;
+  margin: -5px 0 0 20px;
 }
 
 .errored_item_content pre {
