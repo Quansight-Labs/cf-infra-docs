@@ -195,14 +195,13 @@
   cursor: pointer;
   font-size: smaller;
   font-weight: 600;
-  margin: 10px 2px;
+  margin: 2px;
   padding: 2px 8px;
   user-select: none;
 }
 
 .version_updates_content {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   gap: 5px;
   margin: 2px 0;
@@ -216,7 +215,32 @@
   font-size: smaller;
   font-weight: 600;
   padding: 5px;
+  margin-top: 10px;
+  max-width: 300px;
   min-width: 300px;
   text-align: center;
   text-wrap: nowrap;
+}
+
+.errored_item {
+  background-color: var(--ifm-table-stripe-background);
+  border: var(--ifm-table-border-width) solid #ccc;
+  cursor: pointer;
+  font-size: smaller;
+  font-weight: 600;
+  margin: 0 10px;
+  padding: 2px 8px;
+}
+
+.errored_item_content {
+  border: 1px solid var(--ifm-color-secondary);
+  border-top: 0px;
+  padding: 10px;
+  margin: -5px 10px 0 10px
+}
+
+.errored_item_content pre {
+  font-size: smaller;
+  margin: 0;
+  text-wrap: wrap;
 }
