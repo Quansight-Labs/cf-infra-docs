@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 export default function VersionUpdates({ onLoad }) {
   const [{ collapsed, errored, errors, queued }, setState] = useState({
-    collapsed: { queued: true, errored: false },
+    collapsed: { queued: false, errored: false },
     errored: [],
     errors: {},
     queued: []
@@ -35,19 +35,30 @@ export default function VersionUpdates({ onLoad }) {
           {errored.length} errored version updates.
           <div
             onClick={toggle('queued')}
-            className={collapsed.queued ? styles.collapsed : styles.expanded}>
+            className={
+              styles.version_updates_title + " " +
+              (collapsed.queued ? styles.collapsed : styles.expanded)
+            }>
             queued
           </div>
           <div
+            className={styles.version_updates_content}
             style={collapsed.queued ? { display: "none" } : { display: "flex" }}>
-            queued contents
+            {queued.map((item, index) => (
+              <div key={index} className={styles.queued_item}>{item}</div>
+            ))}
           </div>
           <div
             onClick={toggle('errored')}
-            className={collapsed.errored ? styles.collapsed : styles.expanded}>
+            className={
+              styles.version_updates_title + " " +
+              (collapsed.errored ? styles.collapsed : styles.expanded)
+            }>
             errored
           </div>
-          <div style={collapsed.errored ? { display: "none" } : { display: "block" }}>
+          <div
+            className={styles.version_updates_content}
+            style={collapsed.errored ? { display: "none" } : { display: "block" }}>
             errored contents
           </div>
         </div>

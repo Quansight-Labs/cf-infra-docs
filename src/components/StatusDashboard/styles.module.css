@@ -188,3 +188,35 @@
 .version_updates .expanded::after {
   content: " ▿";
 }
+
+.version_updates_title {
+  background-color: var(--ifm-table-stripe-background);
+  border: var(--ifm-table-border-width) solid #ccc;
+  cursor: pointer;
+  font-size: smaller;
+  font-weight: 600;
+  margin: 10px 2px;
+  padding: 2px 8px;
+  user-select: none;
+}
+
+.version_updates_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 2px 0;
+  padding: 0 2px;
+}
+
+.queued_item {
+  border: 2px solid var(--ifm-color-secondary);
+  border-radius: 8px;
+  flex: 1;
+  font-size: smaller;
+  font-weight: 600;
+  padding: 5px;
+  min-width: 250px;
+  text-align: center;
+  text-wrap: nowrap;
+}
