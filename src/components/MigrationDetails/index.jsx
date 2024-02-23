@@ -91,7 +91,7 @@ export default function MigrationDetails() {
             <Breadcrumbs>{name}</Breadcrumbs>
             <div style={{ clear: "both" }}></div>
           </div>
-          <div className="card__body">
+          <div className="card__body" style={{ overflow: "auto" }}>
             {details && <Bar details={details} />}
             {view === "graph" ?
               <Graph>{name}</Graph> :
@@ -200,7 +200,7 @@ function Table({ details }) {
         <thead>
           <tr>
             <th style={{ width: 150 }}>Name</th>
-            <th style={{ width: 150 }}>Status</th>
+            <th style={{ width: 115 }}>Status</th>
             <th style={{ flex: 1 }}>Immediate Children</th>
           </tr>
         </thead>

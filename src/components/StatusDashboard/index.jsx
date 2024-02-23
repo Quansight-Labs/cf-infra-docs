@@ -34,11 +34,11 @@ ChartJS.register(
 
 export default function StatusDashboard() {
   const total = 8; // Total number of dashboard components.
-  const [state, setState] = useState({ loaded: 0, jumped: false });
+  const [{ jumped, loaded }, setState] = useState({ loaded: 0, jumped: false });
   const { hash } = useLocation();
   useEffect(() => {
     // When all components finish loading, scroll if necessary.
-    if (state.jumped || state.loaded !== total) return;
+    if (jumped || loaded !== total) return;
     setState((prev) => ({ ...prev, jumped: true }));
     const id = hash.length > 1 ? hash.substring(1) : "";
     if (id) document.getElementById(id)?.scrollIntoView();
