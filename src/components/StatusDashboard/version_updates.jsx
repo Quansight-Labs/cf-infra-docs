@@ -1,5 +1,5 @@
+import { urls } from "@site/src/constants";
 import React, { useEffect, useState } from "react";
-import { urls } from "../../constants";
 import styles from "./styles.module.css";
 
 export default function VersionUpdates({ onLoad }) {

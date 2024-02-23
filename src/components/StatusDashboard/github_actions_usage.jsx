@@ -1,7 +1,7 @@
+import { charts, urls } from "@site/src/constants";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { charts, urls } from "../../constants";
 import styles from "./styles.module.css";
 
 export default function GitHubActionsUsage({ onLoad }) {
