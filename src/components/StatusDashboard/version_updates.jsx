@@ -73,6 +73,14 @@ export default function VersionUpdates({ onLoad }) {
                 styles.errored_item + " " +
                 (expanded[item] ? styles.expanded : styles.collapsed)}
                 onClick={toggleItem(item)}>
+                <span class="fa fa-fw">
+                  <i className={
+                    "fa fa-fw fa-ellipsis-vertical " +
+                    styles.errored_item_ellipsis}
+                    style={{ position: "relative", left: -25 }}></i>
+                  <i className={`fa fa-fw fa-blank ${styles.errored_item_spacer}`}
+                    style={{ position: "relative", left: -25 }}></i>
+                </span>
                 <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
               </div>
               <div className={styles.errored_item_content}

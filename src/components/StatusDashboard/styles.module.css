@@ -248,8 +248,25 @@
   font-weight: 600;
   margin-left: 20px;
   max-width: calc(100% - 20px);
-  padding: 2px 8px;
+  padding: 2px 0px;
 }
+
+.errored_item .errored_item_ellipsis {
+  display: none;
+}
+
+.errored_item:hover .errored_item_ellipsis {
+  display: inline;
+}
+
+.errored_item .errored_item_spacer {
+  display: inline;
+}
+
+.errored_item:hover .errored_item_spacer {
+  display: none;
+}
+
 
 .errored_item_content {
   border: 1px solid var(--ifm-color-secondary);
