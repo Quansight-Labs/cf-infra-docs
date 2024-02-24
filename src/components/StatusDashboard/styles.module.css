@@ -267,7 +267,6 @@
   display: none;
 }
 
-
 .errored_item_content {
   border: 1px solid var(--ifm-color-secondary);
   border-top: 0px;
