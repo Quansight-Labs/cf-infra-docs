@@ -223,7 +223,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 2px 0;
+  margin: 5px 0;
   padding: 0 2px;
 }
 
@@ -231,6 +231,11 @@
   font-size: small;
   font-weight: 600;
   text-decoration: none;
+}
+
+.version_updates_content .badge:hover {
+  border-width: var(--ifm-badge-border-width);
+  border-color: var(--ifm-color-primary);
 }
 
 .errored_item {

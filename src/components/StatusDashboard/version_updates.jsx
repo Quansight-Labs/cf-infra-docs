@@ -53,7 +53,7 @@ export default function VersionUpdates({ onLoad }) {
             {queued.map((item, index) => (
               <div key={index}
                 style={{ margin: 2 }}
-                className="badge badge--secondary">
+                className={`${styles.badge} badge badge--secondary`}>
                 <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
               </div>
             ))}
@@ -76,7 +76,7 @@ export default function VersionUpdates({ onLoad }) {
                   (expanded[item] ? styles.expanded : styles.collapsed)}
                   onClick={toggleItem(item)}>
                   <HoverEllipsis />
-                  <div className="badge badge--secondary">
+                  <div className={`${styles.badge} badge badge--secondary`}>
                     {/* Prevent link clicks from expanding/collapsing. */}
                     <a onClick={event => event.stopPropagation()}
                       href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
