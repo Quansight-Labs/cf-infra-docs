@@ -71,19 +71,20 @@ export default function VersionUpdates({ onLoad }) {
               { display: "flex", flexDirection: "column" }}>
             {errored.map((item, index) => (
               <React.Fragment key={index}>
-              <div className={
-                styles.errored_item + " " +
-                (expanded[item] ? styles.expanded : styles.collapsed)}
-                onClick={toggleItem(item)}>
-                <HoverEllipsis />
-                <div className="badge badge--secondary">
-                  <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
+                <div className={
+                  styles.errored_item + " " +
+                  (expanded[item] ? styles.expanded : styles.collapsed)}
+                  onClick={toggleItem(item)}>
+                  <HoverEllipsis />
+                  <div className="badge badge--secondary">
+                    <a onClick={event => event.stopPropagation()}
+                      href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
+                  </div>
                 </div>
-              </div>
-              <div className={styles.errored_item_content}
-                style={{ display: !expanded[item] && "none" }}>
-                <pre>{errors[item]}</pre>
-              </div>
+                <div className={styles.errored_item_content}
+                  style={{ display: !expanded[item] && "none" }}>
+                  <pre>{errors[item]}</pre>
+                </div>
               </React.Fragment>
             ))}
           </div>
