@@ -47,25 +47,47 @@ export default function StatusDashboard() {
     setState((prev) => ({ ...prev, loaded: prev.loaded + 1 }));
   return (
     <main className={["container", styles.status_dashboard].join(" ")}>
-      <div className="row">
+      <div className="row row--no-gutters">
         <div className="col col--2">
           <TOC />
         </div>
         <div className="col col--10">
-          <div className="row">
-            <div className="col" style={{ flex: 1 }}>
+          <div className="row row--no-gutters">
+            <div className="col col--6" style={{ flex: 1 }}>
               <ReposAndBots onLoad={onLoad} style={{ height: "100%" }} />
             </div>
-            <div className="col" style={{ flex: 1 }}>
+            <div className="col col--6" style={{ flex: 1 }}>
               <CloudServices onLoad={onLoad} style={{ height: "100%" }} />
             </div>
           </div>
-          <CurrentMigrations onLoad={onLoad} />
-          <VersionUpdates onLoad={onLoad} />
-          <AzurePipelineUsage onLoad={onLoad} />
-          <GitHubActionsUsage onLoad={onLoad} />
-          <TravisCIUsage onLoad={onLoad} />
-          <Incidents onLoad={onLoad} />
+          <div className="row row--no-gutters">
+            <div className="col col--12">
+              <CurrentMigrations onLoad={onLoad} />
+            </div>
+          </div>
+          <div className="row row--no-gutters">
+            <div className="col col--12">
+              <AzurePipelineUsage onLoad={onLoad} />
+            </div>
+          </div>
+          <div className="row row--no-gutters">
+            <div className="col col--12">
+              <GitHubActionsUsage onLoad={onLoad} />
+            </div>
+          </div>
+          <div className="row row--no-gutters">
+            <div className="col col--12">
+              <TravisCIUsage onLoad={onLoad} />
+            </div>
+          </div>
+          <div className="row row--no-gutters">
+            <div className="col col--6">
+              <Incidents onLoad={onLoad} />
+            </div>
+            <div className="col col--6">
+              <VersionUpdates onLoad={onLoad} />
+            </div>
+          </div>
         </div>
       </div>
     </main>

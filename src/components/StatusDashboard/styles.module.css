@@ -140,6 +140,7 @@
   font-size: 16px;
   position: sticky;
   top: 80px;
+  max-width: 250px;
 }
 
 .status_dashboard_toc a {

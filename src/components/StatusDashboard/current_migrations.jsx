@@ -53,7 +53,7 @@ export default function CurrentMigrations({ onLoad }) {
   return (
     <>
       <div id="migrations" className={styles.toc_anchor}></div>
-      <div className={`card margin--xs padding--xs`} style={{ overflow: 'auto' }}>
+      <div className="card" style={{ overflow: 'auto' }}>
         <div className="card__header">
           <h3>Current Migrations</h3>
         </div>

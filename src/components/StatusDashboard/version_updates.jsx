@@ -73,7 +73,7 @@ export default function VersionUpdates({ onLoad }) {
                 styles.errored_item + " " +
                 (expanded[item] ? styles.expanded : styles.collapsed)}
                 onClick={toggleItem(item)}>
-                <span class="fa fa-fw">
+                <span className="fa fa-fw">
                   <i className={
                     "fa fa-fw fa-ellipsis-vertical " +
                     styles.errored_item_ellipsis}
