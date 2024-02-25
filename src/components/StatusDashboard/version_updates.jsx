@@ -36,14 +36,12 @@ export default function VersionUpdates({ onLoad }) {
           <h3>Version Updates</h3>
         </div>
         <div className="card__body">
-          There are currently {queued.length} queued and{" "}
-          {errored.length} errored version updates.
           <div onClick={toggleTitle('queued')}
             className={
               styles.version_updates_title + " " +
               (collapsed.queued ? styles.collapsed : styles.expanded)
             }>
-            Queued Version Updates
+            Queued Version Updates ({queued.length})
           </div>
           <div className={styles.version_updates_content}
             style={collapsed.queued ?
@@ -63,7 +61,7 @@ export default function VersionUpdates({ onLoad }) {
               styles.version_updates_title + " " +
               (collapsed.errored ? styles.collapsed : styles.expanded)
             }>
-            Errored Version Updates
+            Errored Version Updates ({errored.length})
           </div>
           <div className={styles.version_updates_content}
             style={collapsed.errored ?

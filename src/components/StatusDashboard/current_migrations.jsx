@@ -99,7 +99,7 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
         <tr onClick={select}>
           <th colSpan="7" className={collapsed ? styles.collapsed : undefined}>
             {name}
-            {rows.length ? "" : "..."}
+            {rows.length ? ` (${rows.length})` : "..."}
           </th>
         </tr>
         <tr className={collapsed ? styles.collapsed : undefined}>
