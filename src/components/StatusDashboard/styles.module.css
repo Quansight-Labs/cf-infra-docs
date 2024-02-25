@@ -2,13 +2,6 @@
   vertical-align: bottom;
 }
 
-.current_status {
-  background-color: var(--ifm-color-danger);
-  color: var(--ifm-color-secondary);
-  font-size: 0.75em;
-  text-align: center;
-}
-
 .incident {
   padding: 10px;
 }

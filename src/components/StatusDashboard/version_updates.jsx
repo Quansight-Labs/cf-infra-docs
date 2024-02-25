@@ -33,7 +33,13 @@ export default function VersionUpdates({ onLoad }) {
       <div id="version" className={styles.toc_anchor}></div>
       <div className={`card margin-top--xs ${styles.version_updates}`}>
         <div className="card__header">
-          <h3>Version Updates</h3>
+          <h3>
+            Version Updates
+              {" "}
+              <span className="badge badge--secondary">{queued.length}</span>
+              {" "}
+              <span className="badge badge--warning">{errored.length}</span>
+          </h3>
         </div>
         <div className="card__body">
           <div onClick={toggleTitle('queued')}
@@ -41,7 +47,8 @@ export default function VersionUpdates({ onLoad }) {
               styles.version_updates_title + " " +
               (collapsed.queued ? styles.collapsed : styles.expanded)
             }>
-            Queued Version Updates ({queued.length})
+            Queued Version Updates{" "}
+            <span className="badge badge--secondary">{queued.length}</span>
           </div>
           <div className={styles.version_updates_content}
             style={collapsed.queued ?
@@ -61,7 +68,8 @@ export default function VersionUpdates({ onLoad }) {
               styles.version_updates_title + " " +
               (collapsed.errored ? styles.collapsed : styles.expanded)
             }>
-            Errored Version Updates ({errored.length})
+            Errored Version Updates{" "}
+            <span className="badge badge--warning">{errored.length}</span>
           </div>
           <div className={styles.version_updates_content}
             style={collapsed.errored ?

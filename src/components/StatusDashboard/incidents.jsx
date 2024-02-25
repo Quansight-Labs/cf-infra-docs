@@ -63,7 +63,12 @@ export default function Incidents({ onLoad }) {
         <div className="card__header">
           <h3>
             Incidents
-            <Status>{current}</Status>
+            {" "}
+            {current.size > 0 && Array.from(current).map((label, index) => (
+              <span className="badge badge--danger"
+                style={{ marginRight: 5 }}
+                key={index}>{label}</span>
+            ))}
           </h3>
         </div>
         <div className={`card__body ${styles.incidents}`}>
@@ -72,16 +77,6 @@ export default function Incidents({ onLoad }) {
         </div>
       </div>
     </>
-  );
-}
-
-function Status({ children }) {
-  const current = Array.from(children).join(', ')
-  if (!current) return <></>;
-  return (
-    <div className={styles.current_status}>
-      {current}
-    </div>
   );
 }
 

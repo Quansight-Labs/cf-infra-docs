@@ -51,7 +51,11 @@ function Status({ api, link, title }) {
   }, []);
   return (
     <tr>
-      <td><a href={link}>{title}</a></td>
+      <td>
+        <a href={link} style={{ display: "inline-block", minWidth: "100%" }}>
+          {title}
+        </a>
+      </td>
       <td><span className={className}>{status}</span></td>
     </tr>
   );

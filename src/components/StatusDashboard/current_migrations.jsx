@@ -56,7 +56,10 @@ export default function CurrentMigrations({ onLoad }) {
       <div id="migrations" className={styles.toc_anchor}></div>
       <div className="card" style={{ overflow: 'auto' }}>
         <div className="card__header">
-          <h3>Current Migrations ({total})</h3>
+          <h3>
+            Current Migrations{" "}
+            <span className="badge badge--secondary">{total}</span>
+          </h3>
         </div>
         <div className="card__body">
           <table className={styles.migrations_table}>
@@ -99,8 +102,8 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
       <thead>
         <tr onClick={select}>
           <th colSpan="7" className={collapsed ? styles.collapsed : undefined}>
-            {name}
-            {rows.length ? ` (${rows.length})` : "..."}
+            {name}{" "}
+            <span className="badge badge--secondary">{rows.length || "…"}</span>
           </th>
         </tr>
         <tr className={collapsed ? styles.collapsed : undefined}>
@@ -156,6 +159,7 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
             <tr key={row.name}>
               <td>
                 <a href={href}
+                  style={{ display: "inline-block", minWidth: "100%" }}
                   onClick={event => {
                     // Use app router instead defaulting to browser request.
                     event.preventDefault();

@@ -136,7 +136,7 @@ export const urls = {
     },
     services: {
       api: "https://conda-forge.herokuapp.com/alive",
-      link: "",
+      link: "https://github.com/conda-forge/conda-forge-webservices",
     },
   },
   travis: {

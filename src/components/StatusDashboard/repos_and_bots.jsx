@@ -36,8 +36,12 @@ export default function ReposAndBots({ onLoad, style }) {
 function Badge({ children, link, badge, badgeLink }) {
   return (
     <tr>
-      <td><a href={link}>{children}</a></td>
       <td>
+        <a href={link} style={{ display: "inline-block", minWidth: "100%" }}>
+          {children}
+        </a>
+      </td>
+      <td style={{ textAlign: "right" }}>
         <Image alt={`${children} status`} link={badgeLink}>{badge}</Image>
       </td>
     </tr>
@@ -72,7 +76,12 @@ function CDNStatus() {
   }, []);
   return (
     <tr>
-      <td><a href={urls.repos.cdn.link}>CDN cloning</a></td>
+      <td>
+        <a href={urls.repos.cdn.link}
+          style={{ display: "inline-block", minWidth: "100%" }}>
+          CDN cloning
+        </a>
+      </td>
       <td>
         <div style={{ display: "block" }} className={
           styles.status_pill +
@@ -102,7 +111,12 @@ function WebServices() {
   }, []);
   return (
     <tr>
-      <td><a href={urls.repos.services.link}>admin web services</a></td>
+      <td>
+        <a href={urls.repos.services.link}
+          style={{ display: "inline-block", minWidth: "100%" }}>
+          admin web services
+        </a>
+      </td>
       <td>
         <div style={{ display: "block" }} className={
           styles.status_pill +

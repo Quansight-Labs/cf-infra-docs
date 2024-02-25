@@ -31,10 +31,12 @@ export default function TravisCIUsage({ onLoad }) {
         className="card margin-top--xs margin-bottom--xs"
       >
         <div className="card__header">
-          <h3>Travis CI Usage</h3>
+          <h3>
+            Travis CI Usage{" "}
+            <span className="badge badge--secondary">{state.total}</span>
+          </h3>
         </div>
         <div className="card__body">
-          <p>Travis CI ran {state.total} jobs in the past eight hours.</p>
           <Bar data={{ labels, datasets: [{ data }] }} options={options} />
         </div>
       </div>
