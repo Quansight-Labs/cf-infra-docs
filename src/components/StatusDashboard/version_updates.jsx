@@ -51,7 +51,9 @@ export default function VersionUpdates({ onLoad }) {
               { display: "flex", flexDirection: "row" }
             }>
             {queued.map((item, index) => (
-              <div key={index} className={styles.queued_item}>
+              <div key={index}
+                style={{ margin: 2 }}
+                className="badge badge--secondary">
                 <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
               </div>
             ))}
@@ -73,15 +75,10 @@ export default function VersionUpdates({ onLoad }) {
                 styles.errored_item + " " +
                 (expanded[item] ? styles.expanded : styles.collapsed)}
                 onClick={toggleItem(item)}>
-                <span className="fa fa-fw">
-                  <i className={
-                    "fa fa-fw fa-ellipsis-vertical " +
-                    styles.errored_item_ellipsis}
-                    style={{ position: "relative", left: -25 }}></i>
-                  <i className={`fa fa-fw fa-blank ${styles.errored_item_spacer}`}
-                    style={{ position: "relative", left: -25 }}></i>
-                </span>
-                <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
+                <HoverEllipsis />
+                <div className="badge badge--secondary">
+                  <a href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
+                </div>
               </div>
               <div className={styles.errored_item_content}
                 style={{ display: !expanded[item] && "none" }}>
@@ -93,5 +90,16 @@ export default function VersionUpdates({ onLoad }) {
         </div>
       </div>
     </>
+  );
+}
+
+function HoverEllipsis() {
+  return (
+    <span className="fa fa-fw" style={{ position: "relative", left: -15 }}>
+      <i className={
+        "fa fa-fw fa-ellipsis-vertical " +
+        styles.errored_item_ellipsis}></i>
+      <i className={`fa fa-fw fa-blank ${styles.errored_item_spacer}`}></i>
+    </span>
   );
 }

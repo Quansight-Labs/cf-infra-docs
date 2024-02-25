@@ -227,29 +227,24 @@
   padding: 0 2px;
 }
 
-.queued_item {
-  border: 2px solid var(--ifm-color-secondary);
-  border-radius: 8px;
-  flex: 1;
-  font-size: smaller;
+.version_updates_content a {
+  font-size: small;
   font-weight: 600;
-  padding: 5px;
-  margin-top: 10px;
-  max-width: 300px;
-  min-width: 300px;
-  text-align: center;
-  text-wrap: nowrap;
+  text-decoration: none;
 }
 
 .errored_item {
-  background-color: var(--ifm-table-stripe-background);
-  border: var(--ifm-table-border-width) solid #ccc;
+  border: var(--ifm-table-border-width) solid transparent;
   cursor: pointer;
-  font-size: smaller;
-  font-weight: 600;
   margin-left: 20px;
   max-width: calc(100% - 20px);
   padding: 2px 0px;
+}
+
+.errored_item:hover,
+.errored_item.expanded {
+  background-color: var(--ifm-table-stripe-background);
+  border: var(--ifm-table-border-width) solid #ccc;
 }
 
 .errored_item .errored_item_ellipsis {
