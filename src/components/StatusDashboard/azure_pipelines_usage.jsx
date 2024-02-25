@@ -28,10 +28,9 @@ export default function AzurePipelinesUsage({ onLoad }) {
       <div id="azure" className={styles.toc_anchor}></div>
       <div id="azure_pipelines_usage" className="card margin-top--xs">
         <div className="card__header">
-          <h3>Azure Pipelines usage</h3>
+          <h3>Azure Pipelines Usage ({state.total})</h3>
         </div>
         <div className="card__body">
-          <p>Azure Pipelines ran {state.total} jobs in the past eight hours.</p>
           <Bar data={{ labels, datasets }} options={charts.usage.options} />
         </div>
       </div>

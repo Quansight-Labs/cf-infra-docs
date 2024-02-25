@@ -28,12 +28,9 @@ export default function GitHubActionsUsage({ onLoad }) {
       <div id="github" className={styles.toc_anchor}></div>
       <div id="github_actions_usage" className="card margin-top--xs">
         <div className="card__header">
-          <h3>GitHub Actions Usage</h3>
+          <h3>GitHub Actions Usage ({state.total})</h3>
         </div>
         <div className="card__body">
-          <p>
-            GitHub Actions ran {state.total} actions in the past eight hours.
-          </p>
           <Bar data={{ labels, datasets: [{ data }] }} options={options} />
         </div>
       </div>

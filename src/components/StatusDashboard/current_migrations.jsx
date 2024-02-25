@@ -50,12 +50,13 @@ export default function CurrentMigrations({ onLoad }) {
     });
   useEffect(fetchContent(onLoad, setState), []);
   const { closed, longterm, regular } = state;
+  const total = closed.length + longterm.length + regular.length;
   return (
     <>
       <div id="migrations" className={styles.toc_anchor}></div>
       <div className="card" style={{ overflow: 'auto' }}>
         <div className="card__header">
-          <h3>Current Migrations</h3>
+          <h3>Current Migrations ({total})</h3>
         </div>
         <div className="card__body">
           <table className={styles.migrations_table}>
