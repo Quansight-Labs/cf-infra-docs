@@ -77,6 +77,7 @@ export default function VersionUpdates({ onLoad }) {
                   onClick={toggleItem(item)}>
                   <HoverEllipsis />
                   <div className="badge badge--secondary">
+                    {/* Prevent link clicks from expanding/collapsing. */}
                     <a onClick={event => event.stopPropagation()}
                       href={urls.versions.pr.replace("<NAME>", item)}>{item}</a>
                   </div>

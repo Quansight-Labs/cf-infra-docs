@@ -154,12 +154,12 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           return (
             <tr key={row.name}>
               <td>
-                <a
+                <a href={href}
                   onClick={event => {
+                    // Use app router instead defaulting to browser request.
                     event.preventDefault();
                     setState(href);
-                  }}
-                  href={href}>{row.name}</a>
+                  }}>{row.name}</a>
               </td>
               <td>
                 <label className="progress_bar">
