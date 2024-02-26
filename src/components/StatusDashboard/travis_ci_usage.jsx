@@ -36,7 +36,7 @@ export default function TravisCIUsage({ onLoad }) {
             <span className="badge badge--secondary">{state.total}</span>
           </h3>
         </div>
-        <div className="card__body">
+        <div className={`card__body ${styles.status_dashboard_graph}`}>
           <Bar data={{ labels, datasets: [{ data }] }} options={options} />
         </div>
       </div>

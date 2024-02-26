@@ -264,23 +264,3 @@ not pretty but it's the best we can do so far */
   align-items: center;
   justify-content: center;
 }
-
-#azure_pipelines_usage .card__body canvas,
-#github_actions_usage .card__body canvas,
-#travis_ci_usage .card__body canvas {
-  max-height: 200px;
-}
-
-.progress_bar {
-  position: relative;
-  float: left;
-  width: 100%;
-  text-align: justify;
-  padding-left: 5px;
-}
-
-.progress_bar .ratio {
-  float: right;
-  right: 0;
-  text-align: right;
-}

@@ -283,3 +283,21 @@
   text-wrap: wrap;
   max-width: calc(100% - 10px);
 }
+
+.status_dashboard_graph canvas {
+  max-height: 200px;
+}
+
+.progress_bar {
+  position: relative;
+  float: left;
+  width: 100%;
+  text-align: justify;
+  padding-left: 5px;
+}
+
+.progress_bar .ratio {
+  float: right;
+  right: 0;
+  text-align: right;
+}

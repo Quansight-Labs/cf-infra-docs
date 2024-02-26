@@ -168,11 +168,11 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
                   }}>{row.name}</a>
               </td>
               <td>
-                <label className="progress_bar">
+                <label className={styles.progress_bar}>
                   <progress value={progress.done} max={progress.total}>
                     {progress.percentage.toFixed(2)}%
                   </progress>
-                  <span className="ratio">
+                  <span className={styles.ratio}>
                     {progress.done}/{progress.total}
                   </span>
                 </label>
