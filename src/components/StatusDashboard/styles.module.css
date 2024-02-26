@@ -116,10 +116,6 @@
   border-color: var(--ifm-color-primary);
 }
 
-.migrations_table td a:hover {
-  color: var(--ifm-color-primary);
-}
-
 .migrations_table .button-group {
   float: right;
 }

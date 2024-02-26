@@ -216,13 +216,22 @@ function Table({ details }) {
 
 function Row({ children }) {
   const { feedstock, name, status } = children;
-  const url = feedstock["pr_url"];
   const immediate = feedstock["immediate_children"];
   return (
   <tr>
-    <td>{url ? <Link to={feedstock["pr_url"]}>{name}</Link> : name}</td>
+    <td>
+    <a className="badge badge--secondary" href={feedstock["pr_url"]}
+      style={{ minWidth: "100%" }}>{name}</a>
+    </td>
     <td>{TITLES[status]}</td>
-    <td>{(immediate || []).join(", ")}</td>
+    <td>
+      {(immediate || []).map((name, index) => (
+        <span className="badge badge--secondary" key={index}
+          style={{ margin: 2 }}>
+          {name}
+        </span>
+      ))}
+    </td>
   </tr>
   );
 }
