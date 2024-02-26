@@ -108,6 +108,7 @@ function Incident({ children }) {
 
 const intersection = (one, two) => {
   const intersection = new Set();
-  for (const item of one) if (two.has(item)) intersection.add(item);
+  const [bigger, smaller] = one.size <= two.size ? [one, two] : [two, one];
+  for (const item of smaller) if (bigger.has(item)) intersection.add(item);
   return intersection;
 }
