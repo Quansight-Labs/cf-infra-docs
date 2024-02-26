@@ -158,8 +158,9 @@ function TableContent({ collapsed, name, resort, rows, select, sort }) {
           return (
             <tr key={row.name}>
               <td>
-                <a href={href}
-                  style={{ display: "inline-block", minWidth: "100%" }}
+                <a className="badge badge--secondary"
+                  href={href}
+                  style={{ minWidth: "100%" }}
                   onClick={event => {
                     // Use app router instead defaulting to browser request.
                     event.preventDefault();
